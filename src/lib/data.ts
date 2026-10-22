@@ -74,6 +74,18 @@ export async function getService(slug: string): Promise<Service | null> {
   return all.find((s) => s.slug === slug) ?? null;
 }
 
+// Hard race around any single Supabase operation: in environments where
+// direct egress hangs, the client library's own retries can stretch a
+// failing call well past the per-fetch timeout.
+function withTimeout<T>(p: PromiseLike<T>, ms = 6000): Promise<T> {
+  return Promise.race([
+    Promise.resolve(p),
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("supabase-timeout")), ms),
+    ),
+  ]);
+}
+
 export interface LeadInput {
   name: string;
   email: string;
@@ -91,23 +103,31 @@ export interface LeadResult {
 // Until the migration is applied / keys are present, the lead is logged
 // server-side so an enquiry is never silently dropped during development.
 export async function createLead(lead: LeadInput): Promise<LeadResult> {
-  const supabase = getServiceClient();
+  const supabase = supabaseDown ? null : getServiceClient();
   if (supabase) {
-    const { data, error } = await supabase
-      .from("leads")
-      .insert({
-        name: lead.name,
-        email: lead.email,
-        phone: lead.phone,
-        interest: lead.interest,
-        message: lead.message ?? null,
-      })
-      .select("id")
-      .single();
-    if (!error && data) {
-      return { stored: "supabase", id: String(data.id) };
+    try {
+      const { data, error } = await withTimeout(
+        supabase
+          .from("leads")
+          .insert({
+            name: lead.name,
+            email: lead.email,
+            phone: lead.phone,
+            interest: lead.interest,
+            message: lead.message ?? null,
+          })
+          .select("id")
+          .single(),
+      );
+      if (!error && data) {
+        return { stored: "supabase", id: String(data.id) };
+      }
+      supabaseDown = true;
+      console.error("[leads] Supabase insert failed, logging lead instead:", error?.message);
+    } catch (err) {
+      supabaseDown = true;
+      console.error("[leads] Supabase unreachable, logging lead instead:", String(err));
     }
-    console.error("[leads] Supabase insert failed, logging lead instead:", error?.message);
   }
   console.log("[leads] New enquiry (not stored in DB):", JSON.stringify(lead));
   return { stored: "log" };
@@ -124,15 +144,22 @@ export interface CertificateRecord {
 // record exists until GradeSpot loads real issued certificates, so an
 // unknown code honestly returns null.
 export async function verifyCertificate(code: string): Promise<CertificateRecord | null> {
+  if (supabaseDown) return null;
   const supabase = getAnonClient() ?? getServiceClient();
   if (!supabase) return null;
   try {
-    const { data, error } = await supabase
-      .from("certificates")
-      .select("code,student_name,course,issued_on")
-      .eq("code", code.trim())
-      .maybeSingle();
-    if (error || !data) return null;
+    const { data, error } = await withTimeout(
+      supabase
+        .from("certificates")
+        .select("code,student_name,course,issued_on")
+        .eq("code", code.trim())
+        .maybeSingle(),
+    );
+    if (error) {
+      supabaseDown = true;
+      return null;
+    }
+    if (!data) return null;
     return {
       code: data.code,
       studentName: data.student_name,
@@ -140,6 +167,7 @@ export async function verifyCertificate(code: string): Promise<CertificateRecord
       issuedOn: data.issued_on ?? null,
     };
   } catch {
+    supabaseDown = true;
     return null;
   }
 }
