@@ -7,30 +7,40 @@ import { getAnonClient, getServiceClient } from "./supabase";
 // supabase/migrations/0001_init.sql switches reads to the database without
 // code changes.
 
-export async function getCourses(): Promise<Course[]> {
+// If Supabase is unreachable or the tables are not there yet, latch to the
+// local data for the rest of the process instead of timing out per page.
+let supabaseDown = false;
+
+async function queryCourses(): Promise<Course[] | null> {
+  if (supabaseDown) return null;
   const supabase = getAnonClient();
-  if (supabase) {
-    try {
-      const { data, error } = await supabase
-        .from("courses")
-        .select("slug,title,category,image,summary,sections,catalog_only")
-        .order("title");
-      if (!error && data && data.length > 0) {
-        return data.map((row) => ({
-          slug: row.slug,
-          title: row.title,
-          category: row.category,
-          image: row.image ?? null,
-          summary: row.summary ?? "",
-          sections: Array.isArray(row.sections) ? row.sections : [],
-          catalogOnly: Boolean(row.catalog_only),
-        }));
-      }
-    } catch {
-      // fall through to local data
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from("courses")
+      .select("slug,title,category,image,summary,sections,catalog_only")
+      .order("title");
+    if (error || !data || data.length === 0) {
+      supabaseDown = true;
+      return null;
     }
+    return data.map((row) => ({
+      slug: row.slug,
+      title: row.title,
+      category: row.category,
+      image: row.image ?? null,
+      summary: row.summary ?? "",
+      sections: Array.isArray(row.sections) ? row.sections : [],
+      catalogOnly: Boolean(row.catalog_only),
+    }));
+  } catch {
+    supabaseDown = true;
+    return null;
   }
-  return localCourses;
+}
+
+export async function getCourses(): Promise<Course[]> {
+  return (await queryCourses()) ?? localCourses;
 }
 
 export async function getCourse(slug: string): Promise<Course | null> {
@@ -38,22 +48,25 @@ export async function getCourse(slug: string): Promise<Course | null> {
   return all.find((c) => c.slug === slug) ?? null;
 }
 
-export async function getServices(): Promise<Service[]> {
+async function queryServices(): Promise<Service[] | null> {
+  if (supabaseDown) return null;
   const supabase = getAnonClient();
-  if (supabase) {
-    try {
-      const { data, error } = await supabase
-        .from("services")
-        .select("slug,title")
-        .order("title");
-      if (!error && data && data.length > 0) {
-        return data.map((row) => ({ slug: row.slug, title: row.title }));
-      }
-    } catch {
-      // fall through to local data
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase.from("services").select("slug,title").order("title");
+    if (error || !data || data.length === 0) {
+      supabaseDown = true;
+      return null;
     }
+    return data.map((row) => ({ slug: row.slug, title: row.title }));
+  } catch {
+    supabaseDown = true;
+    return null;
   }
-  return localServices;
+}
+
+export async function getServices(): Promise<Service[]> {
+  return (await queryServices()) ?? localServices;
 }
 
 export async function getService(slug: string): Promise<Service | null> {
