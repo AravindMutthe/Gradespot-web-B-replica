@@ -356,11 +356,6 @@ const legacyRedirects = [
     "permanent": true
   },
   {
-    "source": "/contact-us",
-    "destination": "/contact-us",
-    "permanent": true
-  },
-  {
     "source": "/contact-us/",
     "destination": "/contact-us",
     "permanent": true
@@ -492,11 +487,6 @@ const legacyRedirects = [
   },
   {
     "source": "/index.php/faq/",
-    "destination": "/faq",
-    "permanent": true
-  },
-  {
-    "source": "/faq",
     "destination": "/faq",
     "permanent": true
   },
@@ -1092,11 +1082,6 @@ const legacyRedirects = [
   },
   {
     "source": "/index.php/team-members/",
-    "destination": "/team-members",
-    "permanent": true
-  },
-  {
-    "source": "/team-members",
     "destination": "/team-members",
     "permanent": true
   },
