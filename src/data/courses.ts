@@ -1472,7 +1472,7 @@ export const courses: Course[] = [
     "slug": "azure-security-engineer-az-500",
     "title": "Microsoft Certified: Azure Security Engineer Associate | AZ-500",
     "category": "Microsoft Azure",
-    "image": null,
+    "image": "/images/courses/azure-security-engineer-az-500.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1481,7 +1481,7 @@ export const courses: Course[] = [
     "slug": "microsoft-devops-az-400",
     "title": "Designing and Implementing Microsoft DevOps Solutions | AZ-400",
     "category": "Microsoft Azure",
-    "image": null,
+    "image": "/images/courses/microsoft-devops-az-400.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1490,7 +1490,7 @@ export const courses: Course[] = [
     "slug": "sc-900",
     "title": "Security, Compliance, and Identity Fundamentals | SC-900",
     "category": "Microsoft Azure",
-    "image": null,
+    "image": "/images/courses/sc-900.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1499,7 +1499,7 @@ export const courses: Course[] = [
     "slug": "sc-200",
     "title": "Microsoft Certified: Security Operations Analyst Associate | SC-200",
     "category": "Microsoft Azure",
-    "image": null,
+    "image": "/images/courses/sc-200.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1508,7 +1508,7 @@ export const courses: Course[] = [
     "slug": "microsoft-sentinel",
     "title": "Microsoft Sentinel Training",
     "category": "Microsoft Azure",
-    "image": null,
+    "image": "/images/courses/microsoft-sentinel.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1517,7 +1517,7 @@ export const courses: Course[] = [
     "slug": "aws-cloud-practitioner",
     "title": "AWS Certified Cloud Practitioner | AWS CLF-C02",
     "category": "AWS",
-    "image": null,
+    "image": "/images/courses/aws-cloud-practitioner.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1526,7 +1526,7 @@ export const courses: Course[] = [
     "slug": "aws-solutions-architect-associate",
     "title": "AWS Certified Solutions Architect – Associate | AWS SAA-C03",
     "category": "AWS",
-    "image": null,
+    "image": "/images/courses/aws-solutions-architect-associate.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1535,7 +1535,7 @@ export const courses: Course[] = [
     "slug": "aws-devops-engineer",
     "title": "AWS Certified DevOps Engineer - Professional | AWS DOP-C02",
     "category": "AWS",
-    "image": null,
+    "image": "/images/courses/aws-devops-engineer.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1544,7 +1544,7 @@ export const courses: Course[] = [
     "slug": "comptia-a-plus-core-1",
     "title": "CompTIA A+ Core 1: 220-1101",
     "category": "CompTIA",
-    "image": null,
+    "image": "/images/courses/comptia-a-plus-core-1.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1553,7 +1553,7 @@ export const courses: Course[] = [
     "slug": "comptia-a-plus-core-2",
     "title": "CompTIA A+ Core 2: 220-1102",
     "category": "CompTIA",
-    "image": null,
+    "image": "/images/courses/comptia-a-plus-core-2.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1562,7 +1562,7 @@ export const courses: Course[] = [
     "slug": "cybersecurity-technologies",
     "title": "Program in Cybersecurity Technologies",
     "category": "Cybersecurity",
-    "image": null,
+    "image": "/images/courses/cybersecurity-technologies.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1571,7 +1571,7 @@ export const courses: Course[] = [
     "slug": "vapt",
     "title": "Vulnerability Assessment & Penetration Testing [VA PT]",
     "category": "Cybersecurity",
-    "image": null,
+    "image": "/images/courses/vapt.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1580,7 +1580,7 @@ export const courses: Course[] = [
     "slug": "core-java",
     "title": "Core Java",
     "category": "Programming & Data",
-    "image": null,
+    "image": "/images/courses/core-java.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1589,7 +1589,7 @@ export const courses: Course[] = [
     "slug": "java-full-stack",
     "title": "Java Full Stack",
     "category": "Programming & Data",
-    "image": null,
+    "image": "/images/courses/java-full-stack.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1598,7 +1598,7 @@ export const courses: Course[] = [
     "slug": "power-bi",
     "title": "Power BI",
     "category": "Programming & Data",
-    "image": null,
+    "image": "/images/courses/power-bi.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1607,7 +1607,7 @@ export const courses: Course[] = [
     "slug": "mysql",
     "title": "MySQL",
     "category": "Programming & Data",
-    "image": null,
+    "image": "/images/courses/mysql.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1616,7 +1616,7 @@ export const courses: Course[] = [
     "slug": "data-analytics",
     "title": "Data Analytics",
     "category": "Programming & Data",
-    "image": null,
+    "image": "/images/courses/data-analytics.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1625,7 +1625,7 @@ export const courses: Course[] = [
     "slug": "data-science",
     "title": "Data Science",
     "category": "Programming & Data",
-    "image": null,
+    "image": "/images/courses/data-science.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1634,7 +1634,7 @@ export const courses: Course[] = [
     "slug": "certified-professional-coder-cpc",
     "title": "Certified Professional Coder - CPC",
     "category": "Medical Coding",
-    "image": null,
+    "image": "/images/courses/certified-professional-coder-cpc.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1643,7 +1643,7 @@ export const courses: Course[] = [
     "slug": "hcc-medical-coding",
     "title": "Hierarchical condition category - HCC",
     "category": "Medical Coding",
-    "image": null,
+    "image": "/images/courses/hcc-medical-coding.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1652,7 +1652,7 @@ export const courses: Course[] = [
     "slug": "ip-drg-medical-coding",
     "title": "Inpatient Diagnosis-Related Group - IP-DRG",
     "category": "Medical Coding",
-    "image": null,
+    "image": "/images/courses/ip-drg-medical-coding.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1661,7 +1661,7 @@ export const courses: Course[] = [
     "slug": "em-medical-coding",
     "title": "E&M (Evaluation and Management)",
     "category": "Medical Coding",
-    "image": null,
+    "image": "/images/courses/em-medical-coding.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1670,7 +1670,7 @@ export const courses: Course[] = [
     "slug": "radiology-medical-coding",
     "title": "Radiology - Medical Coding",
     "category": "Medical Coding",
-    "image": null,
+    "image": "/images/courses/radiology-medical-coding.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1679,7 +1679,7 @@ export const courses: Course[] = [
     "slug": "anesthesia-medical-coding",
     "title": "Anesthesia - Medical Coding",
     "category": "Medical Coding",
-    "image": null,
+    "image": "/images/courses/anesthesia-medical-coding.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
@@ -1688,7 +1688,7 @@ export const courses: Course[] = [
     "slug": "autocad",
     "title": "AutoCAD",
     "category": "Design & CAD",
-    "image": null,
+    "image": "/images/courses/autocad.jpg",
     "summary": "",
     "sections": [],
     "catalogOnly": true
