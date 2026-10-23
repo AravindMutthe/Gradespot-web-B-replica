@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { team } from "@/data/team";
 import { CtaBand, PageHero } from "@/components/ui";
 
@@ -31,6 +32,16 @@ export default function TeamPage() {
                     <a className="text-brand hover:underline" href={`mailto:${m.email}`}>
                       {m.email}
                     </a>
+                  </p>
+                )}
+                {m.profileHref && (
+                  <p className="mt-3">
+                    <Link
+                      href={m.profileHref}
+                      className="text-sm font-semibold text-brand hover:underline"
+                    >
+                      View Profile →
+                    </Link>
                   </p>
                 )}
               </div>

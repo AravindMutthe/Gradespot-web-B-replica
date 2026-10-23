@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { aboutParagraphs } from "@/data/pages";
 import { team } from "@/data/team";
-import { CtaBand, FaqList, PageHero, SectionTitle, StatsRibbon, siteFaqs } from "@/components/ui";
+import { CtaBand, ExperienceBadge, FaqList, FeatureTrio, LogoWall, PageHero, SectionTitle, SignatureBlock, StatsRibbon, siteFaqs } from "@/components/ui";
 
 export const metadata: Metadata = { title: "About Us" };
 
@@ -22,6 +22,10 @@ export default function AboutPage() {
               title="We assist companies in enhancing their digital presence and fortifying their Security."
             />
             <p className="mt-4">{aboutParagraphs[0]}</p>
+            <div className="mt-6 flex flex-wrap items-center gap-6">
+              <ExperienceBadge />
+              <SignatureBlock />
+            </div>
             <div className="mt-6 space-y-4">
               <article className="rounded-lg bg-surface-light p-5">
                 <h3 className="text-lg font-semibold">An ISO Certified Company</h3>
@@ -60,6 +64,8 @@ export default function AboutPage() {
 
       <StatsRibbon />
 
+      <FeatureTrio />
+
       <section className="section-pad">
         <div className="wrap">
           <SectionTitle label="Our Story" title="About GradeSpot IT Solutions" center />
@@ -94,6 +100,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <LogoWall />
 
       <CtaBand />
     </>

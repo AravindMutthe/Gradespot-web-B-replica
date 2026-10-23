@@ -8,6 +8,7 @@ export interface TeamMember {
   role: string;
   image: string;
   email?: string;
+  profileHref?: string;
 }
 
 export const team: TeamMember[] = [
@@ -16,6 +17,7 @@ export const team: TeamMember[] = [
     role: "Founder & MD",
     image: "/images/team/nikhil-duth-d.jpg",
     email: "nikhil@gsitssolutions.com",
+    profileHref: "/team-members/nikhil-duth-d",
   },
   {
     name: "Aravindh Mutthe",

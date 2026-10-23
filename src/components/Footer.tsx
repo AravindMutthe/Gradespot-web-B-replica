@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { business, telHref } from "@/data/site";
+import { SocialLinks } from "@/components/ui";
 
 const companyLinks = [
   { label: "About Us", href: "/about-us" },
@@ -34,6 +35,10 @@ export default function Footer() {
             At GradeSpot IT Solutions, our commitment is to craft superior IT solutions that
             redefine industry standards — training, services and cybersecurity from
             Dilsukhnagar, Hyderabad.
+          </p>
+          <p className="mt-5 text-sm font-semibold text-white">Connect With Us</p>
+          <p className="mt-2 flex items-center gap-4">
+            <SocialLinks className="h-5 w-5" />
           </p>
         </div>
 

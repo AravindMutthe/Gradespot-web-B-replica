@@ -71,6 +71,17 @@ export default function ContactPage() {
             <p className="mt-2 text-sm leading-6">{contactParagraphs[7]}</p>
           </article>
         </div>
+
+        <div className="wrap mt-14">
+          <h2 className="text-2xl font-semibold">Find Us</h2>
+          <iframe
+            title="GradeSpot IT Solutions — Dilsukhnagar, Hyderabad"
+            src={`https://www.google.com/maps?q=${encodeURIComponent(business.address)}&output=embed`}
+            className="mt-4 h-96 w-full rounded-lg border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
       </section>
     </>
   );

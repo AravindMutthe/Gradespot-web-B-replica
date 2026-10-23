@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { business, telHref } from "@/data/site";
+import { SocialLinks } from "@/components/ui";
 
 const resourceLinks = [
   { label: "Team Members", href: "/team-members" },
@@ -34,6 +35,9 @@ export default function Header() {
             <span>Office Hours: {business.officeHours}</span>
           </div>
           <div className="hidden items-center gap-4 sm:flex">
+            <span className="flex items-center gap-3">
+              <SocialLinks />
+            </span>
             {business.phones.map((p) => (
               <a key={p} className="font-semibold hover:text-brand" href={telHref(p)}>
                 {p}

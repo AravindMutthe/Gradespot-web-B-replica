@@ -1092,22 +1092,22 @@ const legacyRedirects = [
   },
   {
     "source": "/index.php/team-single",
-    "destination": "/team-members",
+    "destination": "/team-members/nikhil-duth-d",
     "permanent": true
   },
   {
     "source": "/index.php/team-single/",
-    "destination": "/team-members",
+    "destination": "/team-members/nikhil-duth-d",
     "permanent": true
   },
   {
     "source": "/team-single",
-    "destination": "/team-members",
+    "destination": "/team-members/nikhil-duth-d",
     "permanent": true
   },
   {
     "source": "/team-single/",
-    "destination": "/team-members",
+    "destination": "/team-members/nikhil-duth-d",
     "permanent": true
   },
   {

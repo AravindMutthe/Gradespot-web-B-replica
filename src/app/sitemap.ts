@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/resources",
     "/team-members",
+    "/team-members/nikhil-duth-d",
     "/why-choose-us",
     "/testimonials",
     "/student-certifications",

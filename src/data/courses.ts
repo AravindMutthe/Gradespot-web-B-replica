@@ -7,6 +7,9 @@
 export interface CourseSection {
   heading: string;
   paragraphs: string[];
+  // Rendering variant: "cards" = paragraph grid, "pricing" = plan cards
+  // ("Name — ₹Price" paragraphs), "faq" = alternating question/answer.
+  style?: "cards" | "pricing" | "faq";
 }
 
 export interface Course {
@@ -214,6 +217,22 @@ export const courses: Course[] = [
         ]
       },
       {
+        "heading": "Common Job Roles for Azure Admistrator",
+        "paragraphs": [
+          "Azure Administrator",
+          "Cloud Administrator",
+          "Cloud Engineer",
+          "Systems Administrator (Azure-focused)",
+          "Cloud Architect",
+          "Cloud Support Associate",
+          "Cloud Solutions Architect",
+          "Cloud Developer",
+          "Cloud Support Engineer",
+          "Cloud Operations"
+        ],
+        "style": "cards"
+      },
+      {
         "heading": "Get an Azure Administration [AZ-104] Certification voucher for Free!",
         "paragraphs": [
           "Show your new skills and earn a certificate. Once you have finished the training, you can sit for the exam. You will receive tasks with instructions that you will need to complete to receive the Azure 104 voucher"
@@ -316,6 +335,31 @@ export const courses: Course[] = [
         ]
       },
       {
+        "heading": "Common Job Roles After CCNA",
+        "paragraphs": [
+          "Network Engineer",
+          "Network Administrator",
+          "NOC Engineer",
+          "Technical Support Engineer",
+          "System Administrator",
+          "IT Support Specialist",
+          "Infrastructure Engineer",
+          "Field Network Engineer",
+          "System Support Engineer",
+          "Network Analyst"
+        ],
+        "style": "cards"
+      },
+      {
+        "heading": "Our Pricing",
+        "paragraphs": [
+          "Live Training — ₹13,000",
+          "Live Training + Certification — ₹37,500",
+          "Certification — ₹28,000"
+        ],
+        "style": "pricing"
+      },
+      {
         "heading": "Get a Chance To Take The CCNA 200-301 Certification Exam!",
         "paragraphs": [
           "Join our CCNA 200-301 training program today and get an exclusive chance to take the CCNA certification exam at a discounted price. Don’t miss this opportunity to boost your networking career with expert training and a globally recognized certification — at a reduced cost!"
@@ -381,7 +425,7 @@ export const courses: Course[] = [
     "slug": "ccnp-350-401-encor",
     "title": "CCNP Enterprise 350-401 ENCOR",
     "category": "Cisco",
-    "image": null,
+    "image": "/images/courses/ccnp.jpg",
     "summary": "Join our CCNP 350-401 training program and get hands-on experience in mastering the fundamentals of computer networking. Dive deep into practical exercises, simulations, and real-world scenarios to enhance your skills. Equip yourself with the knowledge needed to excel in the…",
     "sections": [
       {
@@ -421,6 +465,31 @@ export const courses: Course[] = [
           "By the conclusion of our CCNA 200-301 course, students will emerge equipped with a comprehensive understanding of computer networking principles and practices. They will possess the skills and knowledge necessary to confidently configure, troubleshoot, and manage network devices, laying a strong foundation for a successful career in network administration.",
           "Additionally, students will be well-prepared to tackle the CCNA 200-301 certification exam, opening doors to exciting opportunities in the rapidly evolving field of IT. With hands-on experience, expert instruction, and ongoing support, our course empowers students to embark on a journey of professional growth and advancement in the dynamic world of computer networking."
         ]
+      },
+      {
+        "heading": "Common Job Roles After CCNA",
+        "paragraphs": [
+          "Network Engineer",
+          "Network Administrator",
+          "NOC Engineer",
+          "Technical Support Engineer",
+          "System Administrator",
+          "IT Support Specialist",
+          "Infrastructure Engineer",
+          "Field Network Engineer",
+          "System Support Engineer",
+          "Network Analyst"
+        ],
+        "style": "cards"
+      },
+      {
+        "heading": "Our Pricing",
+        "paragraphs": [
+          "Live Training — ₹13,000",
+          "Live Training + Certification — ₹37,500",
+          "Certification — ₹28,000"
+        ],
+        "style": "pricing"
       },
       {
         "heading": "Get a Chance To Take The CCNA 200-301 Certification Exam!",
@@ -546,6 +615,20 @@ export const courses: Course[] = [
         ]
       },
       {
+        "heading": "Common Job Roles",
+        "paragraphs": [
+          "Network Administrator",
+          "Network Engineer",
+          "IT consultant",
+          "Computer technician",
+          "Help desk technician",
+          "System engineer",
+          "Network support specialist",
+          "Network analyst"
+        ],
+        "style": "cards"
+      },
+      {
         "heading": "Get a Course Completion Certificate",
         "paragraphs": [
           "Show your new skills and earn a CompTIA Network+ Course Completion Certificate. Once you have finished the training, you can sit for the exam. You will receive tasks with instructions that you will need to complete to receive the certificate"
@@ -576,7 +659,7 @@ export const courses: Course[] = [
     "slug": "comptia-pentest-plus",
     "title": "CompTIA PenTest+: PT0-002",
     "category": "CompTIA",
-    "image": null,
+    "image": "/images/courses/pentest-plus.jpg",
     "summary": "Acquire practical skills in cybersecurity through our CompTIA Pentest+ Course training, where you'll delve into the core techniques of safeguarding digital assets and mitigating cyber threats.",
     "sections": [
       {
@@ -637,6 +720,21 @@ export const courses: Course[] = [
           "By the end of this course, you’ll be equipped with the knowledge and skills to take on advanced roles in cybersecurity teams and be well-prepared for the CompTIA PenTest+ (PT0-002) certification exam.",
           "Enroll in our CompTIA Pentest+ Training Program and set forth on a transformative voyage into the realm of cybersecurity. Whether your aim is to fortify defenses against cyber threats, propel your career forward, or enact change in the digital sphere, our program equips you with the essential tools, expertise, and guidance required to thrive."
         ]
+      },
+      {
+        "heading": "Common Job Roles",
+        "paragraphs": [
+          "Penetration Tester",
+          "Security Analyst",
+          "Web app penetration tester",
+          "Ethical Hacker",
+          "Vulnerability Assessment Analyst",
+          "Security Consultant",
+          "Security Engineer",
+          "Incident Responder",
+          "Cybersecurity Specialist"
+        ],
+        "style": "cards"
       },
       {
         "heading": "Get a Course Completion Certificate",
@@ -741,6 +839,21 @@ export const courses: Course[] = [
         ]
       },
       {
+        "heading": "Common Job Roles",
+        "paragraphs": [
+          "Security specialist",
+          "Systems administrator",
+          "Security administrator",
+          "Security analyst",
+          "Security engineer",
+          "Help desk analyst",
+          "Security consultant",
+          "IT Auditor",
+          "Penetration Tester/Ethical Hacker"
+        ],
+        "style": "cards"
+      },
+      {
         "heading": "Get a Course Completion Certificate",
         "paragraphs": [
           "Show your new skills and earn a course completion certificate of CompTIA Security+ Training. Once you have finished the training, you can sit for the exam. You will receive tasks with instructions that you will need to complete to receive the certificate"
@@ -777,7 +890,7 @@ export const courses: Course[] = [
     "slug": "computer-hardware-and-networking",
     "title": "Computer Hardware and Networking Training",
     "category": "Networking",
-    "image": null,
+    "image": "/images/courses/hardware-networking.jpg",
     "summary": "Gain hands-on expertise in cybersecurity with our Practical Ethical Hacking Training, mastering essential techniques to safeguard digital assets and mitigate cyber threats.",
     "sections": [
       {
@@ -819,6 +932,28 @@ export const courses: Course[] = [
           "By the end of this course, you will have gained valuable knowledge and practical skills in Ethical Hacking, which will prepare you for a successful career in this fast-growing industry.",
           "Join our Ethical Hacker Training Program and embark on a transformative journey into the world of cybersecurity. Whether you’re looking to defend against cyber threats, advance your career, or make a difference in the digital world, our program provides the tools, knowledge, and support you need to succeed."
         ]
+      },
+      {
+        "heading": "Common Job Roles for Ethical Hacking",
+        "paragraphs": [
+          "Ethical Hacker/Penetration Tester",
+          "Cybersecurity Auditor",
+          "Security Administrator",
+          "Junior Information Security Auditor",
+          "IT Security Administrator",
+          "Cyber Defense Analyst",
+          "Vulnerability Assessment Analyst",
+          "Information Security Analyst",
+          "Security Analyst",
+          "Cybersecurity Analyst",
+          "L1-3 Security Trainer/Instructor",
+          "Network Security Engineer",
+          "Security Manager",
+          "Security Consultant",
+          "Security Operations Center Analyst",
+          "Cybersecurity Consultant"
+        ],
+        "style": "cards"
       },
       {
         "heading": "Get a Course Completion Certificate",
@@ -876,7 +1011,7 @@ export const courses: Course[] = [
     "slug": "digital-marketing",
     "title": "Complete Digital Marketing",
     "category": "Digital Marketing",
-    "image": null,
+    "image": "/images/courses/digital-marketing.jpg",
     "summary": "Master digital marketing in just 45 days with GradeSpot IT Solutions and land a job with a guaranteed success rate. Learn from experts, gain hands-on experience, and step into a lucrative career with confidence. Join us now for a transformative journey towards a bright…",
     "sections": [
       {
@@ -924,6 +1059,20 @@ export const courses: Course[] = [
           "Hands-on Labs and Projects: To ensure a well-rounded learning experience, our course includes hands-on labs and projects that allow you to apply your knowledge in real-world scenarios. You’ll gain confidence in your abilities by working on practical exercises and projects that simulate the challenges you may encounter as a Digital Marketing Executive. This hands-on approach ensures that you’re well-prepared to tackle any Digital Marketing tasks with ease.",
           "Enroll in Our Digital Marketing Training Today!"
         ]
+      },
+      {
+        "heading": "Skills Covered",
+        "paragraphs": [
+          "Search Engine Optimization",
+          "Search Engine Marketing",
+          "Social Media Marketing",
+          "Email Marketing",
+          "Content Marketing",
+          "Campaign Management",
+          "Lead Generation",
+          "Digital Ads"
+        ],
+        "style": "cards"
       },
       {
         "heading": "Enroll in Our Digital Marketing Training Today!",
@@ -977,16 +1126,30 @@ export const courses: Course[] = [
       {
         "heading": "Our Students works for.",
         "paragraphs": [
-          "Our students have been employed by some of the top companies in the industry.",
-          "Our training program is open to individuals from all backgrounds and skill levels. Whether you're a beginner or an experienced professional looking to enhance your digital marketing skills, our program is designed to accommodate learners at various stages of their career journey.",
-          "No prior experience in digital marketing is required. Our training program is structured to cater to learners with diverse backgrounds. We provide comprehensive instruction starting from the fundamentals, making it accessible for beginners while also offering advanced topics for experienced professionals.",
-          "Throughout the program, you will have access to a variety of learning resources including lecture materials, video tutorials, case studies, practical exercises, and supplementary reading materials. Additionally, you'll have access to digital marketing tools and platforms for hands-on learning.",
-          "The duration of the training program is 45 days. During this time, you will cover all the essential topics in digital marketing, gaining both theoretical knowledge and practical skills through hands-on projects and exercises.",
-          "Yes, upon successful completion of the Digital Marketing Training Program, you will receive a course completion certificate from GradeSpot IT Solutions. This certificate serves as a testament to your skills and knowledge acquired during the training.",
-          "Yes, we offer job placement assistance to our graduates. Our dedicated career support team provides assistance with resume building, interview preparation, and job placement opportunities within the digital marketing industry.",
-          "The training is delivered through a combination of live instructor-led sessions, pre-recorded video lectures, interactive workshops, and hands-on practical exercises. Sessions are conducted both online and in-person, providing flexibility for learners to choose the mode of participation that best suits their schedule.",
-          "To enroll in the program, simply visit our website or contact our admissions team for assistance. You can fill out the enrollment form online and complete the registration process to secure your spot in the upcoming batch of the training program."
+          "Our students have been employed by some of the top companies in the industry."
         ]
+      },
+      {
+        "heading": "FAQ's",
+        "paragraphs": [
+          "Who is eligible to enroll in the Digital Marketing Training Program?",
+          "Our training program is open to individuals from all backgrounds and skill levels. Whether you're a beginner or an experienced professional looking to enhance your digital marketing skills, our program is designed to accommodate learners at various stages of their career journey.",
+          "Do I need any prior experience or knowledge in digital marketing to join the program?",
+          "No prior experience in digital marketing is required. Our training program is structured to cater to learners with diverse backgrounds. We provide comprehensive instruction starting from the fundamentals, making it accessible for beginners while also offering advanced topics for experienced professionals.",
+          "What learning resources are provided during the training?",
+          "Throughout the program, you will have access to a variety of learning resources including lecture materials, video tutorials, case studies, practical exercises, and supplementary reading materials. Additionally, you'll have access to digital marketing tools and platforms for hands-on learning.",
+          "How long does it take to complete the Digital Marketing Training Program?",
+          "The duration of the training program is 45 days. During this time, you will cover all the essential topics in digital marketing, gaining both theoretical knowledge and practical skills through hands-on projects and exercises.",
+          "Will I receive a certificate upon completion of the training program?",
+          "Yes, upon successful completion of the Digital Marketing Training Program, you will receive a course completion certificate from GradeSpot IT Solutions. This certificate serves as a testament to your skills and knowledge acquired during the training.",
+          "Is job placement assistance provided after completing the training?",
+          "Yes, we offer job placement assistance to our graduates. Our dedicated career support team provides assistance with resume building, interview preparation, and job placement opportunities within the digital marketing industry.",
+          "How is the training delivered?",
+          "The training is delivered through a combination of live instructor-led sessions, pre-recorded video lectures, interactive workshops, and hands-on practical exercises. Sessions are conducted both online and in-person, providing flexibility for learners to choose the mode of participation that best suits their schedule.",
+          "How can I enroll in the Digital Marketing Training Program?",
+          "To enroll in the program, simply visit our website or contact our admissions team for assistance. You can fill out the enrollment form online and complete the registration process to secure your spot in the upcoming batch of the training program."
+        ],
+        "style": "faq"
       }
     ],
     "catalogOnly": false
@@ -1041,6 +1204,22 @@ export const courses: Course[] = [
           "Upon completing this course, you will acquire essential knowledge and hands-on expertise in SOC Analysis, equipping you for a successful career in this rapidly expanding field.",
           "Enroll in our Practical SOC Analyst Training Program and take a significant step toward a rewarding career in cybersecurity. Whether your goal is to strengthen cyber defenses, advance professionally, or contribute to securing the digital landscape, this program provides the necessary skills, insights, and support to help you excel."
         ]
+      },
+      {
+        "heading": "Common Job Roles for SOC Analysis",
+        "paragraphs": [
+          "SOC Analyst (Tier 1, Tier 2, Tier 3)",
+          "Cybersecurity Analyst",
+          "Threat Intelligence Analyst",
+          "Incident Response Specialist",
+          "Security Analyst",
+          "Security Operations Specialist",
+          "Cyber Threat Hunter",
+          "SIEM Administrator",
+          "Vulnerability Assessment Specialist",
+          "Network Security Analyst"
+        ],
+        "style": "cards"
       },
       {
         "heading": "Get a Free EC-Council C|SA Certification Exam!",
@@ -1160,6 +1339,19 @@ export const courses: Course[] = [
         ]
       },
       {
+        "heading": "Why Choose GradeSpot IT Solutions for CEH Training?",
+        "paragraphs": [
+          "100% Practical-Oriented Learning",
+          "Live Ethical Hacking Labs",
+          "Learn from Certified Cybersecurity Experts",
+          "Industry-Recognized CEH Certification Preparation",
+          "Real-World Hacking Scenarios",
+          "Placement Assistance with MNCs and Cybersecurity Firms",
+          "Flexible Batches – Online & Offline",
+          "Affordable Fees with EMI Options"
+        ]
+      },
+      {
         "heading": "Enrol in Our Practical Ethical Hacking Training Today!",
         "paragraphs": [
           "Upon completing this course, you will gain comprehensive knowledge and hands-on expertise in Ethical Hacking, Penetration Testing, and Cybersecurity. This program equips you with the skills required to launch a successful career in the fast-growing field of ethical hacking and cybersecurity.",
@@ -1170,6 +1362,28 @@ export const courses: Course[] = [
           "Industry-Recognized CEH Certification Preparation",
           "Placement Assistance with MNCs and Cybersecurity Firms"
         ]
+      },
+      {
+        "heading": "Common Job Roles for Ethical Hacking",
+        "paragraphs": [
+          "Ethical Hacker/Penetration Tester",
+          "Cybersecurity Auditor",
+          "Security Administrator",
+          "Junior Information Security Auditor",
+          "IT Security Administrator",
+          "Cyber Defense Analyst",
+          "Vulnerability Assessment Analyst",
+          "Information Security Analyst",
+          "Security Analyst",
+          "Cybersecurity Analyst",
+          "L1-3 Security Trainer/Instructor",
+          "Network Security Engineer",
+          "Security Manager",
+          "Security Consultant",
+          "Security Operations Center Analyst",
+          "Cybersecurity Consultant"
+        ],
+        "style": "cards"
       },
       {
         "heading": "Get a Free EC-Council C|SA Certification Exam!",
@@ -1204,6 +1418,24 @@ export const courses: Course[] = [
           "Threat Intelligence Use Cases for Enhanced Incidence Responder",
           "Enhancing Incident Response by establishing SOPs"
         ]
+      },
+      {
+        "heading": "Tools Covered",
+        "paragraphs": [
+          "Nmap",
+          "Wireshark",
+          "Metasploit",
+          "Nessus",
+          "OpenVAS",
+          "Maltego",
+          "Acunetix",
+          "Angry IP Scanner",
+          "Hashcat",
+          "Burp Suite",
+          "THC Hydra",
+          "John-The-Ripper"
+        ],
+        "style": "cards"
       },
       {
         "heading": "Visit our Blog",
