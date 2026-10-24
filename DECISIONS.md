@@ -25,6 +25,13 @@ with working `tel:` links. **Decision needed:** confirm which numbers are
 current (is +91 76600 43217 live? is +91 88866 60597?) and whether one should
 be labelled (e.g. admissions vs office).
 
+**RESOLVED 2026-10-23 (Aravind):** "use only any one phn number." The single
+number used sitewide is **+91 91826 54056** — the most widely published of
+the three (header/footer pair, the FAQ answer, and most Call Us blocks).
++91 88866 60597 and +91 76600 43217 no longer appear anywhere on the
+rebuild. Applied in `src/data/site.ts` + `src/data/pages.ts`, deployed and
+verified live the same morning.
+
 ## 2. "Certified Learners" is published as both 1200 and 1500
 
 Quoted from the live site's counter strips:
@@ -45,6 +52,11 @@ Other figures are consistent everywhere: `1,500+ Happy Learners`,
 and omits "Certified Learners" entirely. **Decision needed:** the correct
 certified-learners total; then it can be added back in one place (the data
 file) and will be consistent sitewide.
+
+**RESOLVED 2026-10-23 (Aravind):** Certified Learners = **1250**. Added to
+the stats ribbon in `src/data/site.ts`; deployed and verified live the same
+morning. (Distinct from the separate published figures "1,500+ Happy
+Learners" and "1500 Students Enrolled", which were consistent and stay.)
 
 ## 3. Claims carried as published — not independently verified
 
@@ -202,3 +214,32 @@ per-review stars were not reliably extractable, and no rating is claimed).
   (digital.gsitssolutions.com), exactly as the live menu has them.
 - Core menu order/labels unchanged: Home, About Us, Trainings, Resources,
   Digital, Services, Contact Us.
+
+## 15. Live-vs-rebuild gap audit closed — 2026-10-23
+
+Aravind asked for an exact comparison with the official site and to add
+everything missing. Audit (22 gaps, full register in the goal workspace)
+and additions were completed and verified live the same day:
+
+- Student Certifications gallery now shows all **30** photos (18 added).
+- "Common Job Roles" card sections added to 9 courses; "Our Pricing"
+  cards (₹13,000 / ₹37,500 / ₹28,000, filler bullets dropped) on CCNA +
+  CCNP; CEH "Tools Covered" (12) + "Why Choose GradeSpot" (8 points);
+  Digital Marketing "Skills Covered" (8, incl. Lead Generation + Digital
+  Ads) and its FAQs restructured (8 Q&As as published).
+- Blog cards (2FA / Information Warfare / Golden Ticket) on Trainings +
+  CCNA/CCNP/SOC/CEH; counters ribbon on Trainings + course pages; course
+  images for CCNP, PenTest+, Hardware & Networking, Digital Marketing.
+- §12 employer logo wall: ADDED per Aravind's instruction — the 10
+  identified logos (XCube Labs, Cloud4C, Persistent, Diligient, Wipro,
+  Astreya, Tericsoft, EY, Movate, PurpleTalk) on Trainings, Services,
+  About, Why Choose Us, Testimonials, Student Certifications, Certificate
+  Verification and course pages. The 2 unidentified sample SVGs
+  ("Company112", "client logo 33") were skipped — flag if they are real.
+- Also: 9-years badge, founder signature block, feature trio strip,
+  LinkedIn/YouTube links, Why-Choose-Us highlight cards, Nikhil profile
+  page (/team-members/nikhil-duth-d — no filler bio, no retired phone),
+  Video Showcase on Trainings, Services contact strip, "Pay after you
+  Pass" line on Student Certifications, Trainings hero copy.
+- Contact map: added pointing at the REAL Dilsukhnagar address — the live
+  site's embed points at Rajkot, Gujarat (theme demo) and was not copied.

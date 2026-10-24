@@ -2,8 +2,66 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { courses as localCourses } from "@/data/courses";
+import { courses as localCourses, type CourseSection } from "@/data/courses";
 import { getCourse } from "@/lib/data";
+import { BlogCards, FeatureTrio, LogoWall, StatsRibbon } from "@/components/ui";
+
+function SectionBody({ section }: { section: CourseSection }) {
+  if (section.style === "cards") {
+    return (
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {section.paragraphs.map((p, j) => (
+          <div
+            key={j}
+            className="rounded bg-surface-light px-4 py-3 text-center text-[15px] font-semibold text-heading"
+          >
+            {p}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (section.style === "pricing") {
+    return (
+      <div className="mt-4 grid gap-4 md:grid-cols-3">
+        {section.paragraphs.map((p, j) => {
+          const [name, price] = p.split(" — ");
+          return (
+            <div
+              key={j}
+              className="rounded-lg bg-white px-6 py-8 text-center shadow-[0_5px_30px_rgba(214,215,216,0.57)]"
+            >
+              <p className="text-sm font-semibold uppercase tracking-wide text-body">{name}</p>
+              <p className="mt-2 text-3xl font-extrabold text-heading">{price ?? p}</p>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+  if (section.style === "faq") {
+    return (
+      <div className="mt-3 space-y-4">
+        {section.paragraphs.map((p, j) =>
+          j % 2 === 0 ? (
+            <h3 key={j} className="pt-2 text-lg font-semibold text-heading">
+              {p}
+            </h3>
+          ) : (
+            <p key={j}>{p}</p>
+          ),
+        )}
+      </div>
+    );
+  }
+  return (
+    <div className="mt-3 space-y-4">
+      {section.paragraphs.map((p, j) => (
+        <p key={j}>{p}</p>
+      ))}
+    </div>
+  );
+}
 
 export function generateStaticParams() {
   return localCourses.map((c) => ({ slug: c.slug }));
@@ -92,16 +150,19 @@ export default async function CoursePage({
           ) : (
             <div className="mx-auto max-w-4xl space-y-12">
               {course.sections.map((s, i) => (
-                <article key={i}>
-                  {s.heading && (
-                    <h2 className="text-[28px] font-semibold leading-[34px]">{s.heading}</h2>
+                <div key={i}>
+                  <article>
+                    {s.heading && (
+                      <h2 className="text-[28px] font-semibold leading-[34px]">{s.heading}</h2>
+                    )}
+                    <SectionBody section={s} />
+                  </article>
+                  {s.heading === "Visit our Blog" && (
+                    <div className="mt-6">
+                      <BlogCards />
+                    </div>
                   )}
-                  <div className="mt-3 space-y-4">
-                    {s.paragraphs.map((p, j) => (
-                      <p key={j}>{p}</p>
-                    ))}
-                  </div>
-                </article>
+                </div>
               ))}
               <div className="rounded-lg bg-surface-light p-8 text-center">
                 <h2 className="text-2xl font-semibold">Ready to enrol?</h2>
@@ -117,6 +178,14 @@ export default async function CoursePage({
           )}
         </div>
       </section>
+
+      {!course.catalogOnly && (
+        <>
+          <LogoWall />
+          <StatsRibbon />
+          <FeatureTrio />
+        </>
+      )}
     </>
   );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { testimonials } from "@/data/testimonials";
-import { CtaBand, PageHero } from "@/components/ui";
+import { CtaBand, LogoWall, PageHero } from "@/components/ui";
 
 export const metadata: Metadata = { title: "Testimonials" };
 
@@ -29,6 +29,7 @@ export default function TestimonialsPage() {
           ))}
         </div>
       </section>
+      <LogoWall />
       <CtaBand />
     </>
   );

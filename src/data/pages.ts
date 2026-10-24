@@ -170,7 +170,7 @@ export const termsSections: { heading: string; paragraphs: string[] }[] = [
     "paragraphs": [
       "By enrolling in a course, accessing our Services, or making any payment, you acknowledge that you have read, understood, and agreed to these Terms and Conditions in full.",
       "Contact UsFor any queries regarding these Terms and Conditions, you may contact us at:",
-      "GradeSpot IT SolutionsEmail: info@gsitssolutions.comPhone: +91 88866 60597Location: 16-126, Sai Baba Temple Lane, Dilsukhnagar, Hyderabad, Telangana, India – 500060"
+      "GradeSpot IT SolutionsEmail: info@gsitssolutions.comPhone: +91 91826 54056Location: 16-126, Sai Baba Temple Lane, Dilsukhnagar, Hyderabad, Telangana, India – 500060"
     ]
   }
 ];

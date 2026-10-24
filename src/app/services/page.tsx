@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getServices } from "@/lib/data";
 import { servicesFaqAnswers } from "@/data/pages";
-import { FaqList, PageHero, SectionTitle, ServiceCard, siteFaqs } from "@/components/ui";
+import { business, telHref } from "@/data/site";
+import { FaqList, LogoWall, PageHero, SectionTitle, ServiceCard, siteFaqs } from "@/components/ui";
 
 export const metadata: Metadata = { title: "Services" };
 
@@ -48,8 +49,40 @@ export default async function ServicesPage() {
               Contact Us Now
             </Link>
           </div>
+
+          <div className="mt-16 grid gap-6 md:grid-cols-3">
+            <article className="rounded-lg bg-surface-light p-7">
+              <h2 className="text-xl font-semibold">Address</h2>
+              <p className="mt-2 text-sm leading-6">{business.address}</p>
+            </article>
+            <article className="rounded-lg bg-surface-light p-7">
+              <h2 className="text-xl font-semibold">Send Us Mail</h2>
+              <p className="mt-2 text-sm leading-6">
+                {business.emails.map((e) => (
+                  <span key={e} className="block">
+                    <a className="hover:text-brand" href={`mailto:${e}`}>
+                      {e}
+                    </a>
+                  </span>
+                ))}
+              </p>
+            </article>
+            <article className="rounded-lg bg-surface-light p-7">
+              <h2 className="text-xl font-semibold">Call Us</h2>
+              <p className="mt-2 text-sm leading-6">
+                {business.phones.map((p) => (
+                  <span key={p} className="block">
+                    <a className="hover:text-brand" href={telHref(p)}>
+                      {p}
+                    </a>
+                  </span>
+                ))}
+              </p>
+            </article>
+          </div>
         </div>
       </section>
+      <LogoWall />
     </>
   );
 }

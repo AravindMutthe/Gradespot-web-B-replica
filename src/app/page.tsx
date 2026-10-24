@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getCourses, getServices } from "@/lib/data";
 import { homeParagraphs } from "@/data/pages";
 import { team } from "@/data/team";
-import { CourseCard, CtaBand, FaqList, SectionTitle, ServiceCard, StatsRibbon, siteFaqs } from "@/components/ui";
+import { CourseCard, CtaBand, ExperienceBadge, FaqList, FeatureTrio, SectionTitle, ServiceCard, SignatureBlock, StatsRibbon, siteFaqs } from "@/components/ui";
 
 export default async function HomePage() {
   const [courses, services] = await Promise.all([getCourses(), getServices()]);
@@ -62,9 +62,15 @@ export default async function HomePage() {
               title="We assist companies in enhancing their digital presence and fortifying their Security"
             />
             <p className="mt-4">{homeParagraphs[6]}</p>
+            <div className="mt-6">
+              <ExperienceBadge />
+            </div>
             <Link href="/about-us" className="btn-primary mt-6">
               About Us
             </Link>
+            <div className="mt-8">
+              <SignatureBlock />
+            </div>
           </div>
           <div className="space-y-6">
             <article className="rounded-lg bg-white p-6 shadow-sm">
@@ -147,6 +153,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <FeatureTrio />
 
       {/* FAQ */}
       <section className="bg-surface-light section-pad">

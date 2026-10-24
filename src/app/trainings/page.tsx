@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getCourses } from "@/lib/data";
 import { courseCategories } from "@/data/courses";
-import { CourseCard, PageHero, StatsRibbon } from "@/components/ui";
+import { BlogCards, CourseCard, FeatureTrio, LogoWall, PageHero, SectionTitle, StatsRibbon } from "@/components/ui";
 
 export const metadata: Metadata = { title: "Trainings" };
+
+const showcaseItems = ["IT Consultancy", "Cyber Security", "Cloud Computing", "Backup & Recovery"];
 
 export default async function TrainingsPage() {
   const courses = await getCourses();
@@ -20,9 +22,24 @@ export default async function TrainingsPage() {
     <>
       <PageHero
         title="Trainings"
-        subtitle="Our Training Catalogue — explore a diverse array of professional courses from GradeSpot IT Solutions, Dilsukhnagar, Hyderabad."
+        subtitle="Creating a better IT solutions — At GradeSpot, we empower future engineers with cutting-edge IT skills, practical training, and real-world projects. Our mission is to turn learners into tech leaders. Transform every Digital Process — intelligent automation, expert-driven solutions, and scalable technology."
       />
       <StatsRibbon />
+      <section className="section-pad">
+        <div className="wrap">
+          <SectionTitle label="Video Showcase" title="Video Showcase" center />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {showcaseItems.map((t) => (
+              <article
+                key={t}
+                className="bg-white px-[30px] py-[40px] text-center shadow-[0_5px_30px_rgba(214,215,216,0.57)]"
+              >
+                <h3 className="text-xl font-bold text-heading">{t}</h3>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="section-pad">
         <div className="wrap space-y-16">
           {categories.map((cat) => (
@@ -47,6 +64,16 @@ export default async function TrainingsPage() {
           </div>
         </div>
       </section>
+      <FeatureTrio />
+      <section className="section-pad">
+        <div className="wrap">
+          <SectionTitle label="Blog" title="Visit our Blog" center />
+          <div className="mt-10">
+            <BlogCards />
+          </div>
+        </div>
+      </section>
+      <LogoWall />
     </>
   );
 }

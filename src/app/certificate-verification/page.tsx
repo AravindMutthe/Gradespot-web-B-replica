@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import VerifyForm from "@/components/VerifyForm";
-import { CtaBand, PageHero } from "@/components/ui";
+import { CtaBand, LogoWall, PageHero } from "@/components/ui";
 
 export const metadata: Metadata = { title: "Certificate Verification" };
 
@@ -16,6 +16,7 @@ export default function VerifyPage() {
           <VerifyForm />
         </div>
       </section>
+      <LogoWall />
       <CtaBand />
     </>
   );
