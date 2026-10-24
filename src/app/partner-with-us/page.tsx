@@ -50,12 +50,12 @@ export default function PartnerPage() {
       <section className="section-pad">
         <div className="wrap">
           <SectionTitle label="Two Doors" title="Pick your conversation" center />
-          <div className="mx-auto mt-10 grid max-w-5xl gap-6 lg:grid-cols-2">
+          <div className="mx-auto mt-10 grid max-w-5xl gap-[30px] lg:grid-cols-2">
             {tracks.map((tr) => (
               <article
                 key={tr.t}
                
-                className="relative flex flex-col overflow-hidden rounded-[20px] border border-line bg-parchment p-8 shadow-[0_1px_2px_rgba(14,43,61,0.05)]"
+                className="relative flex flex-col overflow-hidden rounded-none border border-line bg-parchment p-8"
               >
                 <span
                   aria-hidden
@@ -97,12 +97,12 @@ export default function PartnerPage() {
           {/* Ordered process, kept as styled cards (§25.23): the <ol>
               makes the genuine Talk → Understand → Pilot → Decide
               sequence machine-readable as steps, visuals unchanged. */}
-          <ol className="mx-auto mt-10 grid max-w-5xl list-none gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mx-auto mt-10 grid max-w-5xl list-none gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => (
               <li
                 key={s.t}
                
-                className="rounded-[18px] border border-line bg-parchment p-6"
+                className="rounded-none border border-line bg-parchment p-6"
               >
                 <p className="text-[12px] font-semibold text-signal-strong">
                   STEP {i + 1}
@@ -112,7 +112,7 @@ export default function PartnerPage() {
               </li>
             ))}
           </ol>
-          <div className="mx-auto mt-10 max-w-3xl rounded-[18px] border border-line bg-parchment p-6 text-center">
+          <div className="mx-auto mt-10 max-w-3xl rounded-none border border-line bg-parchment p-6 text-center">
             <h3 className="text-[20px] font-semibold text-heading">
               The proof is this website
             </h3>

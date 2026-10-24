@@ -31,9 +31,9 @@ export function SectionTitle({
   return (
     <div className={center ? "text-center" : ""}>
       {label && (
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">{label}</p>
+        <p className="text-[24px] font-semibold uppercase tracking-[0.2em] leading-[28.8px] text-brand">{label}</p>
       )}
-      <h2 className="mt-2 text-[32px] font-semibold leading-[38px] text-heading">{title}</h2>
+      <h2 className={center ? "mt-2 text-[32px] font-semibold leading-[44.8px] tracking-[1px] text-heading" : "mt-2 text-[32px] font-semibold leading-[38.4px] text-heading"}>{title}</h2>
     </div>
   );
 }
@@ -41,7 +41,7 @@ export function SectionTitle({
 export function StatsRibbon() {
   return (
     <section className="bg-brand py-10 text-white">
-      <div className="wrap grid grid-cols-2 gap-6 text-center lg:grid-cols-4">
+      <div className="wrap grid grid-cols-2 gap-[30px] text-center lg:grid-cols-4">
         {stats.map((s) => (
           <div key={s.label}>
             <p className="text-4xl font-extrabold">{s.value}</p>
@@ -74,7 +74,7 @@ export function CourseCardBody({
   duration?: string;
 }) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-md bg-white shadow-[0_5px_30px_rgba(214,215,216,0.57)]">
+    <article className="flex h-full flex-col overflow-hidden rounded-none bg-white">
       {image ? (
         <Link href={`/trainings/${slug}`} className="relative block" aria-label={title}>
           <Image
@@ -150,8 +150,8 @@ export function CourseCard({ course }: { course: Course }) {
 
 export function ServiceCard({ service }: { service: Service }) {
   return (
-    <article className="flex flex-col bg-white px-[30px] py-[50px] shadow-[0_5px_30px_rgba(214,215,216,0.57)]">
-      <h3 className="text-xl font-bold text-heading">{service.title}</h3>
+    <article className="flex flex-col bg-white px-[30px] py-[50px]">
+      <h3 className="text-xl font-bold leading-[24px] text-heading">{service.title}</h3>
       <Link
         href={`/services/${service.slug}`}
         className="mt-auto inline-block pt-5 text-sm font-semibold text-brand hover:underline"
@@ -204,7 +204,7 @@ export function FaqList({ items }: { items: { q: string; a: string }[] }) {
         .filter((f) => f.a)
         .map((f) => (
           <details key={f.q} className="rounded bg-surface-light px-5 py-4">
-            <summary className="cursor-pointer text-lg font-semibold text-heading">
+            <summary className="cursor-pointer text-lg font-semibold leading-[21.6px] text-heading">
               {f.q}
             </summary>
             <p className="mt-2 text-sm leading-6 text-body">{f.a}</p>
@@ -219,7 +219,7 @@ export function CtaBand() {
     <section className="bg-heading py-14 text-white">
       <div className="wrap flex flex-wrap items-center justify-between gap-6">
         <div>
-          <h2 className="text-[32px] font-semibold leading-[38px]">Need Help?</h2>
+          <h2 className="text-[32px] font-semibold leading-[38.4px]">Need Help?</h2>
           <p className="mt-1 text-white/80">
             Reach out to the world&apos;s most reliable IT services. Get a free consultation.
           </p>
@@ -247,7 +247,7 @@ export function LogoWall() {
           {employers.map((e) => (
             <div
               key={e.name}
-              className="flex h-24 items-center justify-center rounded bg-white px-4 shadow-sm"
+              className="flex h-24 items-center justify-center rounded-none bg-white px-4"
             >
               <Image
                 src={e.logo}
@@ -268,11 +268,11 @@ export function LogoWall() {
 // the live Trainings page and the CCNA/CCNP/SOC/CEH course pages.
 export function BlogCards() {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3">
       {blogPosts.map((p) => (
         <article
           key={p.title}
-          className="flex flex-col overflow-hidden rounded-md bg-white shadow-[0_5px_30px_rgba(214,215,216,0.57)]"
+          className="flex flex-col overflow-hidden rounded-none bg-white"
         >
           <a href={p.url} target="_blank" rel="noreferrer">
             <Image
@@ -310,11 +310,11 @@ export function FeatureTrio() {
   return (
     <section className="section-pad">
       <div className="wrap">
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-[30px] md:grid-cols-3">
           {items.map((t) => (
             <article
               key={t}
-              className="bg-white px-[30px] py-[40px] text-center shadow-[0_5px_30px_rgba(214,215,216,0.57)]"
+              className="bg-white px-[30px] py-[40px] text-center"
             >
               <h3 className="text-xl font-bold text-heading">{t}</h3>
             </article>
@@ -356,7 +356,7 @@ export function SignatureBlock() {
         className="h-20 w-auto"
       />
       <div>
-        <p className="text-lg font-semibold text-heading">Nikhil Duth D</p>
+        <p className="text-lg font-semibold leading-[21.6px] text-heading">Nikhil Duth D</p>
         <p className="text-sm text-body">Founder &amp; MD — Corporate Trainings</p>
       </div>
     </div>
@@ -405,7 +405,7 @@ export function AnswerLead({ id, children }: { id?: string; children: React.Reac
   return (
     <p
       id={id ?? "answer-summary"}
-      className="rounded-lg border-l-4 border-brand bg-surface-light px-5 py-4 text-[15px] leading-7 text-body"
+      className="rounded-none border-l-4 border-brand bg-surface-light px-5 py-4 text-[15px] leading-7 text-body"
     >
       <span className="mr-2 font-bold text-heading">In short:</span>
       {children}
@@ -424,11 +424,11 @@ export function TestimonialSpotlight() {
     <section className="section-pad">
       <div className="wrap">
         <SectionTitle label="Learner Voices" title="What our learners say" center />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-[30px] md:grid-cols-3">
           {picks.map((t) => (
             <figure
               key={t.name}
-              className="flex flex-col rounded-md bg-white p-7 shadow-[0_5px_30px_rgba(214,215,216,0.57)]"
+              className="flex flex-col rounded-none bg-white p-7"
             >
               <span aria-hidden className="text-[44px] font-bold leading-[0.6] text-brand">
                 &ldquo;
@@ -494,11 +494,11 @@ export function ForInstitutesBand() {
             start with our own admissions — and are available to yours.
           </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-5xl gap-[30px] md:grid-cols-3">
           {items.map((x, i) => (
             <article
               key={x.t}
-              className="rounded-[18px] bg-white/10 px-7 py-8 ring-1 ring-white/20"
+              className="rounded-none bg-white/10 px-7 py-8 ring-1 ring-white/20"
             >
               <p className="text-[12px] font-bold text-brand">
                 {String(i + 1).padStart(2, "0")}
@@ -558,7 +558,7 @@ export function CredentialCard({
   seal: "iso" | "aicte";
 }) {
   return (
-    <article className="flex items-center gap-5 rounded-md bg-white p-5 shadow-[0_5px_30px_rgba(214,215,216,0.57)] sm:gap-6 sm:p-6">
+    <article className="flex items-center gap-5 rounded-none bg-white p-5 sm:gap-6 sm:p-6">
       <div className="min-w-0 flex-1">
         <h3 className="text-lg font-semibold text-heading">{title}</h3>
         <p className="mt-2 text-sm leading-6 text-body">{body}</p>

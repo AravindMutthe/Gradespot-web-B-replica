@@ -92,8 +92,8 @@ export default async function LocalInstitutePage() {
             </p>
           </div>
 
-          <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
-            <article className="rounded-2xl border border-line bg-parchment px-7 py-8 shadow-sm">
+          <div className="mx-auto mt-12 grid max-w-5xl gap-[30px] md:grid-cols-3">
+            <article className="rounded-none border border-line bg-parchment px-7 py-8">
               <h2 className="text-lg font-bold text-heading">Visit us</h2>
               <address className="mt-3 text-sm not-italic leading-6 text-body">
                 {business.address}
@@ -107,7 +107,7 @@ export default async function LocalInstitutePage() {
                 View on Google Maps →
               </a>
             </article>
-            <article className="rounded-2xl border border-line bg-parchment px-7 py-8 shadow-sm">
+            <article className="rounded-none border border-line bg-parchment px-7 py-8">
               <h2 className="text-lg font-bold text-heading">Call or write</h2>
               <p className="mt-3 text-sm leading-6 text-body">
                 {business.phones.map((p) => (
@@ -122,7 +122,7 @@ export default async function LocalInstitutePage() {
                 ))}
               </p>
             </article>
-            <article className="rounded-2xl border border-line bg-parchment px-7 py-8 shadow-sm">
+            <article className="rounded-none border border-line bg-parchment px-7 py-8">
               <h2 className="text-lg font-bold text-heading">Office hours</h2>
               <p className="mt-3 text-2xl font-extrabold text-heading">
                 {business.officeHours}
@@ -139,7 +139,7 @@ export default async function LocalInstitutePage() {
       <section className="bg-surface-light section-pad">
         <div className="wrap">
           <SectionTitle label="Trainings" title="Courses at our Hyderabad institute" center />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3">
             {fullCourses.map((c) => (
               <CourseCard key={c.slug} course={c} />
             ))}
@@ -160,7 +160,7 @@ export default async function LocalInstitutePage() {
               <Link
                 key={c.slug}
                 href={`/lp/${c.slug}-in-hyderabad`}
-                className="rounded-full border border-line bg-parchment px-5 py-2.5 text-sm font-semibold text-heading transition-colors hover:border-brand hover:text-signal"
+                className="rounded-[40px] border border-line bg-parchment px-5 py-2.5 text-sm font-semibold text-heading transition-colors hover:border-brand hover:text-signal"
               >
                 {c.title} in Hyderabad
               </Link>
@@ -173,7 +173,7 @@ export default async function LocalInstitutePage() {
               {testimonials.slice(0, 4).map((t) => (
                 <blockquote
                   key={t.name}
-                  className="rounded-2xl border border-line bg-parchment px-7 py-6 shadow-sm"
+                  className="rounded-none border border-line bg-parchment px-7 py-6"
                 >
                   <p className="text-[15px] leading-7 text-heading">“{t.text}”</p>
                   <footer className="mt-3 text-sm font-semibold text-body">

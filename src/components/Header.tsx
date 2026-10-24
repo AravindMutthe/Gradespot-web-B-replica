@@ -133,7 +133,7 @@ const resourceGroups: {
 ];
 
 const navLink =
-  "block whitespace-nowrap px-2.5 py-3 text-[14px] font-semibold text-nav underline-offset-4 transition-colors hover:text-signal hover:underline hover:decoration-2 nav:px-1 nav:py-2.5 nav:text-[12px] xl:px-2.5 xl:py-3 xl:text-[14px]";
+  "block whitespace-nowrap uppercase px-2.5 py-3 text-[13px] leading-[20px] font-semibold text-nav underline-offset-4 transition-colors hover:text-signal hover:underline hover:decoration-2 nav:px-1 nav:py-2.5 nav:text-[12px] xl:px-2.5 xl:py-3 xl:text-[13px] xl:leading-[20px]";
 const chevronBtn =
   "-ml-1.5 flex h-11 w-7 items-center justify-center text-[12px] text-nav transition-colors hover:text-signal nav:-ml-1 nav:w-4 xl:-ml-1.5 xl:w-7";
 const mobileLink =
@@ -312,8 +312,8 @@ export default function Header() {
         <div className="hidden nav:block">{strip}</div>
 
       {/* Main navigation — paper bar, ink type, official logo */}
-      <div className="glass-panel relative border-b border-line shadow-[0_1px_0_rgba(14,43,61,0.04)]">
-        <div className="wrap flex items-center justify-between py-2.5">
+      <div className="glass-panel relative border-b border-line">
+        <div className="wrap flex items-center justify-between py-5">
           {/* Logo brightening (§22): presentation only — a luminous
               parchment plate + warm halo behind the unmodified
               artwork at a stronger size. No filter, no recolor.
@@ -327,7 +327,7 @@ export default function Header() {
               alt="GradeSpot IT Solutions"
               width={193}
               height={60}
-              className="h-12 w-auto"
+              className="h-[60px] w-auto"
               priority
             />
           </Link>
@@ -349,20 +349,20 @@ export default function Header() {
               For Colleges
             </Link>
             <Link
-              className="ml-1 whitespace-nowrap rounded-xl bg-ink px-4 py-2.5 text-[14px] font-bold text-paper shadow-[0_8px_20px_rgba(14,43,61,0.25)] transition hover:bg-brand nav:ml-0.5 nav:px-2.5 nav:py-2 nav:text-[12px] xl:px-4 xl:py-2.5 xl:text-[14px]"
+              className="ml-1 whitespace-nowrap rounded-[40px] border-2 border-heading px-10 py-[15px] text-[17px] font-semibold text-heading transition hover:bg-heading hover:text-white nav:ml-0.5 nav:px-2.5 nav:py-2 nav:text-[12px] xl:px-10 xl:py-[15px] xl:text-[17px]"
               href="/for-institutes"
             >
               For Institutes
             </Link>
             <Link
               href="/register"
-              className="ml-3 flex min-h-[48px] items-center whitespace-nowrap rounded-xl border-[1.5px] border-heading/60 px-4 text-[14px] font-bold text-heading transition hover:border-heading hover:bg-ink hover:text-paper nav:ml-1.5 nav:min-h-[44px] nav:px-2.5 nav:text-[12px] xl:ml-3 xl:min-h-[48px] xl:px-4 xl:text-[14px]"
+              className="ml-3 flex min-h-[48px] items-center whitespace-nowrap rounded-[40px] border-2 border-heading px-10 py-[15px] text-[17px] font-semibold text-heading transition hover:bg-heading hover:text-white nav:ml-1.5 nav:min-h-[44px] nav:px-2.5 nav:py-2 nav:text-[12px] xl:ml-3 xl:min-h-[48px] xl:px-10 xl:py-[15px] xl:text-[17px]"
             >
               Register
             </Link>
             <Link
               href="/contact-us"
-              className="btn-primary ml-3 whitespace-nowrap nav:ml-1.5 nav:min-h-[44px] nav:px-2.5 nav:text-[12.5px] xl:ml-3 xl:min-h-[50px] xl:px-7 xl:text-[15px]"
+              className="btn-primary ml-3 whitespace-nowrap nav:ml-1.5 nav:min-h-[44px] nav:px-2.5 nav:text-[12.5px] xl:ml-3 xl:min-h-[50px] xl:px-10 xl:text-[17px]"
             >
               Request a Callback
             </Link>
@@ -387,15 +387,15 @@ export default function Header() {
             onMouseLeave={scheduleClose}
             onKeyDown={onPanelKeyDown}
           >
-            <div className="mx-auto w-full max-w-[1240px] px-3 pb-4">
-              <div className="glass-panel overflow-hidden rounded-2xl border border-line border-t-2 border-t-brand shadow-[0_28px_56px_rgba(14,43,61,0.18)]">
+            <div className="mx-auto w-full max-w-[1140px] px-[15px] pb-4">
+              <div className="glass-panel overflow-hidden rounded-none border border-line border-t-2 border-t-brand">
                 <div className="grid max-h-[calc(100vh-170px)] grid-cols-[290px_1fr]">
                   {/* Featured rail — featured training + the Free Demo
                       promotion from the promotions data layer (§19). */}
                   <div className="overflow-y-auto bg-cream p-5">
                     <p className="eyebrow text-signal-strong">Featured Training</p>
                     {featuredCourse && (
-                      <div className="mt-3 overflow-hidden rounded-xl border border-line bg-parchment">
+                      <div className="mt-3 overflow-hidden rounded-none border border-line bg-parchment">
                         {featuredCourse.image && (
                           <div className="relative">
                             <Image
@@ -439,7 +439,7 @@ export default function Header() {
                       </div>
                     )}
                     {demoPromo && (
-                      <div className="mt-4 rounded-xl bg-ink p-4">
+                      <div className="mt-4 rounded-none bg-ink p-4">
                         <p className="eyebrow text-brand-bright">Free First Step</p>
                         <p className="mt-2 text-[16px] font-semibold text-paper">
                           {demoPromo.title}
@@ -463,7 +463,7 @@ export default function Header() {
                     <Link
                       href="/compare"
                       onClick={() => setPanel(null)}
-                      className="mt-4 block rounded-xl border border-heading/20 px-4 py-3 text-[13px] font-bold text-heading transition-colors hover:border-brand hover:text-signal"
+                      className="mt-4 block rounded-none border border-heading/20 px-4 py-3 text-[13px] font-bold text-heading transition-colors hover:border-brand hover:text-signal"
                     >
                       Can&apos;t decide? Compare courses side by side →
                     </Link>
@@ -526,8 +526,8 @@ export default function Header() {
             onMouseLeave={scheduleClose}
             onKeyDown={onPanelKeyDown}
           >
-            <div className="mx-auto w-full max-w-[1240px] px-3 pb-4">
-              <div className="glass-panel overflow-hidden rounded-2xl border border-line border-t-2 border-t-brand shadow-[0_28px_56px_rgba(14,43,61,0.18)]">
+            <div className="mx-auto w-full max-w-[1140px] px-[15px] pb-4">
+              <div className="glass-panel overflow-hidden rounded-none border border-line border-t-2 border-t-brand">
                 <div className="grid max-h-[calc(100vh-170px)] grid-cols-[1fr_300px]">
                   <div className="grid gap-7 overflow-y-auto p-6 sm:grid-cols-3">
                     {serviceGroups.map((g) => (
@@ -573,7 +573,7 @@ export default function Header() {
                           key={d.href}
                           href={d.href}
                           onClick={() => setPanel(null)}
-                          className="block rounded-xl bg-white/[0.05] px-4 py-3.5 ring-1 ring-white/10 transition hover:bg-white/[0.09]"
+                          className="block rounded-none bg-white/[0.05] px-4 py-3.5 ring-1 ring-white/10 transition hover:bg-white/[0.09]"
                         >
                           <span className="text-[15.5px] font-semibold text-paper">
                             {d.title} →
@@ -620,8 +620,8 @@ export default function Header() {
             onKeyDown={onPanelKeyDown}
           >
             <div className="mx-auto flex w-full max-w-[1240px] justify-end px-3 pb-4">
-              <div className="w-[760px] glass-panel overflow-hidden rounded-2xl border border-line border-t-2 border-t-brand shadow-[0_28px_56px_rgba(14,43,61,0.18)]">
-                <div className="grid grid-cols-3 gap-6 p-6">
+              <div className="w-[760px] glass-panel overflow-hidden rounded-none border border-line border-t-2 border-t-brand">
+                <div className="grid grid-cols-3 gap-[30px] p-6">
                   {resourceGroups.map((g) => (
                     <div key={g.title}>
                       <p className="eyebrow border-b-2 border-heading/70 pb-1.5 text-[10.5px] text-heading">

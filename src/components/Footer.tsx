@@ -33,7 +33,7 @@ const quickLinks = [
 export default function Footer() {
   return (
     <footer className="bg-black text-footer-text">
-      <div className="wrap grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
+      <div className="wrap grid gap-[30px] py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Image
             src="/images/logo-light.png"
@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
 
         <nav aria-label="Company">
-          <h3 className="mb-4 text-lg font-semibold text-white">Company</h3>
+          <h3 className="mb-4 text-[24px] font-semibold leading-[28.8px] text-white">Company</h3>
           <ul className="space-y-2 text-sm">
             {companyLinks.map((l) => (
               <li key={l.href}>
@@ -67,7 +67,7 @@ export default function Footer() {
         </nav>
 
         <nav aria-label="Quick links">
-          <h3 className="mb-4 text-lg font-semibold text-white">Quick Links</h3>
+          <h3 className="mb-4 text-[24px] font-semibold leading-[28.8px] text-white">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             {quickLinks.map((l) => (
               <li key={l.href}>
@@ -80,7 +80,7 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h3 className="mb-4 text-lg font-semibold text-white">Contact Info</h3>
+          <h3 className="mb-4 text-[24px] font-semibold leading-[28.8px] text-white">Contact Info</h3>
           <address className="space-y-3 text-sm not-italic leading-6">
             <p>{business.address}</p>
             <p>

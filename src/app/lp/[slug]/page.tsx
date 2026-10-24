@@ -108,7 +108,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           <Link
             href="/"
             aria-label="GradeSpot IT Solutions — Home"
-            className="rounded-2xl px-3 py-1 ring-1 ring-line"
+            className="rounded-none px-3 py-1 ring-1 ring-line"
           >
             <Image
               src="/images/logo.png"
@@ -121,7 +121,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           </Link>
           <a
             href={telHref(phone)}
-            className="flex min-h-[44px] items-center rounded-full border border-heading/30 px-4 py-2 text-sm font-semibold text-heading transition-colors hover:border-brand hover:text-signal"
+            className="flex min-h-[44px] items-center rounded-[40px] border border-heading/30 px-4 py-2 text-sm font-semibold text-heading transition-colors hover:border-brand hover:text-signal"
           >
             {phone}
           </a>
@@ -130,7 +130,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
 
       {/* Hero: message-matched H1 + form above the fold */}
       <section className="panel-ink py-6 md:py-8">
-        <div className="wrap grid items-start gap-10 lg:grid-cols-2">
+        <div className="wrap grid items-start gap-[30px] lg:grid-cols-2">
           <div>
             <p className="eyebrow text-brand-bright">
               Hyderabad · {course.category}
@@ -176,7 +176,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           </div>
           <div id="leadform" className="scroll-mt-6">
             <LpLeadForm courseTitle={course.title} />
-            <p className="mt-4 rounded-xl bg-white/[0.07] px-5 py-4 text-sm leading-6 text-white/85 ring-1 ring-white/10">
+            <p className="mt-4 rounded-none bg-white/[0.07] px-5 py-4 text-sm leading-6 text-white/85 ring-1 ring-white/10">
               <span className="font-semibold text-white">{testimonial.name}</span> — “
               {testimonial.text}”{" "}
               <span className="text-white/60">({testimonial.source})</span>
@@ -237,7 +237,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
                 </div>
               </>
             )}
-            <div className="mt-8 rounded-2xl border border-line bg-surface-light p-6">
+            <div className="mt-8 rounded-none border border-line bg-surface-light p-6">
               <h3 className="text-lg font-bold text-heading">Prefer to read everything first?</h3>
               <p className="mt-2 text-sm leading-6 text-body">
                 The full course page carries the complete curriculum, every section and the

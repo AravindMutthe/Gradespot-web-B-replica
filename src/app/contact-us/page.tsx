@@ -18,7 +18,7 @@ export default function ContactPage() {
     <>
       <PageHero title="Contact Us — GradeSpot IT Solutions" />
       <section className="section-pad">
-        <div className="wrap grid items-start gap-10 lg:grid-cols-[1.4fr_1fr]">
+        <div className="wrap grid items-start gap-[30px] lg:grid-cols-[1.4fr_1fr]">
           <div>
             <h2 className="text-[32px] font-semibold leading-[38px]">Contact GradeSpot IT Solutions</h2>
             <div className="mt-4 space-y-4">
@@ -32,8 +32,8 @@ export default function ContactPage() {
           </div>
 
           {/* Side panel — dimensions follow the live site's contact panel */}
-          <aside className="w-full rounded-[20px] panel-ink p-8 lg:max-w-[400px] lg:p-[50px]">
-            <h2 className="text-2xl font-semibold text-paper">Get in Touch</h2>
+          <aside className="w-full rounded-none panel-ink p-8 lg:max-w-[400px] lg:p-[50px]">
+            <h2 className="text-[32px] font-semibold leading-[38.4px] text-paper">Get in Touch</h2>
             <div className="mt-6 space-y-6 text-sm leading-6">
               <div>
                 <h3 className="font-semibold text-brand-bright">Our Location</h3>
@@ -68,7 +68,7 @@ export default function ContactPage() {
         </div>
 
         <div className="wrap mt-14">
-          <h2 className="text-2xl font-semibold">Find Us</h2>
+          <h2 className="text-[32px] font-semibold leading-[38.4px]">Find Us</h2>
           {/* §25.10 — local map image, not the Google embed: the embed
               was a remote page-load asset AND was blocked by this
               site's own CSP (default-src 'self', no frame-src), so
@@ -87,7 +87,7 @@ export default function ContactPage() {
               alt="Map — GradeSpot IT Solutions, Dilsukhnagar, Hyderabad"
               width={1200}
               height={600}
-              className="h-96 w-full rounded-lg object-cover"
+              className="h-96 w-full rounded-none object-cover"
             />
           </a>
           <p className="mt-2 text-sm text-body">
@@ -115,12 +115,12 @@ export default function ContactPage() {
       {/* v2: replica v1's 24/7 + Smart Solutions boxes, restored below the
           map — Leo's contact page dropped them; they are published copy. */}
       <section className="section-pad">
-        <div className="wrap grid gap-6 md:grid-cols-2">
-          <article className="rounded-lg bg-surface-light p-7">
+        <div className="wrap grid gap-[30px] md:grid-cols-2">
+          <article className="rounded-none bg-surface-light p-7">
             <h2 className="text-2xl font-semibold">24/7 Customer Support</h2>
             <p className="mt-2 text-sm leading-6">{contactParagraphs[6]}</p>
           </article>
-          <article className="rounded-lg bg-surface-light p-7">
+          <article className="rounded-none bg-surface-light p-7">
             <h2 className="text-2xl font-semibold">Smart Solutions</h2>
             <p className="mt-2 text-sm leading-6">{contactParagraphs[7]}</p>
           </article>

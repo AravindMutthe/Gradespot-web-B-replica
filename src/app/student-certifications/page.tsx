@@ -25,13 +25,13 @@ export default function CertificationsPage() {
             {certificationsParagraphs.slice(0, 3).map((p, i) => (
               <p key={i}>{p}</p>
             ))}
-            <p className="rounded-lg bg-surface-light p-5 font-medium text-heading">
+            <p className="rounded-none bg-surface-light p-5 font-medium text-heading">
               Our distinctive &lsquo;Pay after you Pass&rsquo; methodology guarantees the
               attainment of your desired credentials prior to any financial obligations.
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-2 gap-[30px] sm:grid-cols-3 lg:grid-cols-4">
             {certificationGallery.map((c) => (
               <figure key={c.image} className="text-center">
                 <Image

@@ -56,11 +56,11 @@ export default function AccessibilityPage() {
         <div className="wrap">
           <div className="mx-auto max-w-4xl">
             <SectionTitle label="Our Measures" title="What this build implements" />
-            <div className="mt-9 grid gap-5 sm:grid-cols-2">
+            <div className="mt-9 grid gap-[30px] sm:grid-cols-2">
               {measures.map((m) => (
                 <article
                   key={m.t}
-                  className="rounded-[18px] border border-line bg-parchment p-6 shadow-[0_1px_2px_rgba(14,43,61,0.05)]"
+                  className="rounded-none border border-line bg-parchment p-6"
                 >
                   <h3 className="text-[19px] font-semibold text-heading">{m.t}</h3>
                   <p className="mt-2 text-sm leading-6 text-body">{m.d}</p>
@@ -68,8 +68,8 @@ export default function AccessibilityPage() {
               ))}
             </div>
 
-            <div className="mt-12 rounded-[20px] panel-ink p-8">
-              <h2 className="text-2xl font-semibold text-paper">
+            <div className="mt-12 rounded-none panel-ink p-8">
+              <h2 className="text-[32px] font-semibold leading-[38.4px] text-paper">
                 Something not working for you?
               </h2>
               <p className="mt-2.5 max-w-2xl text-[15px] leading-7 text-paper/80">

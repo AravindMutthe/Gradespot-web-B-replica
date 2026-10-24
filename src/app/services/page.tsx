@@ -25,30 +25,30 @@ export default async function ServicesPage() {
       />
       <section className="section-pad">
         <div className="wrap">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
             {services.map((s) => (
               <ServiceCard key={s.slug} service={s} />
             ))}
           </div>
 
-          <div className="mt-16 grid gap-6 md:grid-cols-2">
-            <article className="rounded-2xl border border-line bg-surface-light p-7">
+          <div className="mt-16 grid gap-[30px] md:grid-cols-2">
+            <article className="rounded-none border border-line bg-surface-light p-7">
               <h2 className="text-2xl font-semibold">24/7 Customer Support</h2>
               <p className="mt-2 text-sm leading-6">{servicesFaqAnswers.support}</p>
             </article>
-            <article className="rounded-2xl border border-line bg-surface-light p-7">
+            <article className="rounded-none border border-line bg-surface-light p-7">
               <h2 className="text-2xl font-semibold">Smart Solutions</h2>
               <p className="mt-2 text-sm leading-6">{servicesFaqAnswers.smart}</p>
             </article>
           </div>
 
-          <div className="mt-16 grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+          <div className="mt-16 grid gap-[30px] lg:grid-cols-[1fr_1.4fr]">
             <SectionTitle label="FAQ" title="Most common question about our services" />
             <FaqList items={siteFaqs} />
           </div>
 
-          <div className="mt-16 rounded-[20px] panel-ink p-8 text-center">
-            <h2 className="text-2xl font-semibold text-paper">Need a service for your business?</h2>
+          <div className="mt-16 rounded-none panel-ink p-8 text-center">
+            <h2 className="text-[32px] font-semibold leading-[38.4px] text-paper">Need a service for your business?</h2>
             <p className="mx-auto mt-2 max-w-xl text-paper/80">
               Tell us what you are building or training for — we will respond with the right
               service plan.
@@ -58,12 +58,12 @@ export default async function ServicesPage() {
             </Link>
           </div>
 
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            <article className="rounded-2xl border border-line bg-surface-light p-7">
+          <div className="mt-16 grid gap-[30px] md:grid-cols-3">
+            <article className="rounded-none border border-line bg-surface-light p-7">
               <h2 className="text-xl font-semibold">Address</h2>
               <p className="mt-2 text-sm leading-6">{business.address}</p>
             </article>
-            <article className="rounded-2xl border border-line bg-surface-light p-7">
+            <article className="rounded-none border border-line bg-surface-light p-7">
               <h2 className="text-xl font-semibold">Send Us Mail</h2>
               <p className="mt-2 text-sm leading-6">
                 {business.emails.map((e) => (
@@ -75,7 +75,7 @@ export default async function ServicesPage() {
                 ))}
               </p>
             </article>
-            <article className="rounded-2xl border border-line bg-surface-light p-7">
+            <article className="rounded-none border border-line bg-surface-light p-7">
               <h2 className="text-xl font-semibold">Call Us</h2>
               <p className="mt-2 text-sm leading-6">
                 {business.phones.map((p) => (
