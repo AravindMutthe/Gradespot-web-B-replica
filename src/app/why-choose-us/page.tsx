@@ -1,9 +1,13 @@
-import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { whyChooseParagraphs } from "@/data/pages";
 import { CtaBand, ExperienceBadge, FaqList, LogoWall, PageHero, SectionTitle, siteFaqs } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Why Choose Us" };
+export const metadata = staticPageMetadata({
+  title: "Why Choose Us",
+  description: "Why choose GradeSpot IT Solutions — the best IT solutions and trainings for customers, with practical training, expert instructors and career support from Dilsukhnagar, Hyderabad.",
+  path: "/why-choose-us",
+});
 
 const highlights = [
   { title: "IT & Corporate Trainings", href: "/services/corporate-trainings" },

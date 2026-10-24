@@ -1,15 +1,37 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Chrome from "@/components/Chrome";
+import JsonLd from "@/components/JsonLd";
+import { organizationSchema, websiteSchema } from "@/lib/schema";
 
+// v2: canonical/OG base — the REPLICA build itself is the ranking entity:
+// self-referential to the replica domain (never Leo's domain, never the
+// official site). Home OG card is a replica-generated image (see
+// scripts/generate-og-cards.py); it replaces the old no-OG default.
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gradespot-app.vercel.app"),
   title: {
     default: "GradeSpot IT Solutions - Empower Your Business with Top-Notch IT Solutions",
     template: "%s - GradeSpot IT Solutions",
   },
   description:
     "GradeSpot IT Solutions, Dilsukhnagar, Hyderabad — IT training institute and services company: cybersecurity, cloud, networking and digital marketing trainings, corporate training, internships and IT services.",
+  openGraph: {
+    type: "website",
+    siteName: "GradeSpot IT Solutions",
+    locale: "en_IN",
+    title: "GradeSpot IT Solutions - Empower Your Business with Top-Notch IT Solutions",
+    description:
+      "GradeSpot IT Solutions, Dilsukhnagar, Hyderabad — IT training institute and services company: cybersecurity, cloud, networking and digital marketing trainings, corporate training, internships and IT services.",
+    images: [{ url: "/images/og/home.jpg", alt: "GradeSpot IT Solutions — IT training institute in Hyderabad, Dilsukhnagar" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GradeSpot IT Solutions - Empower Your Business with Top-Notch IT Solutions",
+    description:
+      "GradeSpot IT Solutions, Dilsukhnagar, Hyderabad — IT training institute and services company: cybersecurity, cloud, networking and digital marketing trainings, corporate training, internships and IT services.",
+    images: ["/images/og/home.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -26,9 +48,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <JsonLd data={organizationSchema()} />
+        <JsonLd data={websiteSchema()} />
+        <Chrome>{children}</Chrome>
       </body>
     </html>
   );

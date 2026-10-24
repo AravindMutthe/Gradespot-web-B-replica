@@ -20,6 +20,10 @@ export interface Course {
   summary: string;
   sections: CourseSection[];
   catalogOnly: boolean;
+  // v2: published duration, merged in from course-durations.ts by
+  // src/lib/data.ts. Only the 8 durations published on the live site are
+  // listed there; every other course carries no duration (never invented).
+  duration?: string;
 }
 
 export const courses: Course[] = [
@@ -1696,3 +1700,18 @@ export const courses: Course[] = [
 ];
 
 export const courseCategories: string[] = [...new Set(courses.map((c) => c.category))];
+
+// v2: published durations, ported from Leo's harvest (Leo DECISIONS.md §17).
+// Only the 8 durations published on the live site are listed; AZ-900,
+// AZ-104 and Hardware & Networking carry no published duration — never
+// invented. See src/lib/data.ts (durations merge in both read modes).
+export const courseDurations: Record<string, string> = {
+  "ccna-200-301": "45 days",
+  "ccnp-350-401-encor": "45 days",
+  "comptia-network-plus": "30 days",
+  "comptia-security-plus": "30 days",
+  "comptia-pentest-plus": "60 hours",
+  "soc-analyst": "90 days",
+  "certified-ethical-hacker-ceh": "45 days",
+  "digital-marketing": "45 days",
+};

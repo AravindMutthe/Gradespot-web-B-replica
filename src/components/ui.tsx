@@ -6,6 +6,7 @@ import { stats } from "@/data/site";
 import { servicesFaqAnswers } from "@/data/pages";
 import { employers } from "@/data/employers";
 import { blogPosts } from "@/data/blog";
+import { testimonials } from "@/data/testimonials";
 
 export function PageHero({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
@@ -52,38 +53,98 @@ export function StatsRibbon() {
   );
 }
 
-export function CourseCard({ course }: { course: Course }) {
+// v2: layered course card (structure ported from Leo's CourseCardBody) —
+// image with Free Demo badge + duration chip, category, title, summary,
+// Read More + Free Demo links. Styled in replica tokens only: white card,
+// replica shadow, brand links. Leo's sepia image treatment, gradient
+// overlay and hover lift are NOT ported (visual treatments).
+export function CourseCardBody({
+  slug,
+  title,
+  category,
+  summary,
+  image,
+  duration,
+}: {
+  slug: string;
+  title: string;
+  category: string;
+  summary?: string;
+  image?: string | null;
+  duration?: string;
+}) {
   return (
-    <article className="flex flex-col overflow-hidden rounded-md bg-white shadow-[0_5px_30px_rgba(214,215,216,0.57)]">
-      {course.image ? (
-        <Image
-          src={course.image}
-          alt={course.title}
-          width={600}
-          height={340}
-          className="h-44 w-full object-cover"
-        />
+    <article className="flex h-full flex-col overflow-hidden rounded-md bg-white shadow-[0_5px_30px_rgba(214,215,216,0.57)]">
+      {image ? (
+        <Link href={`/trainings/${slug}`} className="relative block" aria-label={title}>
+          <Image
+            src={image}
+            alt={title}
+            width={600}
+            height={340}
+            sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+            className="h-44 w-full object-cover"
+          />
+          <span className="absolute right-3 top-3 rounded-full bg-brand px-3 py-1 text-xs font-bold text-white">
+            Free Demo
+          </span>
+          {duration && (
+            <span className="absolute bottom-3 left-3 rounded-md bg-heading/85 px-2.5 py-1 text-[11.5px] font-semibold text-white">
+              {duration}
+            </span>
+          )}
+        </Link>
       ) : (
         <div className="flex h-44 w-full items-center justify-center bg-heading px-6 text-center">
-          <span className="text-lg font-semibold text-white">{course.category}</span>
+          <span className="text-lg font-semibold text-white">{category}</span>
         </div>
       )}
       <div className="flex grow flex-col p-6">
-        <p className="text-xs font-semibold uppercase tracking-wider text-brand">
-          {course.category}
+        <p>
+          <span className="inline-block rounded-md bg-surface-light px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand">
+            {category}
+          </span>
         </p>
-        <h3 className="mt-2 text-lg font-bold leading-snug text-heading">{course.title}</h3>
-        {course.summary && (
-          <p className="mt-2 line-clamp-3 text-sm leading-6 text-body">{course.summary}</p>
+        <h3 className="mt-3 text-lg font-bold leading-snug text-heading">
+          <Link href={`/trainings/${slug}`} className="hover:text-brand">
+            {title}
+          </Link>
+        </h3>
+        {duration && !image && (
+          <p className="mt-2 text-xs font-semibold text-brand">Duration — {duration}</p>
         )}
-        <Link
-          href={`/trainings/${course.slug}`}
-          className="mt-auto inline-block pt-4 text-sm font-semibold text-brand hover:underline"
-        >
-          Read More →
-        </Link>
+        {summary && (
+          <p className="mt-2 line-clamp-3 text-sm leading-6 text-body">{summary}</p>
+        )}
+        <div className="mt-auto flex items-center gap-4 pt-4">
+          <Link
+            href={`/trainings/${slug}`}
+            className="text-sm font-semibold text-brand hover:underline"
+          >
+            Read More →
+          </Link>
+          <Link
+            href={`/register?course=${slug}`}
+            className="text-sm font-semibold text-brand hover:underline"
+          >
+            Free Demo →
+          </Link>
+        </div>
       </div>
     </article>
+  );
+}
+
+export function CourseCard({ course }: { course: Course }) {
+  return (
+    <CourseCardBody
+      slug={course.slug}
+      title={course.title}
+      category={course.category}
+      summary={course.summary}
+      image={course.image}
+      duration={course.duration}
+    />
   );
 }
 
@@ -101,10 +162,39 @@ export function ServiceCard({ service }: { service: Service }) {
   );
 }
 
+// v2: FAQ expansion 3 → 9 (ported from Leo). The 6 added answers come only
+// from real published content: both class formats, enquiry-confirmed batch
+// schedules, the free-demo offer, published per-course fees (CCNA/CCNP)
+// with "confirmed on enquiry" elsewhere, named certifications, and the
+// no-placement-guarantee rule. No invented figures anywhere.
 export const siteFaqs = [
   { q: "What training programs do you offer?", a: servicesFaqAnswers.trainings },
   { q: "What services do you offer?", a: servicesFaqAnswers.services },
   { q: "What's the best way to get in touch with your team?", a: servicesFaqAnswers.contact },
+  {
+    q: "Are classes online or offline?",
+    a: "Both. Classes run from our Dilsukhnagar institute in Hyderabad, with live online classes and recorded lessons plus hands-on labs for practical skills. Ask about the format for your training when you enquire.",
+  },
+  {
+    q: "When do batches start, and how do I find the schedule?",
+    a: "Batch schedules are confirmed on enquiry — call +91 91826 54056 or send an enquiry and the team will confirm the next batch for your training.",
+  },
+  {
+    q: "Can I try a class before joining?",
+    a: "Yes. Book a free demo class for any training — register on the site and the team will confirm your seat by phone.",
+  },
+  {
+    q: "What do the trainings cost?",
+    a: "Fees are published on each training page where they are fixed — for example CCNA and CCNP. Where no fee is published, it is confirmed on enquiry and nothing is charged before you confirm.",
+  },
+  {
+    q: "Do I get a certificate after the training?",
+    a: "Each training prepares you for the certification named on its page, and GradeSpot certificates can be verified on this site by certificate code.",
+  },
+  {
+    q: "Do you guarantee placement after training?",
+    a: "No. We publish the job roles each training prepares you for and the companies our students work with, and we offer hands-on labs, certification guidance and career services — but we do not publish placement percentages and we do not guarantee a job.",
+  },
 ];
 
 export function FaqList({ items }: { items: { q: string; a: string }[] }) {
@@ -305,5 +395,175 @@ export function SocialLinks({ className = "h-4 w-4" }: { className?: string }) {
         </a>
       ))}
     </>
+  );
+}
+
+// v2: answer-first "In short" box (ported from Leo's AnswerLead). The id
+// defaults to "answer-summary" so course-page speakable schema points at
+// the visible answer. Replica styling: surface-light box, brand rule.
+export function AnswerLead({ id, children }: { id?: string; children: React.ReactNode }) {
+  return (
+    <p
+      id={id ?? "answer-summary"}
+      className="rounded-lg border-l-4 border-brand bg-surface-light px-5 py-4 text-[15px] leading-7 text-body"
+    >
+      <span className="mr-2 font-bold text-heading">In short:</span>
+      {children}
+    </p>
+  );
+}
+
+// v2: three-pick testimonial spotlight (ported from Leo). Picks are the
+// same three verbatim Google testimonials; nothing is invented here.
+export function TestimonialSpotlight() {
+  const picks = ["M Vamsi", "Arif Syed", "kruthikrishna dwaraka"]
+    .map((name) => testimonials.find((t) => t.name === name))
+    .filter((t): t is NonNullable<typeof t> => Boolean(t));
+  if (picks.length === 0) return null;
+  return (
+    <section className="section-pad">
+      <div className="wrap">
+        <SectionTitle label="Learner Voices" title="What our learners say" center />
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {picks.map((t) => (
+            <figure
+              key={t.name}
+              className="flex flex-col rounded-md bg-white p-7 shadow-[0_5px_30px_rgba(214,215,216,0.57)]"
+            >
+              <span aria-hidden className="text-[44px] font-bold leading-[0.6] text-brand">
+                &ldquo;
+              </span>
+              <blockquote className="mt-3 grow text-[14.5px] leading-7 text-heading">
+                {t.text}
+              </blockquote>
+              <figcaption className="mt-4 border-t border-neutral-200 pt-3.5">
+                <span className="block text-sm font-semibold text-heading">{t.name}</span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-body">
+                  {t.source}
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <Link href="/register" className="btn-primary">
+            Register / Book a Free Demo
+          </Link>
+          <Link
+            href="/testimonials"
+            className="text-sm font-bold text-brand hover:underline"
+          >
+            Read all learner voices →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// v2: For Institutes band on the home page (ported from Leo). Factual
+// copy only — no prices (tier pricing undecided), no delivery promises,
+// no testimonials. Replica styling: navy band, white cards on navy.
+export function ForInstitutesBand() {
+  const items = [
+    {
+      t: "WhatsApp Lead Engine",
+      d: "Instant replies, lead capture and counsellor alerts on your own number.",
+    },
+    {
+      t: "Secure Learning Hub",
+      d: "Watermarked video courses with student logins and progress tracking.",
+    },
+    {
+      t: "Resilient Linux Lab",
+      d: "PXE thin-client labs that recover with a reboot, not a repair call.",
+    },
+  ];
+  return (
+    <section className="bg-heading section-pad text-white">
+      <div className="wrap">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand">
+            For Institutes
+          </p>
+          <h2 className="mt-3.5 text-[32px] font-semibold leading-[1.15] text-white md:text-[38px]">
+            Run an Institute? Automate Admissions.
+          </h2>
+          <p className="mt-3.5 text-white/80">
+            GradeSpot builds the products it runs on. Our Axon products for training institutes
+            start with our own admissions — and are available to yours.
+          </p>
+        </div>
+        <div className="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-3">
+          {items.map((x, i) => (
+            <article
+              key={x.t}
+              className="rounded-[18px] bg-white/10 px-7 py-8 ring-1 ring-white/20"
+            >
+              <p className="text-[12px] font-bold text-brand">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-2.5 text-lg font-semibold text-white">{x.t}</h3>
+              <p className="mt-2 text-sm leading-6 text-white/80">{x.d}</p>
+            </article>
+          ))}
+        </div>
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <Link href="/for-institutes" className="btn-primary">
+            Explore For Institutes
+          </Link>
+          <Link href="/for-institutes#demo" className="btn-outline-light">
+            Book a Demo
+          </Link>
+          <Link href="/for-colleges" className="btn-outline-light">
+            For Colleges
+          </Link>
+        </div>
+        <p className="mt-6 text-center text-sm text-white/80">
+          Or start a different conversation —{" "}
+          <Link
+            href="/partner-with-us"
+            className="font-semibold text-brand underline-offset-4 hover:underline"
+          >
+            collaborations &amp; franchise discussions are welcome →
+          </Link>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// v2: official-emblem credential card (ported from Leo's CredentialCard).
+// The emblems are official ISO/AICTE artwork (not Leo styling), shown on a
+// white disc in replica card styling. The ISO/AICTE claims themselves
+// stay confirm-or-remove (DECISIONS.md v2 section) — the cards render the
+// same "claimed, unverified" copy Leo carried, not a verified claim.
+export function CredentialEmblem({ kind }: { kind: "iso" | "aicte" }) {
+  const src = kind === "iso" ? "/images/iso-logo.svg" : "/images/aicte-logo.png";
+  const alt = kind === "iso" ? "ISO 9001:2015 emblem" : "AICTE emblem";
+  return (
+    <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-white p-2 ring-1 ring-neutral-200">
+      <Image src={src} alt={alt} width={96} height={96} className="max-h-full w-auto object-contain" />
+    </div>
+  );
+}
+
+export function CredentialCard({
+  title,
+  body,
+  seal,
+}: {
+  title: string;
+  body: string;
+  seal: "iso" | "aicte";
+}) {
+  return (
+    <article className="flex items-center gap-5 rounded-md bg-white p-5 shadow-[0_5px_30px_rgba(214,215,216,0.57)] sm:gap-6 sm:p-6">
+      <div className="min-w-0 flex-1">
+        <h3 className="text-lg font-semibold text-heading">{title}</h3>
+        <p className="mt-2 text-sm leading-6 text-body">{body}</p>
+      </div>
+      <CredentialEmblem kind={seal} />
+    </article>
   );
 }

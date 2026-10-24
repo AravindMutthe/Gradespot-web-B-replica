@@ -1,4 +1,4 @@
-import { courses as localCourses, type Course } from "@/data/courses";
+import { courses as localCourses, courseDurations, type Course } from "@/data/courses";
 import { services as localServices, type Service } from "@/data/services";
 import { getAnonClient, getServiceClient } from "./supabase";
 
@@ -32,6 +32,9 @@ async function queryCourses(): Promise<Course[] | null> {
       summary: row.summary ?? "",
       sections: Array.isArray(row.sections) ? row.sections : [],
       catalogOnly: Boolean(row.catalog_only),
+      // Durations live in the harvested local map (DECISIONS.md §17) —
+      // the courses table has no duration column.
+      duration: courseDurations[row.slug],
     }));
   } catch {
     supabaseDown = true;
@@ -40,7 +43,10 @@ async function queryCourses(): Promise<Course[] | null> {
 }
 
 export async function getCourses(): Promise<Course[]> {
-  return (await queryCourses()) ?? localCourses;
+  const rows = (await queryCourses()) ?? localCourses;
+  // Merge harvested durations in both read modes (DB rows above already
+  // carry them; local rows get them here).
+  return rows.map((c) => ({ ...c, duration: c.duration ?? courseDurations[c.slug] }));
 }
 
 export async function getCourse(slug: string): Promise<Course | null> {
@@ -53,12 +59,35 @@ async function queryServices(): Promise<Service[] | null> {
   const supabase = getAnonClient();
   if (!supabase) return null;
   try {
-    const { data, error } = await supabase.from("services").select("slug,title").order("title");
+    const { data, error } = await supabase.from("services").select("slug,title");
     if (error || !data || data.length === 0) {
       supabaseDown = true;
       return null;
     }
-    return data.map((row) => ({ slug: row.slug, title: row.title }));
+    // Canonical order is the published Services-page order — the order
+    // of the local services array (§23). The DB read must NOT re-sort
+    // alphabetically: it previously did (.order("title")), which made
+    // /services lead with "Service 12 — Abroad Consultancy" in a
+    // shuffled-looking 12, 04, 01, 05… sequence (the cards' index
+    // numbers follow the canonical order). Unknown slugs (none today)
+    // keep their DB order after the canonical ones.
+    const canonicalIndex = new Map(localServices.map((s, i) => [s.slug, i]));
+    const rows = [...data].sort(
+      (a, b) =>
+        (canonicalIndex.get(a.slug) ?? Number.MAX_SAFE_INTEGER) -
+        (canonicalIndex.get(b.slug) ?? Number.MAX_SAFE_INTEGER),
+    );
+    return rows.map((row) => {
+      // Summaries/offerings were harvested into the local data
+      // (DECISIONS.md §17); the services table carries slug/title only.
+      const local = localServices.find((s) => s.slug === row.slug);
+      return {
+        slug: row.slug,
+        title: row.title,
+        summary: local?.summary,
+        offerings: local?.offerings,
+      };
+    });
   } catch {
     supabaseDown = true;
     return null;
@@ -92,6 +121,8 @@ export interface LeadInput {
   phone: string;
   interest: string;
   message?: string;
+  source?: string;
+  whatsappOptIn?: boolean;
 }
 
 export interface LeadResult {
@@ -105,19 +136,36 @@ export interface LeadResult {
 export async function createLead(lead: LeadInput): Promise<LeadResult> {
   const supabase = supabaseDown ? null : getServiceClient();
   if (supabase) {
+    const core = {
+      name: lead.name,
+      email: lead.email,
+      phone: lead.phone,
+      interest: lead.interest,
+      message: lead.message ?? null,
+    };
+    // Full row includes source attribution + WhatsApp opt-in (columns
+    // added by a future lead-source migration — NOT yet created or applied
+    // in replica; see DECISIONS.md v2 section). If that insert fails —
+    // e.g. the columns do not exist yet — retry with the core columns so
+    // a lead is never lost to a missing column.
     try {
       const { data, error } = await withTimeout(
         supabase
           .from("leads")
-          .insert({
-            name: lead.name,
-            email: lead.email,
-            phone: lead.phone,
-            interest: lead.interest,
-            message: lead.message ?? null,
-          })
+          .insert({ ...core, source: lead.source ?? null, whatsapp_opt_in: lead.whatsappOptIn ?? false })
           .select("id")
           .single(),
+      );
+      if (!error && data) {
+        return { stored: "supabase", id: String(data.id) };
+      }
+      console.error("[leads] Full insert failed, retrying with core columns:", error?.message);
+    } catch (err) {
+      console.error("[leads] Full insert errored, retrying with core columns:", String(err));
+    }
+    try {
+      const { data, error } = await withTimeout(
+        supabase.from("leads").insert(core).select("id").single(),
       );
       if (!error && data) {
         return { stored: "supabase", id: String(data.id) };
@@ -170,4 +218,24 @@ export async function verifyCertificate(code: string): Promise<CertificateRecord
     supabaseDown = true;
     return null;
   }
+}
+
+// ——— Promotions (admin-configured content, §19) ———
+// Single read path for every promo slot (banner / cards / ticker).
+// v2: ported from Leo (Leo DECISIONS.md §19; replica DECISIONS.md v2).
+// Today this resolves from the typed config seam src/data/promotions.ts
+// because migration 0004 (site_promotions table, replica numbering) is
+// not yet applied — DDL cannot run from the build sandbox. When it is
+// applied, swap this body for an anon read of public.site_promotions
+// (RLS there already restricts anon to active rows); components will
+// not change.
+import { promotions as configPromotions, type Promotion, type PromotionKind } from "@/data/promotions";
+
+export async function getPromotions(kind: PromotionKind): Promise<Promotion[]> {
+  const now = Date.now();
+  return configPromotions
+    .filter((p) => p.kind === kind && p.active)
+    .filter((p) => (p.startsAt ? Date.parse(p.startsAt) <= now : true))
+    .filter((p) => (p.endsAt ? Date.parse(p.endsAt) >= now : true))
+    .sort((a, b) => a.sort - b.sort);
 }
