@@ -303,7 +303,7 @@ export function BlogCards() {
 // Feature trio strip from the live Home/About/Trainings/course pages.
 export function FeatureTrio() {
   const items = [
-    "100% Student Satisfaction",
+    "Student Satisfaction",
     "Top Class Trainings",
     "Online & Offline Classes",
   ];

@@ -133,6 +133,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact-us",
     "/faq",
     "/terms-and-conditions",
+    "/privacy-policy",
+    "/refund-policy",
     "/register",
     "/accessibility",
     "/partner-with-us",

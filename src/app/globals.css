@@ -151,3 +151,12 @@
     padding-bottom: 72px;
   }
 }
+
+/* Visible keyboard focus, site-wide (compliance-fixes): the accessibility
+   page promises a 2px outline; previously there was no focus rule at all
+   and focus relied on browser defaults. currentColor keeps the outline
+   visible on both light surfaces and the black footer. */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

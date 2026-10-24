@@ -18,6 +18,7 @@ export default function LeadForm({
   interestOptions,
   hideMessage = false,
   submitLabel = "Request a Callback",
+  showCountry = false,
 }: {
   interest?: string;
   idPrefix?: string;
@@ -26,6 +27,10 @@ export default function LeadForm({
   interestOptions?: string[];
   hideMessage?: boolean;
   submitLabel?: string;
+  // Partner page only: an optional Country field (label only — the value
+  // is not sent to /api/leads and not stored, because the leads table has
+  // no country column; wiring persistence needs a migration, not done here).
+  showCountry?: boolean;
 }) {
   const pathname = usePathname();
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -148,6 +153,21 @@ export default function LeadForm({
         />
         {errors.email && <p className="mt-1 text-xs text-field-error">{errors.email}</p>}
       </div>
+      {showCountry && (
+        <div className="mt-4">
+          <label htmlFor={id("country")} className={label}>
+            Country <span className="font-normal text-body">(optional)</span>
+          </label>
+          <input
+            id={id("country")}
+            name="country"
+            type="text"
+            autoComplete="country-name"
+            className={field}
+            placeholder="Your country"
+          />
+        </div>
+      )}
       <div className="mt-4">
         <label htmlFor={id("interest")} className={label}>
           I&apos;m interested in *

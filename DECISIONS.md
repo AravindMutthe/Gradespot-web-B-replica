@@ -510,3 +510,91 @@ Dimensions/tokens only; no routes, content, SEO, menus, or copy changed.
   honest-empty. No fake lead was written (only 422-path payloads
   were posted). Production untouched; audit re-verification from
   Termux is the remaining step before any merge/deploy claim.
+
+## Compliance fixes — claims, policies, CSP, a11y (2026-10-25, branch feature/compliance-fixes, NOT merged, NOT deployed)
+
+Base: feature/audit-fixes tip 750f701 (Next 16.4.3 + Zod 4.6.7), so this
+branch carries the upgrades too. Scoped compliance-and-claims pass; no
+design, theme, dependency, or backend changes.
+
+- Claim sweep: removed/reworded every promissory hit. Digital Marketing
+  summary + section: "land a job with a guaranteed success rate" ->
+  "prepare for a career in digital marketing" (2 spots). CEH list:
+  "100% Practical-Oriented Learning" -> "Practical-Oriented Learning".
+  Home FeatureTrio: "100% Student Satisfaction" -> "Student
+  Satisfaction". Student-certifications page: "Pay after you Pass
+  methodology guarantees the attainment of your desired credentials"
+  -> "means you pay only after you have attained your desired
+  credentials" (payment terms, not an attainment promise). Remaining
+  guarantee/100% hits are all protective disclaimers ("we do not
+  guarantee a job", "no placement guarantees", the "Do you guarantee
+  placement?" FAQ answered "No") — kept deliberately. Reviewed and
+  kept with reasons: SOC "skills needed to land a role" (course
+  objectives, not a promise), student testimonials naming employers
+  (attributed statements, not institutional promises), CEH "Get
+  certified. Get skilled. Get hired." slogan (no guarantee verb).
+  No salary/LPA/package claims found anywhere.
+- Vendor logos: no changes. Employer wall (XCube Labs, Cloud4C,
+  Persistent, Diligient, Wipro, Astreya, Tericsoft, EY, Movate,
+  PurpleTalk) is headed "Our Students works with", not "partners" —
+  alumni employment framing, no partnership implied. No
+  authorized/accredited/official-partner claim exists anywhere;
+  vendor names appear only as course titles, certification targets,
+  or tools taught. ISO/AICTE emblem cards LEFT untouched — their
+  claims stay confirm-or-remove on the user's word (already flagged
+  in code as "claimed, unverified"). Soft flag, unchanged: SOC copy's
+  unnamed "hiring partners" phrase — a service description, no brand
+  endorsed, but worth his confirmation.
+- Policy drafts: /privacy-policy and /refund-policy created as real
+  routes (terms-page pattern: staticPageMetadata + PageHero +
+  sections from src/data/pages.ts), with a visible Draft notice and
+  every unconfirmed fact as a visible [TODO] — legal entity name,
+  CIN, grievance officer name + email, retention, refund terms,
+  processors, timelines. Nothing invented; the only non-placeholder
+  statements describe observable site behavior (enquiry forms,
+  certificate verification, no analytics scripts) or already-published
+  contact details. Footer Quick Links += Privacy Policy, Refund
+  Policy; sitemap staticPaths += both routes (NO lastmod — new routes
+  have no git history and this repo never invents dates). Sitemap
+  count goes 90 -> 92.
+- Trackers/cookies: zero analytics or tracking scripts in src (all
+  "analytics" hits are course content: Log Analytics, Marketing
+  analytics, Data Analytics course). External URLs in src are only:
+  canonical/social/contact links, wa.me, Google Maps, OSM
+  attribution, schema.org, blog-attribution links, and ONE hotlink
+  exception — Inter loaded from fonts.googleapis.com (layout.tsx
+  stylesheet + preconnects). That hotlink is reported, not fixed
+  here: self-hosting Inter changes font delivery and needs visual
+  verification; the v3 tree already self-hosts its fonts, so the fix
+  path is known. No cookies set by the app itself (no auth, no
+  trackers).
+- CSP: NEW src/proxy.ts (Next 16 convention), porting Leo's exact
+  policy + CORP, with ONE documented deviation: style-src adds
+  https://fonts.googleapis.com and font-src adds
+  https://fonts.gstatic.com, because a verbatim Leo policy would
+  block the Inter font load above and silently change typography.
+  Everything else is identical to Leo's policy. Static analysis of
+  breakage vectors before shipping: images all local, forms post to
+  /api/* (same-origin), client fetches same-origin only, no iframes,
+  no workers, no external scripts. If the user prefers verbatim CSP,
+  self-host Inter first, then drop the two allowances.
+- Accessibility: skip link already existed and is correct
+  (Header.tsx href="#main", Chrome renders <main id="main">) — the
+  accessibility page's claim is true, no change needed. ADDED a
+  global :focus-visible rule (2px solid currentColor, offset 2px)
+  to globals.css: previously there was no focus rule at all and the
+  page's "2px outline" promise rested on browser defaults. All
+  sampled form fields carry visible <label htmlFor> labels. Body-text
+  contrast values were NOT re-measured here (no redesign scope);
+  the accessibility page's published token measurements are
+  unchanged by this branch.
+- Partner page: LeadForm gained an optional showCountry prop
+  (default off); /partner-with-us passes it. The Country field is
+  label-only and optional (not required, no validation change): its
+  value is NOT sent to /api/leads and NOT stored, because the leads
+  table has no country column. Wiring persistence needs a migration
+  and is not done here.
+- NOT done (need his word): course-finder quiz, batch calendar,
+  Open Badges, partner portal, self-hosting Inter, country-column
+  migration, any backend change (Axon stays), any hosting move,
+  archiving anything.
