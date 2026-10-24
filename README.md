@@ -35,6 +35,35 @@ next phase and lives in `gradespot-axon` — not in this repo.
 New here? Read in this order: this README → `DECISIONS.md` →
 `src/data/site.ts` → `src/app/page.tsx` → `src/lib/data.ts`.
 
+## Design
+
+**Design:** a faithful copy of the official WordPress site's look —
+corporate and clean, not a redesign. The replica's job is for a
+visitor to see the same site they saw on WordPress.
+
+**Layout (home page, top to bottom):** header with navigation → hero
+"We Create Better IT Solutions" → What We Do (Top Class Trainings,
+Web Design & Development, Cyber Security, Digital Marketing) → About
+(9 Years of Experience, Nikhil signature block, Founder & MD) → ISO
+9001:2015 + AICTE Internships cards → counters strip (Happy Learners,
+Certified Learners, Students Enrolled, Interns, Web Projects) → Top
+Class Trainings cards → Trusted by learners → Meet Our Leadership
+(Nikhil, Aravindh, Prudhvi) → satisfaction/features strip → FAQ →
+Need Help + footer (address, emails, phones, hours 8:00 AM – 9:00 PM).
+
+**Structure:** shared Header/Footer and `ui.tsx` primitives; every
+section sits in a centred `wrap` container (max 1140px) with
+`section-pad` rhythm (80px mobile, 120px desktop); cards carry image
++ category + title + excerpt + Read More; pale `surface-light`
+sections alternate with white.
+
+**Theme** (`src/app/globals.css`, Tailwind v4 `@theme`): brand orange
+`#f7631b` (buttons, accents) with brand-dark `#d9520f` on hover;
+headings deep navy `#0e2b3d`; body `#666666`; nav `#333333`;
+surface-light `#f3f7fd`; footer text `#c2d1e2`; type Inter, body
+14px/26px. Buttons: primary = brand-filled, 5px radius; outline-light
+= white pill (40px radius) for dark sections.
+
 ## Complete folder / directory structure
 
 ```
