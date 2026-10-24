@@ -479,3 +479,34 @@ Dimensions/tokens only; no routes, content, SEO, menus, or copy changed.
   (public/images/hero-students-mobile.jpg, 968x553 crop of the
   cleaned photo) renders full-width below the text — all five
   students fit on phones, nothing cropped.
+
+## Audit fixes — next 16 + zod 4 (2026-10-25, branch feature/audit-fixes, NOT merged, NOT deployed)
+
+- Base: 31b1fa8 (v2 tip before the unreviewed v3 commits), NOT
+  v2-leo-layout tip and NOT the QA branch. Fixes the 2026-10-25
+  Termux audit: 3 vulnerabilities, 0 critical (postcss high via
+  next, zod high memory-exhaustion, next moderate via its postcss
+  dependency). Upgrades, explicit, nothing else touched:
+  next 15.5.0 -> 16.4.3, zod 3.25.0 -> 4.6.7.
+- ZERO source migration edits needed. Build passes first try under
+  Next 16.4.3 (Turbopack, 96/96 static pages); the zod 4 schema in
+  /api/leads and /api/verify works unchanged, including the
+  z.preprocess empty-email path (proven by localhost 422 tests).
+  Lint via the eslint CLI (already the repo's lint script; Next 16
+  removed `next lint`, which this repo never used): 0 errors,
+  2 pre-existing warnings (postcss.config.mjs default-export,
+  layout.tsx no-page-custom-font) — both pre-date the upgrade.
+- tsconfig.json changed by Next itself on first build (reformatted,
+  jsx preserve -> react-jsx, .next/dev/types added to include).
+  No strictness or path change.
+- One cosmetic, upgrade-forced output change: zod 4's default
+  .max() message reads "Too big: expected string to have <=2000
+  characters" (zod 3: "String must contain at most 2000
+  character(s)"). Only the message-length field (no custom
+  message) is affected; all custom field messages are unchanged.
+  Left as the zod 4 default rather than pinning old wording.
+- Verified localhost-only: 7 key routes 200, full sitemap 90/90
+  with 0 failures, bad-lead 422 per-field errors, /api/verify
+  honest-empty. No fake lead was written (only 422-path payloads
+  were posted). Production untouched; audit re-verification from
+  Termux is the remaining step before any merge/deploy claim.
