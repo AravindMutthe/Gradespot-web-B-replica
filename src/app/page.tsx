@@ -43,8 +43,20 @@ export default async function HomePage() {
     <>
       <JsonLd data={faqSchema(siteFaqs)} />
       <JsonLd data={webPageSchema("/", "GradeSpot IT Solutions", "#answer-summary")} />
-      {/* Hero — headline and copy as published on the live homepage */}
+      {/* Hero — headline and copy as published on the live homepage.
+          Background: hero-students photo at 40% opacity under the 50%
+          black overlay (net ~20% presence) — visible but clearly behind
+          the text, students anchored bottom-right. */}
       <section className="relative bg-heading text-white">
+        <Image
+          src="/images/hero-students.jpg"
+          alt=""
+          aria-hidden
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-right-bottom opacity-40"
+        />
         <div className="absolute inset-0 bg-black/50" aria-hidden />
         <div className="wrap relative py-20 md:py-28">
           <h1 className="max-w-3xl text-5xl font-normal leading-tight md:text-[80px] md:leading-[96px]">
