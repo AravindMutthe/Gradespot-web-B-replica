@@ -133,6 +133,52 @@ present, otherwise the local files in `src/data/`. Supabase project:
 `gradespot-app` (ap-south-1). Without environment variables the site
 runs entirely on the local migrated content.
 
+## How to work with it
+
+### Prerequisites
+
+- Node.js 20 LTS + npm, and Git.
+- No accounts needed to start: without `.env.local`, the site runs
+  entirely on the local files in `src/data/`. A Supabase project is
+  only needed for live-data work (keys via the Secure Vault / Vercel,
+  never committed).
+- Stack: Next.js 15, React 19, Tailwind CSS v4, TypeScript, zod
+  (form/API validation), `@supabase/supabase-js`.
+
+### Build and test locally
+
+```
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build — must pass before any PR
+npm start        # preview the production build locally
+npm run lint
+```
+
+There is no automated test suite in this repo — verification is the
+production build + lint + manual checks: home, one training page,
+one service page, the lead form, and certificate verification.
+
+### Feature development → PR for review
+
+1. Start from latest `main`: `git checkout main && git pull`.
+2. Branch, never commit to `main` directly:
+   `git checkout -b feature/<short-name>`.
+3. Build the feature following the Design and Rules sections above —
+   content from the official record only, assets downloaded into the
+   repo, nothing hotlinked, no invented data.
+4. Content edits go in `src/data/` first. A database schema change
+   needs a new file in `supabase/migrations/` and Aravind's approval
+   (migrations are applied to the live Supabase project separately).
+5. Run `npm run build` + `npm run lint` + the manual checks above.
+   Fix everything before pushing.
+6. Push the branch and open a pull request into `main`, describing
+   what changed and how you verified it.
+7. Review: Aravind reviews every PR; merge happens only on his word.
+   Merging does NOT deploy — production is API-uploaded from the
+   local working copy (Vercel project `gradespot-app`) only when he
+   commissions it.
+
 ## Rules
 
 - **Same real content, always.** Courses, services, prices and claims
