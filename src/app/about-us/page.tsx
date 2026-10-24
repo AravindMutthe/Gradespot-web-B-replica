@@ -1,11 +1,17 @@
-import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import { aboutParagraphs } from "@/data/pages";
 import { team } from "@/data/team";
-import { CtaBand, ExperienceBadge, FaqList, FeatureTrio, LogoWall, PageHero, SectionTitle, SignatureBlock, StatsRibbon, siteFaqs } from "@/components/ui";
+import { CredentialCard, CtaBand, ExperienceBadge, FeatureTrio, LogoWall, PageHero, SectionTitle, SignatureBlock, StatsRibbon } from "@/components/ui";
+import JsonLd from "@/components/JsonLd";
+import { aboutPageSchema } from "@/lib/schema";
 
-export const metadata: Metadata = { title: "About Us" };
+export const metadata = staticPageMetadata({
+  title: "About Us",
+  description: "GradeSpot IT Solutions assists companies in enhancing their digital presence and fortifying their security — IT training, corporate training and internships from Dilsukhnagar, Hyderabad, trusted by 1,500+ happy learners.",
+  path: "/about-us",
+});
 
 export default function AboutPage() {
   // aboutParagraphs order follows the live About page: intro, ISO, AICTE,
@@ -13,6 +19,7 @@ export default function AboutPage() {
   const narrative = aboutParagraphs.slice(5, 13);
   return (
     <>
+      <JsonLd data={aboutPageSchema()} />
       <PageHero title="About Us — GradeSpot IT Solutions" />
       <section className="section-pad">
         <div className="wrap grid items-start gap-10 lg:grid-cols-2">
@@ -27,29 +34,31 @@ export default function AboutPage() {
               <SignatureBlock />
             </div>
             <div className="mt-6 space-y-4">
-              <article className="rounded-lg bg-surface-light p-5">
-                <h3 className="text-lg font-semibold">An ISO Certified Company</h3>
-                <p className="mt-1 text-sm leading-6">{aboutParagraphs[2]}</p>
-              </article>
-              <article className="rounded-lg bg-surface-light p-5">
-                <h3 className="text-lg font-semibold">AICTE Internships Approved</h3>
-                <p className="mt-1 text-sm leading-6">{aboutParagraphs[4]}</p>
-              </article>
+              <CredentialCard
+                title="An ISO Certified Company"
+                body={aboutParagraphs[2]}
+                seal="iso"
+              />
+              <CredentialCard
+                title="AICTE Internships Approved"
+                body={aboutParagraphs[4]}
+                seal="aicte"
+              />
             </div>
           </div>
           <div>
             <h3 className="text-2xl font-semibold text-heading">How We Work</h3>
             <ol className="mt-4 space-y-4">
-              <li className="rounded-lg bg-white p-5 shadow-[0_5px_30px_rgba(214,215,216,0.4)]">
-                <span className="font-extrabold text-brand">01</span>
+              <li className="rounded-2xl border border-line bg-parchment p-5 shadow-sm">
+                <span className="font-extrabold text-signal">01</span>
                 <p className="mt-1">Explore from our range of services for your business needs</p>
               </li>
-              <li className="rounded-lg bg-white p-5 shadow-[0_5px_30px_rgba(214,215,216,0.4)]">
-                <span className="font-extrabold text-brand">02</span>
+              <li className="rounded-2xl border border-line bg-parchment p-5 shadow-sm">
+                <span className="font-extrabold text-signal">02</span>
                 <p className="mt-1">Connect with us to schedule a meeting and discuss your needs</p>
               </li>
-              <li className="rounded-lg bg-white p-5 shadow-[0_5px_30px_rgba(214,215,216,0.4)]">
-                <span className="font-extrabold text-brand">03</span>
+              <li className="rounded-2xl border border-line bg-parchment p-5 shadow-sm">
+                <span className="font-extrabold text-signal">03</span>
                 <p className="mt-1">
                   Talk to a Trainer — online &amp; offline classes with top-class trainings.
                 </p>
@@ -69,9 +78,14 @@ export default function AboutPage() {
       <section className="section-pad">
         <div className="wrap">
           <SectionTitle label="Our Story" title="About GradeSpot IT Solutions" center />
-          <div className="mx-auto mt-8 max-w-4xl space-y-5">
+          <div
+           
+            className="mx-auto mt-8 max-w-4xl space-y-5 rounded-[20px] border border-line border-l-[3px] border-l-brand bg-parchment px-7 py-8 shadow-[0_1px_2px_rgba(14,43,61,0.05)] md:px-10 md:py-10"
+          >
             {narrative.map((p, i) => (
-              <p key={i}>{p}</p>
+              <p key={i} className={i === 0 ? "text-[17px] leading-8 text-heading" : undefined}>
+                {p}
+              </p>
             ))}
           </div>
         </div>
@@ -88,15 +102,24 @@ export default function AboutPage() {
                   alt={m.name}
                   width={350}
                   height={350}
+                  sizes="(min-width:640px) 33vw, 100vw"
                   className="mx-auto h-56 w-full rounded object-cover"
                 />
                 <h3 className="mt-3 text-lg font-semibold">{m.name}</h3>
-                <p className="text-sm text-brand">{m.role}</p>
+                <p className="text-sm text-signal">{m.role}</p>
               </article>
             ))}
           </div>
-          <div className="mx-auto mt-12 max-w-3xl">
-            <FaqList items={siteFaqs} />
+          <div className="mx-auto mt-12 max-w-3xl rounded-[18px] border border-line bg-parchment px-7 py-6 text-center shadow-[0_1px_2px_rgba(14,43,61,0.05)]">
+            <h3 className="text-[20px] font-semibold text-heading">
+              Questions about trainings or services?
+            </h3>
+            <p className="mt-1.5 text-sm leading-6 text-body">
+              The answers live in one place — our Help &amp; FAQs.
+            </p>
+            <Link href="/faq" className="mt-3.5 inline-block text-sm font-bold text-signal hover:text-signal-strong">
+              Read Help &amp; FAQs →
+            </Link>
           </div>
         </div>
       </section>

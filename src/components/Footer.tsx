@@ -3,20 +3,31 @@ import Link from "next/link";
 import { business, telHref } from "@/data/site";
 import { SocialLinks } from "@/components/ui";
 
+// v2: footer link structure ported from Leo — new v2 routes added to the
+// existing columns (Company += Career Support, For Colleges, Partner With
+// Us; Quick += Contact Us, Accessibility). The 4-column layout itself is
+// kept faithful: Leo's extra Popular Trainings column is NOT added (the
+// popular courses are already linked from the header mega menu, home and
+// trainings pages).
 const companyLinks = [
   { label: "About Us", href: "/about-us" },
   { label: "Team Members", href: "/team-members" },
   { label: "Why Choose Us", href: "/why-choose-us" },
   { label: "Testimonials", href: "/testimonials" },
+  { label: "Career Support", href: "/career-support" },
+  { label: "For Colleges", href: "/for-colleges" },
+  { label: "Partner With Us", href: "/partner-with-us" },
   { label: "Help & FAQs", href: "/faq" },
 ];
 
 const quickLinks = [
   { label: "Trainings", href: "/trainings" },
   { label: "Services", href: "/services" },
+  { label: "Contact Us", href: "/contact-us" },
   { label: "Student Certifications", href: "/student-certifications" },
   { label: "Certificate Verification", href: "/certificate-verification" },
   { label: "Terms and Conditions", href: "/terms-and-conditions" },
+  { label: "Accessibility", href: "/accessibility" },
 ];
 
 export default function Footer() {

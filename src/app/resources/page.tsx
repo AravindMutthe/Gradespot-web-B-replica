@@ -1,9 +1,13 @@
-import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { business } from "@/data/site";
-import { PageHero } from "@/components/ui";
+import { CtaBand, PageHero } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Resources" };
+export const metadata = staticPageMetadata({
+  title: "Resources",
+  description: "Everything about the people, proof and credibility behind GradeSpot IT Solutions — team, testimonials, student certifications and career support.",
+  path: "/resources",
+});
 
 const items = [
   {
@@ -22,10 +26,15 @@ const items = [
     desc: "Explore the voices of satisfaction and success as our students and clients share their experiences.",
   },
   {
-    title: "Blog",
+    title: "DigiDefense Blog",
     href: business.blogUrl,
     external: true,
-    desc: "Security write-ups and learning articles on our blog (DigiDefense).",
+    desc: "Security write-ups and learning articles on our security blog, DigiDefense.",
+  },
+  {
+    title: "Partner With Us",
+    href: "/partner-with-us",
+    desc: "Collaborations and franchise discussions are welcome — institutes, colleges, trainers and new-centre conversations.",
   },
   {
     title: "Student Certifications",
@@ -36,6 +45,26 @@ const items = [
     title: "Certificate Verification",
     href: "/certificate-verification",
     desc: "Verify a GradeSpot certificate using its certificate code.",
+  },
+  {
+    title: "Career Support",
+    href: "/career-support",
+    desc: "The job roles each training prepares you for, the companies our students work with, and the career services we offer.",
+  },
+  {
+    title: "Learning Articles",
+    href: "/blog",
+    desc: "Roadmaps and explainers: starting a cybersecurity career, CEH vs Security+, and what a SOC analyst does.",
+  },
+  {
+    title: "Course Comparisons",
+    href: "/compare",
+    desc: "Similar courses compared side by side — topics, duration, certification and roles — from their published data.",
+  },
+  {
+    title: "For Colleges",
+    href: "/for-colleges",
+    desc: "Workshops, industrial trainings and internships conducted for colleges and their students.",
   },
 ];
 
@@ -52,7 +81,7 @@ export default function ResourcesPage() {
                 href={it.href}
                 target="_blank"
                 rel="noreferrer"
-                className="block bg-white px-[30px] py-[40px] shadow-[0_5px_30px_rgba(214,215,216,0.57)]"
+                className="block rounded-2xl border border-line bg-parchment px-[30px] py-[40px] shadow-sm transition duration-300 hover:shadow-[0_20px_40px_rgba(14,43,61,0.12)]"
               >
                 <h2 className="text-xl font-bold">{it.title} ↗</h2>
                 <p className="mt-2 text-sm leading-6">{it.desc}</p>
@@ -61,7 +90,7 @@ export default function ResourcesPage() {
               <Link
                 key={it.title}
                 href={it.href}
-                className="block bg-white px-[30px] py-[40px] shadow-[0_5px_30px_rgba(214,215,216,0.57)]"
+                className="block rounded-2xl border border-line bg-parchment px-[30px] py-[40px] shadow-sm transition duration-300 hover:shadow-[0_20px_40px_rgba(14,43,61,0.12)]"
               >
                 <h2 className="text-xl font-bold">{it.title}</h2>
                 <p className="mt-2 text-sm leading-6">{it.desc}</p>
@@ -70,6 +99,7 @@ export default function ResourcesPage() {
           )}
         </div>
       </section>
+      <CtaBand />
     </>
   );
 }

@@ -1,10 +1,18 @@
-import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/metadata";
+import JsonLd from "@/components/JsonLd";
+import { personSchema } from "@/lib/schema";
 import Image from "next/image";
 import Link from "next/link";
 import { team } from "@/data/team";
 import { CtaBand, PageHero } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Nikhil Duth D — Founder, Managing Director" };
+export const metadata = staticPageMetadata({
+  title: "Nikhil Duth D — Founder, Managing Director",
+  description:
+    "Nikhil Duth D, Founder & Managing Director of GradeSpot IT Solutions, Dilsukhnagar, Hyderabad — SOC analysis and technical training, 9 years of experience.",
+  path: "/team-members/nikhil-duth-d",
+  image: "/images/team/nikhil-duth-d.jpg",
+});
 
 // Profile facts exactly as published on the live Team Single page
 // (crawl 2026-10-23): role, 9 years of experience, two 95% skill bars and
@@ -19,6 +27,7 @@ export default function NikhilProfilePage() {
   const member = team.find((m) => m.name === "Nikhil Duth D") ?? team[0];
   return (
     <>
+      <JsonLd data={personSchema()} />
       <PageHero title={member.name} subtitle="Founder, Managing Director" />
       <section className="section-pad">
         <div className="wrap grid items-start gap-10 lg:grid-cols-[1fr_1.4fr]">

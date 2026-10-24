@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/metadata";
 import { termsSections } from "@/data/pages";
 import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Terms and Conditions" };
+export const metadata = staticPageMetadata({
+  title: "Terms and Conditions",
+  description: "Terms and conditions for using the GradeSpot IT Solutions website and services, Dilsukhnagar, Hyderabad.",
+  path: "/terms-and-conditions",
+});
 
 export default function TermsPage() {
   return (

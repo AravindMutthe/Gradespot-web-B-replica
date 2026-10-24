@@ -1,0 +1,130 @@
+# GradeSpot IT Solutions
+
+> GradeSpot IT Solutions (GradeSpot IT Solutions Pvt. Ltd.) is an IT training institute and IT services company in Dilsukhnagar, Hyderabad, Telangana, India. It offers professional training programs for corporates and students across computer hardware, networking, cybersecurity, cloud computing, digital marketing and data science, with online and offline classes, plus IT services, corporate trainings, internships and certificate verification.
+
+## Contact
+
+- Address: 16-126, 2nd Floor, Near Sai Baba Temple, Road No.1, Sri Krishna Nagar, Dilsukhnagar, Hyderabad, Telangana - 500060
+- Phone: +91 91826 54056
+- Email: info@gsitssolutions.com
+- Office Hours: 8:00 AM - 9:00 PM
+
+## Key pages
+
+- [Home](https://gradespot-app.vercel.app/): overview of trainings and services
+- [Trainings](https://gradespot-app.vercel.app/trainings): the full training catalogue
+- [Services](https://gradespot-app.vercel.app/services): corporate trainings, internships, cybersecurity services and more
+- [About Us](https://gradespot-app.vercel.app/about-us)
+- [Testimonials](https://gradespot-app.vercel.app/testimonials): student reviews posted on Google
+- [Student Certifications](https://gradespot-app.vercel.app/student-certifications)
+- [Certificate Verification](https://gradespot-app.vercel.app/certificate-verification): verify a GradeSpot certificate by its code
+- [Pricing](https://gradespot-app.vercel.app/pricing): published course fees for students; scoped quotes for businesses and institutes
+- [Register](https://gradespot-app.vercel.app/register): register for a course or a free demo class (lead registration — the team confirms by phone)
+- [Accessibility](https://gradespot-app.vercel.app/accessibility): accessibility statement — the WCAG 2.2 AA measures this site implements
+- [Full catalogue — llms-full.txt](https://gradespot-app.vercel.app/llms-full.txt): every training with its published fee, duration, certification and FAQs, in plain Markdown (missing values are absent, not guessed)
+- [Partner With Us](https://gradespot-app.vercel.app/partner-with-us): collaborations and franchise discussions are welcome — an invitation to discuss, not a franchise offer
+- [For Institutes](https://gradespot-app.vercel.app/for-institutes): WhatsApp lead automation, video LMS and lab setup products for training institutes
+- [For Colleges](https://gradespot-app.vercel.app/for-colleges): college workshops, industrial trainings and internships conducted for colleges
+- [Career Support](https://gradespot-app.vercel.app/career-support): the job roles each training prepares you for, the companies our students work with, and career services — no placement guarantees
+- [Training Institute in Dilsukhnagar, Hyderabad](https://gradespot-app.vercel.app/training-institute-in-dilsukhnagar-hyderabad): address, office hours, courses and visiting FAQs for the Dilsukhnagar institute
+- [Course Comparisons](https://gradespot-app.vercel.app/compare): CEH vs Security+, CCNA vs Network+, SOC Analyst vs CEH, CEH vs PenTest+ — compared from their published topics, durations, certifications and job roles
+- [Learning Articles](https://gradespot-app.vercel.app/blog): how to start a cybersecurity career; CEH vs Security+ — which first; what a SOC analyst actually does
+- [Help & FAQs](https://gradespot-app.vercel.app/faq)
+- [Contact Us](https://gradespot-app.vercel.app/contact-us)
+
+## Services
+
+- [Corporate Trainings](https://gradespot-app.vercel.app/services/corporate-trainings)
+- [Internships](https://gradespot-app.vercel.app/services/internships)
+- [Industrial Trainings](https://gradespot-app.vercel.app/services/industrial-trainings)
+- [College Workshops](https://gradespot-app.vercel.app/services/college-workshops)
+- [Cybersecurity Services](https://gradespot-app.vercel.app/services/cybersecurity-services)
+- [Web Development](https://gradespot-app.vercel.app/services/web-development)
+- [Digital Marketing Solutions](https://gradespot-app.vercel.app/services/digital-marketing-solutions)
+- [Network Infrastructure Building](https://gradespot-app.vercel.app/services/network-infrastructure-building)
+- [Logo Designing](https://gradespot-app.vercel.app/services/logo-designing)
+- [US IT Staffing](https://gradespot-app.vercel.app/services/us-it-staffing)
+- [Domestic Consultancy](https://gradespot-app.vercel.app/services/domestic-consultancy)
+- [Abroad Consultancy](https://gradespot-app.vercel.app/services/abroad-consultancy)
+
+## Hyderabad course landing pages
+
+- [CEH Training in Hyderabad](https://gradespot-app.vercel.app/lp/certified-ethical-hacker-ceh-in-hyderabad)
+- [SOC Analyst Training in Hyderabad](https://gradespot-app.vercel.app/lp/soc-analyst-in-hyderabad)
+- [CCNA Training in Hyderabad](https://gradespot-app.vercel.app/lp/ccna-200-301-in-hyderabad)
+- [CCNP Training in Hyderabad](https://gradespot-app.vercel.app/lp/ccnp-350-401-encor-in-hyderabad)
+- [CompTIA Network+ Training in Hyderabad](https://gradespot-app.vercel.app/lp/comptia-network-plus-in-hyderabad)
+- [CompTIA Security+ Training in Hyderabad](https://gradespot-app.vercel.app/lp/comptia-security-plus-in-hyderabad)
+- [CompTIA PenTest+ Training in Hyderabad](https://gradespot-app.vercel.app/lp/comptia-pentest-plus-in-hyderabad)
+- [Azure AZ-900 Training in Hyderabad](https://gradespot-app.vercel.app/lp/azure-fundamentals-az-900-in-hyderabad)
+- [Azure AZ-104 Training in Hyderabad](https://gradespot-app.vercel.app/lp/azure-administrator-az-104-in-hyderabad)
+- [Digital Marketing Training in Hyderabad](https://gradespot-app.vercel.app/lp/digital-marketing-in-hyderabad)
+- [Computer Hardware & Networking Training in Hyderabad](https://gradespot-app.vercel.app/lp/computer-hardware-and-networking-in-hyderabad)
+
+## Trainings
+
+### Microsoft Azure
+
+- [Microsoft Certified: Azure Fundamentals | AZ-900](https://gradespot-app.vercel.app/trainings/azure-fundamentals-az-900)
+- [Microsoft Certified: Azure Administrator Associate | AZ-104](https://gradespot-app.vercel.app/trainings/azure-administrator-az-104)
+- [Microsoft Certified: Azure Security Engineer Associate | AZ-500](https://gradespot-app.vercel.app/trainings/azure-security-engineer-az-500)
+- [Designing and Implementing Microsoft DevOps Solutions | AZ-400](https://gradespot-app.vercel.app/trainings/microsoft-devops-az-400)
+- [Security, Compliance, and Identity Fundamentals | SC-900](https://gradespot-app.vercel.app/trainings/sc-900)
+- [Microsoft Certified: Security Operations Analyst Associate | SC-200](https://gradespot-app.vercel.app/trainings/sc-200)
+- [Microsoft Sentinel Training](https://gradespot-app.vercel.app/trainings/microsoft-sentinel)
+
+### Cisco
+
+- [Cisco Certified Network Associate: CCNA 200-301](https://gradespot-app.vercel.app/trainings/ccna-200-301) — 45 days
+- [CCNP Enterprise 350-401 ENCOR](https://gradespot-app.vercel.app/trainings/ccnp-350-401-encor) — 45 days
+
+### CompTIA
+
+- [CompTIA Network+: N10-008](https://gradespot-app.vercel.app/trainings/comptia-network-plus) — 30 days
+- [CompTIA PenTest+: PT0-002](https://gradespot-app.vercel.app/trainings/comptia-pentest-plus) — 60 hours
+- [CompTIA Security+: Sy0-701](https://gradespot-app.vercel.app/trainings/comptia-security-plus) — 30 days
+- [CompTIA A+ Core 1: 220-1101](https://gradespot-app.vercel.app/trainings/comptia-a-plus-core-1)
+- [CompTIA A+ Core 2: 220-1102](https://gradespot-app.vercel.app/trainings/comptia-a-plus-core-2)
+
+### Networking
+
+- [Computer Hardware and Networking Training](https://gradespot-app.vercel.app/trainings/computer-hardware-and-networking)
+
+### Digital Marketing
+
+- [Complete Digital Marketing](https://gradespot-app.vercel.app/trainings/digital-marketing) — 45 days
+
+### Cybersecurity
+
+- [SOC Analyst Training in Hyderabad | Job-Ready in 90 Days](https://gradespot-app.vercel.app/trainings/soc-analyst) — 90 days
+- [Certified Ethical Hacker [CEH v13]](https://gradespot-app.vercel.app/trainings/certified-ethical-hacker-ceh) — 45 days
+- [Program in Cybersecurity Technologies](https://gradespot-app.vercel.app/trainings/cybersecurity-technologies)
+- [Vulnerability Assessment & Penetration Testing [VA PT]](https://gradespot-app.vercel.app/trainings/vapt)
+
+### AWS
+
+- [AWS Certified Cloud Practitioner | AWS CLF-C02](https://gradespot-app.vercel.app/trainings/aws-cloud-practitioner)
+- [AWS Certified Solutions Architect – Associate | AWS SAA-C03](https://gradespot-app.vercel.app/trainings/aws-solutions-architect-associate)
+- [AWS Certified DevOps Engineer - Professional | AWS DOP-C02](https://gradespot-app.vercel.app/trainings/aws-devops-engineer)
+
+### Programming & Data
+
+- [Core Java](https://gradespot-app.vercel.app/trainings/core-java)
+- [Java Full Stack](https://gradespot-app.vercel.app/trainings/java-full-stack)
+- [Power BI](https://gradespot-app.vercel.app/trainings/power-bi)
+- [MySQL](https://gradespot-app.vercel.app/trainings/mysql)
+- [Data Analytics](https://gradespot-app.vercel.app/trainings/data-analytics)
+- [Data Science](https://gradespot-app.vercel.app/trainings/data-science)
+
+### Medical Coding
+
+- [Certified Professional Coder - CPC](https://gradespot-app.vercel.app/trainings/certified-professional-coder-cpc)
+- [Hierarchical condition category - HCC](https://gradespot-app.vercel.app/trainings/hcc-medical-coding)
+- [Inpatient Diagnosis-Related Group - IP-DRG](https://gradespot-app.vercel.app/trainings/ip-drg-medical-coding)
+- [E&M (Evaluation and Management)](https://gradespot-app.vercel.app/trainings/em-medical-coding)
+- [Radiology - Medical Coding](https://gradespot-app.vercel.app/trainings/radiology-medical-coding)
+- [Anesthesia - Medical Coding](https://gradespot-app.vercel.app/trainings/anesthesia-medical-coding)
+
+### Design & CAD
+
+- [AutoCAD](https://gradespot-app.vercel.app/trainings/autocad)
