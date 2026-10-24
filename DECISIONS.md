@@ -423,3 +423,27 @@ is replica's own record of the port.
   testimonial mapping (soc-analyst → M Vamsi, az-104 → Arif Syed,
   ceh → Kammarapalli pallavi, default → naresh chepuri) is Leo's
   mapping, kept verbatim.
+
+## v2.1 — Official-values alignment (2026-10-24, branch v2-leo-layout)
+
+Dimensions/tokens only; no routes, content, SEO, menus, or copy changed.
+- Buttons: btn-primary + btn-outline-light padding 15/40 (outline padding
+  was inferred — never separately specified); btn-navy/btn-outline-navy
+  restyled to primary-5px / outline-40px language; WA buttons to 5px shape
+  (green kept); header CTAs to 17px/40px at xl.
+- Nav: desktop links 13px/600/20px uppercase (nav-bp 12px compaction kept);
+  logo 60px; both mega containers 1140px/15px; header bar py-5 (60px logo
+  + 40px padding = 100px bar by arithmetic; rendered measure unverified).
+- Titles: SectionTitle label 24/600/28.8, titles 38.4 (centered 44.8 + 1px
+  tracking); service titles 20/700/24; team/FAQ 18/600/21.6; 14 section-level
+  text-2xl headings → 32/600/38.4.
+- Grids: content gutters → 30px; footer headings 24/600/28.8.
+- Cards/panels: corners → 0, decorative shadows removed; about team photos
+  get the 8px + 5px white frame (interpretation: the about page's images
+  are the team photos; no standalone framed hero image exists in v2's
+  about page).
+- Kept deliberately (no official value): badges/chips/pills, avatar/step
+  circles, form inputs, status boxes, menu hover rows, mobile sizes,
+  micro-eyebrows, counter/price numerals, 24/7 + Smart feature-box titles,
+  home team photos, gallery photos, progress bars.
+- Still unverified: rendered header total height (needs a visual measure).

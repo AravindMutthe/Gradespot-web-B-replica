@@ -36,11 +36,11 @@ export default function BlogIndexPage() {
           <div className="mx-auto max-w-4xl">
             <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Learning Articles" }]} />
           </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-[30px] md:grid-cols-3">
             {articles.map((a) => (
               <article
                 key={a.slug}
-                className="flex flex-col rounded-2xl border border-line bg-parchment px-7 py-8 shadow-sm transition duration-300 hover:shadow-[0_20px_40px_rgba(14,43,61,0.12)]"
+                className="flex flex-col rounded-none border border-line bg-parchment px-7 py-8 transition duration-300"
               >
                 <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-signal-strong">
                   {new Date(`${a.date}T00:00:00`).toLocaleDateString("en-IN", {

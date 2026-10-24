@@ -97,11 +97,11 @@ export default async function PricingPage() {
               These are the fees published on the course pages themselves — the same figures,
               with nothing added.
             </p>
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            <div className="mt-8 grid gap-[30px] lg:grid-cols-2">
               {pricedCourses.map(({ course, plans }) => (
                 <article
                   key={course.slug}
-                  className="rounded-2xl border border-line bg-parchment p-8 shadow-sm"
+                  className="rounded-none border border-line bg-parchment p-8"
                 >
                   <h3 className="text-xl font-bold text-heading">{course.title}</h3>
                   {course.duration && (
@@ -115,7 +115,7 @@ export default async function PricingPage() {
                       return (
                         <div
                           key={p}
-                          className="rounded-xl border border-line bg-surface-light px-4 py-5 text-center"
+                          className="rounded-none border border-line bg-surface-light px-4 py-5 text-center"
                         >
                           <p className="text-[12px] font-semibold uppercase tracking-wide text-body">
                             {name}
@@ -136,7 +136,7 @@ export default async function PricingPage() {
                 </article>
               ))}
             </div>
-            <div className="mt-8 rounded-2xl border border-line bg-surface-light p-8 text-center">
+            <div className="mt-8 rounded-none border border-line bg-surface-light p-8 text-center">
               <h3 className="text-xl font-semibold text-heading">All other trainings</h3>
               <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-body">
                 Fees for the remaining trainings are confirmed on enquiry — the batch, the mode
@@ -167,7 +167,7 @@ export default async function PricingPage() {
                 <Link
                   key={s.slug}
                   href={`/services/${s.slug}`}
-                  className="rounded-xl border border-line bg-parchment px-6 py-5 font-semibold text-heading shadow-sm transition duration-300 hover:shadow-[0_16px_32px_rgba(14,43,61,0.12)]"
+                  className="rounded-none border border-line bg-parchment px-6 py-5 font-semibold text-heading transition duration-300"
                 >
                   {s.title} <span className="text-signal">→</span>
                 </Link>
@@ -188,11 +188,11 @@ export default async function PricingPage() {
               volume and branches, so institute pricing is quoted after a short demo — the plan
               contents below are exactly what each tier includes.
             </p>
-            <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            <div className="mt-8 grid gap-[30px] lg:grid-cols-3">
               {instituteTiers.map((t, i) => (
                 <article
                   key={t.name}
-                  className={`flex flex-col rounded-2xl border bg-parchment px-8 py-10 shadow-sm ${
+                  className={`flex flex-col rounded-none border bg-parchment px-8 py-10 ${
                     i === 1 ? "border-brand ring-1 ring-brand" : "border-line"
                   }`}
                 >

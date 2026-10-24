@@ -90,7 +90,7 @@ export default async function HomePage() {
                 href={d.href}
                
                 style={{ "--reveal-delay": `${i * 80}ms` } as CSSProperties}
-                className="group flex items-center justify-between gap-4 rounded-[16px] border border-line bg-parchment px-6 py-5 shadow-[0_1px_2px_rgba(14,43,61,0.05)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(14,43,61,0.12)]"
+                className="group flex items-center justify-between gap-4 rounded-none border border-line bg-parchment px-6 py-5 transition duration-300 hover:-translate-y-0.5"
               >
                 <span>
                   <span className="eyebrow block text-[10.5px] text-signal-strong">{d.audience}</span>
@@ -128,7 +128,7 @@ export default async function HomePage() {
       <section className="section-pad">
         <div className="wrap">
           <SectionTitle label="What We Do" title="Transform every Digital Process" center />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
             {[
               { t: "Top Class Trainings", d: homeParagraphs[2], img: "/images/courses/ceh.jpg" },
               { t: "Web Design & Development", d: homeParagraphs[3], img: "/images/courses/java-full-stack.jpg" },
@@ -139,7 +139,7 @@ export default async function HomePage() {
                 key={x.t}
                
                 style={{ "--reveal-delay": `${i * 80}ms` } as CSSProperties}
-                className="group overflow-hidden rounded-2xl border border-line bg-parchment shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(14,43,61,0.12)]"
+                className="group overflow-hidden rounded-none border border-line bg-parchment transition duration-300 hover:-translate-y-1"
               >
                 <div className="relative overflow-hidden">
                   <Image
@@ -170,7 +170,7 @@ export default async function HomePage() {
 
       {/* Intro + credentials, as published */}
       <section className="bg-surface-light section-pad">
-        <div className="wrap grid items-start gap-10 lg:grid-cols-2">
+        <div className="wrap grid items-start gap-[30px] lg:grid-cols-2">
           <div>
             <SectionTitle
               label="About GradeSpot"
@@ -208,7 +208,7 @@ export default async function HomePage() {
       <section className="section-pad">
         <div className="wrap">
           <SectionTitle label="Trainings" title="Top Class Trainings" center />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3">
             {featuredCourses.map((c) => (
               <CourseCard key={c.slug} course={c} />
             ))}
@@ -225,7 +225,7 @@ export default async function HomePage() {
       <section className="bg-surface-light section-pad">
         <div className="wrap">
           <SectionTitle label="Services" title="Elevating Minds — Unleashing Creativity" center />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
             {services.slice(0, 8).map((s) => (
               <ServiceCard key={s.slug} service={s} />
             ))}
@@ -257,10 +257,10 @@ export default async function HomePage() {
             <SectionTitle title="Trusted by 1,500+ Happy Learners" center />
             <p className="mt-4">{homeParagraphs[11]}</p>
           </div>
-          <h3 className="mt-14 text-center text-2xl font-semibold text-heading">
+          <h3 className="mt-14 text-center text-[32px] font-semibold leading-[44.8px] tracking-[1px] text-heading">
             Meet Our Leadership
           </h3>
-          <div className="mx-auto mt-8 grid max-w-4xl gap-6 sm:grid-cols-3">
+          <div className="mx-auto mt-8 grid max-w-4xl gap-[30px] sm:grid-cols-3">
             {team.map((m) => (
               <article key={m.name} className="text-center">
                 <Image
@@ -269,9 +269,9 @@ export default async function HomePage() {
                   width={350}
                   height={350}
                   sizes="(min-width:640px) 33vw, 100vw"
-                  className="mx-auto h-56 w-full rounded-2xl object-cover"
+                  className="mx-auto h-56 w-full rounded-none object-cover"
                 />
-                <h4 className="mt-3 text-lg font-semibold">{m.name}</h4>
+                <h4 className="mt-3 text-lg font-semibold leading-[21.6px]">{m.name}</h4>
                 <p className="text-sm text-signal">{m.role}</p>
               </article>
             ))}
@@ -288,7 +288,7 @@ export default async function HomePage() {
 
       {/* FAQ */}
       <section className="bg-surface-light section-pad">
-        <div className="wrap grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+        <div className="wrap grid gap-[30px] lg:grid-cols-[1fr_1.4fr]">
           <SectionTitle label="FAQ" title="Most common question about our services" />
           <FaqList items={siteFaqs} />
         </div>

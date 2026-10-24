@@ -68,7 +68,7 @@ export default function CareerSupportPage() {
         <div className="wrap">
           <div className="mx-auto max-w-4xl">
             <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Career Support" }]} />
-            <div className="mt-8 rounded-2xl border border-line bg-surface-light p-7">
+            <div className="mt-8 rounded-none border border-line bg-surface-light p-7">
               <h2 className="text-lg font-bold text-heading">Our honest position</h2>
               <p className="mt-2 text-[15px] leading-7 text-body">
                 We publish the roles our courses prepare you for and the companies our students
@@ -82,11 +82,11 @@ export default function CareerSupportPage() {
 
           <div className="mt-16">
             <SectionTitle label="Job Roles" title="Roles each training prepares you for" center />
-            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-[30px] md:grid-cols-2 lg:grid-cols-3">
               {roleCourses.map(({ course, roles }) => (
                 <article
                   key={course.slug}
-                  className="flex flex-col rounded-2xl border border-line bg-parchment px-7 py-8 shadow-sm"
+                  className="flex flex-col rounded-none border border-line bg-parchment px-7 py-8"
                 >
                   <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-signal-strong">
                     {course.category}
@@ -122,11 +122,11 @@ export default function CareerSupportPage() {
       <section className="section-pad">
         <div className="wrap">
           <SectionTitle label="Services" title="Career services we actually offer" center />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3">
             {careerServices.map((s) => (
               <article
                 key={s.slug}
-                className="flex flex-col rounded-2xl border border-line border-l-4 border-l-brand bg-parchment px-8 py-9 shadow-sm"
+                className="flex flex-col rounded-none border border-line border-l-4 border-l-brand bg-parchment px-8 py-9"
               >
                 <h3 className="text-xl font-bold text-heading">{s.title}</h3>
                 {s.summary && <p className="mt-2 text-sm leading-6 text-body">{s.summary}</p>}
@@ -148,7 +148,7 @@ export default function CareerSupportPage() {
                 </Link>
               </article>
             ))}
-            <article className="flex flex-col rounded-[18px] panel-ink px-8 py-9">
+            <article className="flex flex-col rounded-none panel-ink px-8 py-9">
               <h3 className="text-xl font-semibold text-paper">Verify a certificate</h3>
               <p className="mt-2 text-sm leading-6 text-paper/80">
                 Employers can verify a GradeSpot certificate by its code — and students can see
@@ -171,7 +171,7 @@ export default function CareerSupportPage() {
               {testimonials.slice(0, 3).map((t) => (
                 <blockquote
                   key={t.name}
-                  className="rounded-2xl border border-line bg-parchment px-7 py-6 shadow-sm"
+                  className="rounded-none border border-line bg-parchment px-7 py-6"
                 >
                   <p className="text-[15px] leading-7 text-heading">“{t.text}”</p>
                   <footer className="mt-3 text-sm font-semibold text-body">

@@ -11,12 +11,12 @@ export default async function OfferCards({ excludeSlug }: { excludeSlug?: string
   if (cards.length === 0) return null;
 
   return (
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
       {cards.map((c, i) => (
         <article
           key={c.slug}
          
-          className="group relative flex flex-col overflow-hidden rounded-[18px] border border-line bg-parchment p-6 shadow-[0_1px_2px_rgba(14,43,61,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_44px_rgba(14,43,61,0.12)]"
+          className="group relative flex flex-col overflow-hidden rounded-none border border-line bg-parchment p-6 transition duration-300 hover:-translate-y-1"
         >
           <span
             aria-hidden
@@ -25,7 +25,7 @@ export default async function OfferCards({ excludeSlug }: { excludeSlug?: string
             {String(i + 1).padStart(2, "0")}
           </span>
           <p className="eyebrow text-signal-strong">Free</p>
-          <h3 className="mt-2.5 text-[20px] font-semibold leading-snug text-heading">
+          <h3 className="mt-2.5 text-[20px] font-bold leading-[24px] text-heading">
             {c.title}
           </h3>
           {c.body && <p className="mt-2 text-sm leading-6 text-body">{c.body}</p>}

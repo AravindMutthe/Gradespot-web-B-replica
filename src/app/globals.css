@@ -66,9 +66,10 @@
   border: 2px solid var(--color-brand);
   border-radius: 5px;
   background: var(--color-brand);
-  padding: 13px 38px;
+  padding: 15px 40px;
   font-size: 17px;
   font-weight: 600;
+  line-height: 25px;
   color: #fff;
   transition: background 0.2s ease;
   &:hover {
@@ -80,7 +81,7 @@
   display: inline-block;
   border: 2px solid #fff;
   border-radius: 40px;
-  padding: 13px 38px;
+  padding: 15px 40px;
   font-size: 17px;
   font-weight: 600;
   color: #fff;
@@ -99,19 +100,19 @@
 
 /* ---- v2 (Leo layout/structure port) — structure utilities, replica tokens only ---- */
 .btn-navy {
-  @apply inline-flex items-center justify-center rounded-full bg-heading px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand;
+  @apply inline-flex items-center justify-center rounded-[5px] border-2 border-brand bg-brand px-10 py-[15px] text-[17px] font-semibold leading-[25px] text-white transition hover:bg-brand-dark;
 }
 .btn-outline-navy {
-  @apply inline-flex items-center justify-center rounded-full border border-heading px-6 py-3 text-sm font-semibold text-heading transition hover:bg-heading hover:text-white;
+  @apply inline-flex items-center justify-center rounded-[40px] border-2 border-heading px-10 py-[15px] text-[17px] font-semibold leading-[25px] text-heading transition hover:bg-heading hover:text-white;
 }
 .panel-ink {
   @apply bg-heading text-white;
 }
 .glass-panel {
-  @apply rounded-2xl border border-neutral-200 bg-white shadow-[0_5px_30px_rgba(214,215,216,0.57)];
+  @apply rounded-none border border-neutral-200 bg-white;
 }
 .glass-ink {
-  @apply bg-heading text-white shadow-[0_10px_30px_rgba(14,43,61,0.45)];
+  @apply bg-heading text-white;
 }
 .eyebrow {
   @apply text-xs font-bold uppercase tracking-[0.14em];

@@ -70,7 +70,7 @@ export default async function ServicePage({
                       {service.offerings.map((o) => (
                         <li
                           key={o}
-                          className="flex items-start gap-3 rounded-xl border border-neutral-200 bg-surface-light px-4 py-3 text-[15px] font-medium text-heading"
+                          className="flex items-start gap-3 rounded-none border border-neutral-200 bg-surface-light px-4 py-3 text-[15px] font-medium text-heading"
                         >
                           <span className="font-bold text-brand" aria-hidden>
                             ✓
@@ -105,8 +105,8 @@ export default async function ServicePage({
               </Link>
               .
             </p>
-            <div className="rounded-lg bg-surface-light p-8 text-center">
-              <h2 className="text-2xl font-semibold">Interested in {service.title}?</h2>
+            <div className="rounded-none bg-surface-light p-8 text-center">
+              <h2 className="text-[32px] font-semibold leading-[38.4px]">Interested in {service.title}?</h2>
               <p className="mx-auto mt-2 max-w-xl">
                 Send an enquiry and our team will discuss your requirement, timelines and the
                 right way to engage this service.

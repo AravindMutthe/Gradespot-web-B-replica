@@ -128,11 +128,11 @@ export default function ForInstitutesPage() {
               title="The problems every institute owner knows"
               center
             />
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="mt-10 grid gap-[30px] md:grid-cols-3">
               {pains.map((p) => (
                 <article
                   key={p.t}
-                  className="rounded-2xl border border-line bg-parchment px-8 py-10 shadow-sm"
+                  className="rounded-none border border-line bg-parchment px-8 py-10"
                 >
                   <span className="block h-1 w-10 rounded-full bg-brand" aria-hidden />
                   <h3 className="mt-4 text-xl font-bold text-heading">{p.t}</h3>
@@ -145,11 +145,11 @@ export default function ForInstitutesPage() {
           {/* Products */}
           <div className="mt-20">
             <SectionTitle label="Axon Products" title="Three products, one partner" center />
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="mt-10 grid gap-[30px] md:grid-cols-3">
               {products.map((p) => (
                 <article
                   key={p.t}
-                  className="flex flex-col rounded-2xl border border-line bg-parchment px-8 py-10 shadow-sm transition duration-300 hover:shadow-[0_20px_40px_rgba(14,43,61,0.12)]"
+                  className="flex flex-col rounded-none border border-line bg-parchment px-8 py-10 transition duration-300"
                 >
                   <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-signal-strong">
                     {p.tag}
@@ -170,11 +170,11 @@ export default function ForInstitutesPage() {
       <section className="bg-surface-light section-pad">
         <div className="wrap">
           <SectionTitle title="From enquiry to enrolled in 5 steps" center />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-10 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-5">
             {steps.map((s) => (
               <article
                 key={s.n}
-                className="rounded-2xl border border-line bg-parchment px-6 py-8 text-center shadow-sm"
+                className="rounded-none border border-line bg-parchment px-6 py-8 text-center"
               >
                 <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-heading text-lg font-extrabold text-brand-bright">
                   {s.n}
@@ -197,8 +197,8 @@ export default function ForInstitutesPage() {
               before they are offered to anyone else.
             </p>
           </div>
-          <div className="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-3">
-            <article className="rounded-2xl border border-line bg-surface-light p-7">
+          <div className="mx-auto mt-10 grid max-w-5xl gap-[30px] md:grid-cols-3">
+            <article className="rounded-none border border-line bg-surface-light p-7">
               <h3 className="text-lg font-semibold text-heading">This website runs on it</h3>
               <p className="mt-2 text-sm leading-6 text-body">
                 Every enquiry sent through these pages is captured into our database with its
@@ -206,7 +206,7 @@ export default function ForInstitutesPage() {
                 memory.
               </p>
             </article>
-            <article className="rounded-2xl border border-line bg-surface-light p-7">
+            <article className="rounded-none border border-line bg-surface-light p-7">
               <h3 className="text-lg font-semibold text-heading">Verification is live</h3>
               <p className="mt-2 text-sm leading-6 text-body">
                 Employers can verify a GradeSpot certificate on this site right now — the same
@@ -216,7 +216,7 @@ export default function ForInstitutesPage() {
                 </Link>
               </p>
             </article>
-            <article className="rounded-2xl border border-line bg-surface-light p-7">
+            <article className="rounded-none border border-line bg-surface-light p-7">
               <h3 className="text-lg font-semibold text-heading">No invented numbers</h3>
               <p className="mt-2 text-sm leading-6 text-body">
                 We don&apos;t publish case-study figures we can&apos;t stand behind. As real

@@ -116,11 +116,11 @@ export default function ForCollegesPage() {
               title="The gaps every placement cell talks about"
               center
             />
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="mt-10 grid gap-[30px] md:grid-cols-3">
               {pains.map((p) => (
                 <article
                   key={p.t}
-                  className="rounded-2xl border border-line bg-parchment px-8 py-10 shadow-sm"
+                  className="rounded-none border border-line bg-parchment px-8 py-10"
                 >
                   <span className="block h-1 w-10 rounded-full bg-brand" aria-hidden />
                   <h3 className="mt-4 text-xl font-bold text-heading">{p.t}</h3>
@@ -132,11 +132,11 @@ export default function ForCollegesPage() {
 
           <div className="mt-20">
             <SectionTitle label="Programs" title="Three programs for colleges" center />
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="mt-10 grid gap-[30px] md:grid-cols-3">
               {collegeServices.map((s) => (
                 <article
                   key={s.slug}
-                  className="flex flex-col rounded-2xl border border-line bg-parchment px-8 py-10 shadow-sm transition duration-300 hover:shadow-[0_20px_40px_rgba(14,43,61,0.12)]"
+                  className="flex flex-col rounded-none border border-line bg-parchment px-8 py-10 transition duration-300"
                 >
                   <h3 className="text-xl font-bold text-heading">{s.title}</h3>
                   {s.summary && <p className="mt-2 text-sm leading-6 text-body">{s.summary}</p>}
@@ -172,11 +172,11 @@ export default function ForCollegesPage() {
       <section className="bg-surface-light section-pad">
         <div className="wrap">
           <SectionTitle title="How a college engagement runs" center />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s) => (
               <article
                 key={s.n}
-                className="rounded-2xl border border-line bg-parchment px-6 py-8 text-center shadow-sm"
+                className="rounded-none border border-line bg-parchment px-6 py-8 text-center"
               >
                 <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-heading text-lg font-extrabold text-brand-bright">
                   {s.n}

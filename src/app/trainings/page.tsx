@@ -66,8 +66,8 @@ export default async function TrainingsPage() {
             }))}
             categories={categories}
           />
-          <div className="mt-16 rounded-2xl border border-line bg-surface-light p-8 text-center">
-            <h2 className="text-2xl font-semibold">Not sure which course fits you?</h2>
+          <div className="mt-16 rounded-none border border-line bg-surface-light p-8 text-center">
+            <h2 className="text-[32px] font-semibold leading-[38.4px]">Not sure which course fits you?</h2>
             <p className="mx-auto mt-2 max-w-xl">
               Talk to a Trainer — tell us your goal and we will help you pick the right training
               path.
@@ -82,12 +82,12 @@ export default async function TrainingsPage() {
       <section className="section-pad">
         <div className="wrap">
           <SectionTitle label="Showcase" title="Video Showcase" center />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
             {showcaseItems.map((x, i) => (
               <article
                 key={x.t}
                
-                className="group overflow-hidden rounded-2xl border border-line bg-parchment text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(14,43,61,0.12)]"
+                className="group overflow-hidden rounded-none border border-line bg-parchment text-center transition duration-300 hover:-translate-y-1"
               >
                 <div className="relative overflow-hidden">
                   <Image

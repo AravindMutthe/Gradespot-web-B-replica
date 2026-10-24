@@ -10,8 +10,8 @@ import { syllabusWaLink, waLink } from "@/lib/wa";
 // message asking for the syllabus).
 export default function DemoBand({ courseTitle }: { courseTitle: string }) {
   return (
-    <div className="mt-12 rounded-[20px] panel-ink p-8">
-      <div className="grid items-start gap-8 lg:grid-cols-[1fr_400px]">
+    <div className="mt-12 rounded-none panel-ink p-8">
+      <div className="grid items-start gap-[30px] lg:grid-cols-[1fr_400px]">
         <div>
           <p className="eyebrow text-brand-bright">
             Free Demo Class
@@ -29,7 +29,7 @@ export default function DemoBand({ courseTitle }: { courseTitle: string }) {
               href={syllabusWaLink(courseTitle)}
               target="_blank"
               rel="noreferrer"
-              className="rounded-xl border-2 border-wa px-6 py-3 text-[15px] font-semibold text-wa-bright transition-colors hover:bg-white/10"
+              className="rounded-[5px] border-2 border-wa px-6 py-3 text-[15px] font-semibold text-wa-bright transition-colors hover:bg-white/10"
             >
               Get the Syllabus on WhatsApp
             </a>

@@ -120,7 +120,7 @@ export default async function ComparePairPage({ params }: { params: Promise<{ pa
             />
           </div>
 
-          <div className="mx-auto mt-10 max-w-5xl overflow-x-auto rounded-2xl border border-line bg-parchment shadow-sm">
+          <div className="mx-auto mt-10 max-w-5xl overflow-x-auto rounded-none border border-line bg-parchment">
             <table className="w-full min-w-[640px] text-left text-[15px]">
               <thead>
                 <tr className="bg-heading text-white">
@@ -162,8 +162,8 @@ export default async function ComparePairPage({ params }: { params: Promise<{ pa
           </div>
 
           {/* Which is for you */}
-          <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2">
-            <article className="rounded-2xl border border-line border-t-4 border-t-brand bg-parchment px-8 py-9 shadow-sm">
+          <div className="mx-auto mt-12 grid max-w-5xl gap-[30px] md:grid-cols-2">
+            <article className="rounded-none border border-line border-t-4 border-t-brand bg-parchment px-8 py-9">
               <h2 className="text-xl font-bold text-heading">Choose {shortA} if…</h2>
               <p className="mt-3 text-[15px] leading-7 text-body">{def.chooseA}</p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -178,7 +178,7 @@ export default async function ComparePairPage({ params }: { params: Promise<{ pa
                 </Link>
               </div>
             </article>
-            <article className="rounded-2xl border border-line border-t-4 border-t-brand bg-parchment px-8 py-9 shadow-sm">
+            <article className="rounded-none border border-line border-t-4 border-t-brand bg-parchment px-8 py-9">
               <h2 className="text-xl font-bold text-heading">Choose {shortB} if…</h2>
               <p className="mt-3 text-[15px] leading-7 text-body">{def.chooseB}</p>
               <div className="mt-6 flex flex-wrap gap-3">

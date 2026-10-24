@@ -30,7 +30,7 @@ export default function NikhilProfilePage() {
       <JsonLd data={personSchema()} />
       <PageHero title={member.name} subtitle="Founder, Managing Director" />
       <section className="section-pad">
-        <div className="wrap grid items-start gap-10 lg:grid-cols-[1fr_1.4fr]">
+        <div className="wrap grid items-start gap-[30px] lg:grid-cols-[1fr_1.4fr]">
           <Image
             src={member.image}
             alt={member.name}

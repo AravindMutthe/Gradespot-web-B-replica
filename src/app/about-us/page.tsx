@@ -22,7 +22,7 @@ export default function AboutPage() {
       <JsonLd data={aboutPageSchema()} />
       <PageHero title="About Us — GradeSpot IT Solutions" />
       <section className="section-pad">
-        <div className="wrap grid items-start gap-10 lg:grid-cols-2">
+        <div className="wrap grid items-start gap-[30px] lg:grid-cols-2">
           <div>
             <SectionTitle
               label="About GradeSpot IT Solutions"
@@ -47,17 +47,17 @@ export default function AboutPage() {
             </div>
           </div>
           <div>
-            <h3 className="text-2xl font-semibold text-heading">How We Work</h3>
+            <h3 className="text-[32px] font-semibold leading-[38.4px] text-heading">How We Work</h3>
             <ol className="mt-4 space-y-4">
-              <li className="rounded-2xl border border-line bg-parchment p-5 shadow-sm">
+              <li className="rounded-none border border-line bg-parchment p-5">
                 <span className="font-extrabold text-signal">01</span>
                 <p className="mt-1">Explore from our range of services for your business needs</p>
               </li>
-              <li className="rounded-2xl border border-line bg-parchment p-5 shadow-sm">
+              <li className="rounded-none border border-line bg-parchment p-5">
                 <span className="font-extrabold text-signal">02</span>
                 <p className="mt-1">Connect with us to schedule a meeting and discuss your needs</p>
               </li>
-              <li className="rounded-2xl border border-line bg-parchment p-5 shadow-sm">
+              <li className="rounded-none border border-line bg-parchment p-5">
                 <span className="font-extrabold text-signal">03</span>
                 <p className="mt-1">
                   Talk to a Trainer — online &amp; offline classes with top-class trainings.
@@ -80,7 +80,7 @@ export default function AboutPage() {
           <SectionTitle label="Our Story" title="About GradeSpot IT Solutions" center />
           <div
            
-            className="mx-auto mt-8 max-w-4xl space-y-5 rounded-[20px] border border-line border-l-[3px] border-l-brand bg-parchment px-7 py-8 shadow-[0_1px_2px_rgba(14,43,61,0.05)] md:px-10 md:py-10"
+            className="mx-auto mt-8 max-w-4xl space-y-5 rounded-none border border-line border-l-[3px] border-l-brand bg-parchment px-7 py-8 md:px-10 md:py-10"
           >
             {narrative.map((p, i) => (
               <p key={i} className={i === 0 ? "text-[17px] leading-8 text-heading" : undefined}>
@@ -94,7 +94,7 @@ export default function AboutPage() {
       <section className="bg-surface-light section-pad">
         <div className="wrap">
           <SectionTitle title="Meet Our Leadership" center />
-          <div className="mx-auto mt-8 grid max-w-4xl gap-6 sm:grid-cols-3">
+          <div className="mx-auto mt-8 grid max-w-4xl gap-[30px] sm:grid-cols-3">
             {team.map((m) => (
               <article key={m.name} className="text-center">
                 <Image
@@ -103,14 +103,14 @@ export default function AboutPage() {
                   width={350}
                   height={350}
                   sizes="(min-width:640px) 33vw, 100vw"
-                  className="mx-auto h-56 w-full rounded object-cover"
+                  className="mx-auto h-56 w-full rounded-[8px] bg-white p-[5px] object-cover"
                 />
-                <h3 className="mt-3 text-lg font-semibold">{m.name}</h3>
+                <h3 className="mt-3 text-lg font-semibold leading-[21.6px]">{m.name}</h3>
                 <p className="text-sm text-signal">{m.role}</p>
               </article>
             ))}
           </div>
-          <div className="mx-auto mt-12 max-w-3xl rounded-[18px] border border-line bg-parchment px-7 py-6 text-center shadow-[0_1px_2px_rgba(14,43,61,0.05)]">
+          <div className="mx-auto mt-12 max-w-3xl rounded-none border border-line bg-parchment px-7 py-6 text-center">
             <h3 className="text-[20px] font-semibold text-heading">
               Questions about trainings or services?
             </h3>

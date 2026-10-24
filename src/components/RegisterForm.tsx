@@ -88,7 +88,7 @@ export default function RegisterForm({
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-[20px] border border-line border-t-[3px] border-t-brand bg-parchment p-7 shadow-[0_20px_40px_rgba(14,43,61,0.10)]"
+      className="rounded-none border border-line border-t-[3px] border-t-brand bg-parchment p-7"
       noValidate
     >
       <div className="grid gap-4 sm:grid-cols-2">
@@ -186,7 +186,7 @@ export default function RegisterForm({
             href={`https://wa.me/${waNumber}?text=${waText}`}
             target="_blank"
             rel="noreferrer"
-            className="mt-3 inline-block rounded-xl bg-wa px-5 py-2.5 font-semibold text-white transition-transform hover:scale-[1.03]"
+            className="mt-3 inline-block rounded-[5px] bg-wa px-5 py-2.5 font-semibold text-white transition-transform hover:scale-[1.03]"
           >
             Continue on WhatsApp →
           </a>

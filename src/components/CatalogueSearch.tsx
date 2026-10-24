@@ -60,7 +60,7 @@ export default function CatalogueSearch({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={`Search ${courses.length} trainings — try "CCNA", "Azure", "SOC"…`}
-          className="w-full rounded-full border border-line bg-parchment px-6 py-4 text-[15px] text-heading shadow-[0_10px_30px_rgba(14,43,61,0.08)] outline-none transition-colors placeholder:text-body/70 focus:border-brand"
+          className="w-full rounded-full border border-line bg-parchment px-6 py-4 text-[15px] text-heading outline-none transition-colors placeholder:text-body/70 focus:border-brand"
         />
         {results !== null && (
           <p className="mt-3 text-center text-sm text-body" role="status">
@@ -88,8 +88,8 @@ export default function CatalogueSearch({
         <div className="mt-14 space-y-16">
           {categories.map((cat) => (
             <div key={cat} id={categoryAnchor(cat)} className="scroll-mt-36">
-              <h2 className="text-2xl font-semibold text-heading">{cat}</h2>
-              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <h2 className="text-[32px] font-semibold leading-[38.4px] text-heading">{cat}</h2>
+              <div className="mt-6 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3">
                 {(byCategory.get(cat) ?? []).map((c) => (
                   <CourseCardBody key={c.slug} {...c} />
                 ))}
@@ -98,8 +98,8 @@ export default function CatalogueSearch({
           ))}
         </div>
       ) : results.length === 0 ? (
-        <div className="mt-12 rounded-2xl border border-line bg-surface-light p-8 text-center">
-          <h2 className="text-2xl font-semibold">Not sure which course fits you?</h2>
+        <div className="mt-12 rounded-none border border-line bg-surface-light p-8 text-center">
+          <h2 className="text-[32px] font-semibold leading-[38.4px]">Not sure which course fits you?</h2>
           <p className="mx-auto mt-2 max-w-xl">
             Talk to a Trainer — tell us your goal and we will help you pick the right training
             path.
@@ -109,7 +109,7 @@ export default function CatalogueSearch({
           </Link>
         </div>
       ) : (
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3">
           {results.map((c) => (
             <CourseCardBody key={c.slug} {...c} />
           ))}

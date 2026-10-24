@@ -29,7 +29,7 @@ export default function EnquiryRail({ courseTitle }: { courseTitle: string }) {
         href={`https://wa.me/${waNumber}?text=${waText}`}
         target="_blank"
         rel="noreferrer"
-        className="mt-4 flex items-center justify-center gap-2 rounded-xl border-2 border-wa px-6 py-3 text-[15px] font-semibold text-wa transition-colors hover:bg-brand-soft dark:border-wa-bright dark:text-wa-bright dark:hover:bg-white/10"
+        className="mt-4 flex items-center justify-center gap-2 rounded-[5px] border-2 border-wa px-6 py-3 text-[15px] font-semibold text-wa transition-colors hover:bg-brand-soft dark:border-wa-bright dark:text-wa-bright dark:hover:bg-white/10"
       >
         Chat about this course on WhatsApp
       </a>
@@ -37,7 +37,7 @@ export default function EnquiryRail({ courseTitle }: { courseTitle: string }) {
         href={syllabusWaLink(courseTitle)}
         target="_blank"
         rel="noreferrer"
-        className="mt-3 flex items-center justify-center gap-2 rounded-xl border-2 border-wa px-6 py-3 text-[15px] font-semibold text-heading transition-colors hover:bg-brand-soft"
+        className="mt-3 flex items-center justify-center gap-2 rounded-[5px] border-2 border-wa px-6 py-3 text-[15px] font-semibold text-heading transition-colors hover:bg-brand-soft"
       >
         Get the Syllabus on WhatsApp
       </a>
