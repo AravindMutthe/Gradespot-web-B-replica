@@ -460,3 +460,22 @@ Dimensions/tokens only; no routes, content, SEO, menus, or copy changed.
   1514-1966 x 54-169. Wording is his to swap on one word; the red hat
   and Microsoft mark in the same corner were left as supplied.
 - Home hero only; inner-page banners (PageHeader) untouched.
+
+## v2.3 — Hero visibility + responsive fix (2026-10-24, branch v2-leo-layout)
+
+- Headline was unreadable on the photo (brand-orange "IT Solutions"
+  over the orange photo; white text over the bright left glow): the
+  whole headline is now white ("IT Solutions" keeps extrabold only),
+  overlay strengthened 50% -> 60% black, headline gets a soft black
+  text-shadow. Mobile text sits on solid navy, no photo behind it.
+- White board removed: the photo's top-right corner (white dashed
+  box + red hat + MS logo, incl. the baked "Free Demo Class" text)
+  was erased by gradient continuation from the left/bottom borders
+  (smoothed profiles); the corner now reads as plain orange gradient
+  with no seam. Original upload untouched in workspace/user/files/.
+- Responsive hero: desktop/tablet keep the full photo as a faded
+  cover background (object-right-bottom); below md the background
+  is hidden and a dedicated students band
+  (public/images/hero-students-mobile.jpg, 968x553 crop of the
+  cleaned photo) renders full-width below the text — all five
+  students fit on phones, nothing cropped.

@@ -48,6 +48,9 @@ export default async function HomePage() {
           black overlay (net ~20% presence) — visible but clearly behind
           the text, students anchored bottom-right. */}
       <section className="relative bg-heading text-white">
+        {/* Desktop/tablet: photo as a faded background. Mobile: the
+            cover crop cut students off, so the background is hidden
+            below md and the students band below renders instead. */}
         <Image
           src="/images/hero-students.jpg"
           alt=""
@@ -55,12 +58,12 @@ export default async function HomePage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-right-bottom opacity-40"
+          className="hidden object-cover object-right-bottom opacity-40 md:block"
         />
-        <div className="absolute inset-0 bg-black/50" aria-hidden />
-        <div className="wrap relative py-20 md:py-28">
-          <h1 className="max-w-3xl text-5xl font-normal leading-tight md:text-[80px] md:leading-[96px]">
-            We Create Better <span className="font-extrabold text-brand">IT Solutions</span>
+        <div className="absolute inset-0 hidden bg-black/60 md:block" aria-hidden />
+        <div className="wrap relative py-20 pb-10 md:py-28">
+          <h1 className="max-w-3xl text-5xl font-normal leading-tight [text-shadow:0_2px_16px_rgba(0,0,0,0.65)] md:text-[80px] md:leading-[96px]">
+            We Create Better <span className="font-extrabold">IT Solutions</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-white/85">{homeParagraphs[1]}</p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -71,6 +74,17 @@ export default async function HomePage() {
               Our Services
             </Link>
           </div>
+        </div>
+        {/* Mobile: full students band, no crop — all five students fit. */}
+        <div className="relative md:hidden">
+          <Image
+            src="/images/hero-students-mobile.jpg"
+            alt=""
+            aria-hidden
+            width={968}
+            height={553}
+            className="block h-auto w-full"
+          />
         </div>
       </section>
       <section>
