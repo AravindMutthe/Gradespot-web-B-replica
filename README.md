@@ -1,117 +1,130 @@
-# gradespot-rebuild-replica-app — GradeSpot website rebuild (faithful replica)
+# gradespot-rebuild-replica-app
 
-Faithful rebuild of gsitssolutions.com (GradeSpot IT Solutions, Dilsukhnagar,
-Hyderabad) — Phase 1 + Phase 2, built 2026-10-23 from a full crawl of the
-live WordPress site and the 2026-10-21 site audit.
+Our own rebuild of the official GradeSpot website — replicating the
+original WordPress design, working as the original site, going dynamic
+with admin-configured frontend.
 
-**Live:** https://gradespot-app.vercel.app (Vercel project `gradespot-app`,
-Mumbai region)
+## Why this repo
 
-**Status:** v1 complete (Phases 1 + 2). Since 2026-10-24 this repo has a
-single branch: `main`. The old `main` snapshot and `phase-1-2-build` were
-unified into `main` by merge (commit `8733591`); both histories are
-preserved in that merge.
+GradeSpot's official website runs on WordPress. A WordPress site can only
+change through its templates and plugins — the frontend cannot be
+configured from our own admin, and every dynamic behaviour has to bend
+to the template. This repo exists so GradeSpot owns its website
+outright: same website, our code, our control, free to grow dynamic.
 
-**Stack:** Next.js 15 (App Router) + React + TypeScript + Tailwind CSS v4.
-Dependencies: `next`, `react`, `react-dom`, `zod`, `@supabase/supabase-js`.
+## What it is building
 
-## New here? Understand this repo in 10 minutes
+Our own website, built by replicating the original website's design —
+the design that came from WordPress. Every page, section, course and
+service of the official site, rebuilt in Next.js + Supabase: 36
+trainings, 12 services, team, testimonials, certifications, lead form,
+certificate verification.
 
-Read in this order:
+## Why it is building it
 
-1. This README — the map.
-2. `DECISIONS.md` — every content conflict found on the live site (phone
-   numbers, certified-learner totals, unverified claims, missing
-   course/service content) with the exact published wording and how each
-   was resolved.
-3. `src/data/site.ts` — the business facts in one place: phones, counters,
-   address, hours.
-4. `src/app/page.tsx` — how the home page is composed.
-5. `src/lib/data.ts` — how data flows (Supabase first, local fallback).
-6. `src/data/courses.ts` — the course model: 36 courses (11 with full
-   detail pages, 25 catalogue entries).
-7. `next.config.ts` — the legacy redirect map.
+The aim is to work and function exactly as the original website — a
+visitor should get the same site — but going dynamic: like Royal Salon,
+the frontend will be configurable from an admin (content, services,
+banners, timings) instead of frozen in templates. Same site on the
+outside, own dynamic engine on the inside.
 
-## Structure
+Status: v1 (the faithful replica) is complete and live at
+https://gradespot-app.vercel.app. The admin-configured frontend is the
+next phase and lives in `gradespot-axon` — not in this repo.
 
-- `src/app/` — routes. Pages: Home, About Us, Trainings (+ 36 course
-  pages under `trainings/[slug]`), Services (+ 12 service pages under
-  `services/[slug]`), Resources, Team Members (including
-  `team-members/nikhil-duth-d`), Why Choose Us, Testimonials, Student
-  Certifications, Certificate Verification, Contact Us (lead form), Help
-  & FAQs (`faq`), Terms and Conditions. APIs: `api/leads` (POST enquiry,
-  Zod-validated, stored via the data layer) and `api/verify` (POST
-  certificate-code verification, honest-empty when no record matches).
-- `src/components/` — shared UI: Header, Footer, `ui.tsx`.
-- `src/data/` — content migrated from the live site; also the local
-  fallback when Supabase is not configured. `site.ts` (business facts),
-  `courses.ts` (36 courses), `services.ts` (12 services), `team.ts`,
-  `testimonials.ts` (verbatim Google testimonials), `certifications.ts`
-  (student certification photos), `employers.ts` (identified employer
-  logos), `blog.ts`, `pages.ts`.
-- `src/lib/` — `data.ts` (the Supabase-or-local data layer every page
-  reads through) and `supabase.ts` (the Supabase client).
-- `public/images/` — every image, downloaded into the repo, never
-  hotlinked. `blog/`, `certifications/`, `courses/`, `employers/`,
-  `team/`, plus `logo.png`, `logo-light.png`, `signature.png`.
-- `supabase/migrations/` — `0001_init.sql` (courses, services, leads,
-  certificates tables + RLS + seed generated from the migrated content),
-  `0002_gap_additions.sql`, `0003_course_images.sql`.
-- `next.config.ts` — redirect map for the legacy WordPress URLs: the 49
-  live-sitemap URLs plus the 10 dead catalogue destinations, each with
-  and without trailing slash and with and without the `/index.php/`
-  prefix. Rationale per group is documented in `DECISIONS.md`.
-- `DECISIONS.md` — **read this before changing any content**: the
-  conflict log and the open content calls.
-- `package.json` — scripts: `dev`, `build`, `start`, `lint`.
+New here? Read in this order: this README → `DECISIONS.md` →
+`src/data/site.ts` → `src/app/page.tsx` → `src/lib/data.ts`.
 
-## How data flows
+## Complete folder / directory structure
 
-Page or component → `src/lib/data.ts` → Supabase when `.env.local` is
-present, otherwise the local files in `src/data/`. Supabase project:
-`gradespot-app` (ref yrbpolqhipwfmvwdgtvc, ap-south-1).
-
-- Leads: form → `POST /api/leads` (Zod-validated) → stored via the data
-  layer.
-- Verification: `POST /api/verify` → certificate-code lookup.
-- Without environment variables the site runs entirely on the local
-  migrated content — same pages, same copy.
-
-## Run it locally
-
-```bash
-npm install
-npm run dev     # http://localhost:3000
-npm run build
-npm run lint
+```
+.
+├── .gitignore
+├── DECISIONS.md            # content conflicts + resolutions, open calls
+├── README.md
+├── eslint.config.mjs
+├── next.config.ts          # legacy redirect map (see below)
+├── package.json            # scripts: dev, build, start, lint
+├── package-lock.json
+├── postcss.config.mjs
+├── tsconfig.json
+├── public/
+│   └── images/             # all images, local, never hotlinked
+│       ├── blog/
+│       ├── certifications/
+│       ├── courses/
+│       ├── employers/
+│       ├── team/
+│       ├── logo.png
+│       ├── logo-light.png
+│       └── signature.png
+├── src/
+│   ├── app/                # routes (each dir holds its page)
+│   │   ├── about-us/
+│   │   ├── api/
+│   │   │   ├── leads/      # POST enquiry endpoint
+│   │   │   └── verify/     # POST certificate-code verification
+│   │   ├── certificate-verification/
+│   │   ├── contact-us/
+│   │   ├── faq/
+│   │   ├── resources/
+│   │   ├── services/
+│   │   │   └── [slug]/     # 12 service pages
+│   │   ├── student-certifications/
+│   │   ├── team-members/
+│   │   │   └── nikhil-duth-d/
+│   │   ├── terms-and-conditions/
+│   │   ├── testimonials/
+│   │   ├── trainings/
+│   │   │   └── [slug]/     # 36 course pages
+│   │   └── why-choose-us/
+│   ├── components/         # Header, Footer, shared ui.tsx
+│   ├── data/               # migrated content; local fallback
+│   │   ├── blog.ts
+│   │   ├── certifications.ts
+│   │   ├── courses.ts      # 36 courses
+│   │   ├── employers.ts
+│   │   ├── pages.ts
+│   │   ├── services.ts     # 12 services
+│   │   ├── site.ts         # business facts (phones, counters, address)
+│   │   ├── team.ts
+│   │   └── testimonials.ts
+│   └── lib/
+│       ├── data.ts         # Supabase-or-local data layer
+│       └── supabase.ts     # Supabase client
+└── supabase/
+    └── migrations/
+        ├── 0001_init.sql         # courses, services, leads, certificates + RLS + seed
+        ├── 0002_gap_additions.sql
+        └── 0003_course_images.sql
 ```
 
-Node.js 18.18 or newer. Copy `.env.local` values from the Supabase
-project `gradespot-app`: `NEXT_PUBLIC_SUPABASE_URL`,
-`NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`.
-`.env.local` is never committed. Apply any not-yet-applied migration in
-`supabase/migrations/` via the Supabase dashboard SQL editor (direct
-Postgres access from the build sandbox is blocked).
+Data flow: page → `src/lib/data.ts` → Supabase when `.env.local` is
+present, otherwise the local files in `src/data/`. Supabase project:
+`gradespot-app` (ap-south-1). Without environment variables the site
+runs entirely on the local migrated content.
 
-## Deploying
+## Rules
 
-This repo is NOT git-connected to Vercel. Production is deployed by API
-upload from the local working copy. Pushing to GitHub deploys nothing.
-Vercel project `gradespot-app`, Mumbai region (Supabase is ap-south-1);
-environment variables are set in Vercel for production, preview and
-development.
-
-## Rules for contributors
-
-- **Content truth, always.** Never invent fees, dates, trainers, stats,
-  reviews, certificates or placement claims. A conflict goes in
+- **Same real content, always.** Courses, services, prices and claims
+  only from the official record. Never invent fees, dates, trainers,
+  stats, reviews, certificates or placement claims. A conflict goes in
   `DECISIONS.md` with the exact published wording — it does not get
   silently resolved.
-- **Settled decisions (2026-10-23):** one phone sitewide,
-  +91 91826 54056; Certified Learners 1250.
-- **Branches:** `main` is the single line since 2026-10-24. Features on
-  branches; merges only on Aravind's review.
+- **Design stays faithful to the original WordPress design.** This
+  repo replicates; it does not redesign.
+- **Dynamic direction: frontend configurable from admin, Royal Salon
+  pattern.** The admin itself lives in `gradespot-axon`, never in this
+  repo.
+- **Settled facts:** one phone sitewide, +91 91826 54056; Certified
+  Learners 1250.
+- **Branches:** `main` is the single line since 2026-10-24 (the old
+  `main` snapshot and `phase-1-2-build` were unified by merge
+  `8733591`). Features on branches; merges only on Aravind's review.
+- **Deploying:** NOT git-connected. Production is API-uploaded from
+  the local working copy (Vercel project `gradespot-app`, Mumbai
+  region). Pushing to GitHub deploys nothing.
 - **Free tier only.** All assets downloaded into the repo — nothing
   hotlinked, no remote code fetched.
-- **`.env.local` is never committed.** Secrets live in the Secure Vault
-  and in Vercel's server settings, never in chat or git.
+- **`.env.local` is never committed.** Supabase keys live in the
+  Secure Vault and in Vercel's server settings, never in chat or git.
