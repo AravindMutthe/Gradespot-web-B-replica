@@ -1176,6 +1176,31 @@ const nextConfig: NextConfig = {
   async redirects() {
     return legacyRedirects;
   },
+  // v2 (ported from Leo's config): modern image formats + static OWASP
+  // headers. No CSP middleware is ported: a default-src 'self' CSP would
+  // block nothing replica loads today, but the middleware itself is a
+  // behaviour change with prerendered-page risk, so headers stay static
+  // (see DECISIONS.md v2 section).
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

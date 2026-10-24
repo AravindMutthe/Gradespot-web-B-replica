@@ -1,9 +1,13 @@
-import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { whyChooseParagraphs } from "@/data/pages";
 import { CtaBand, ExperienceBadge, FaqList, LogoWall, PageHero, SectionTitle, siteFaqs } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Why Choose Us" };
+export const metadata = staticPageMetadata({
+  title: "Why Choose Us",
+  description: "Why choose GradeSpot IT Solutions — the best IT solutions and trainings for customers, with practical training, expert instructors and career support from Dilsukhnagar, Hyderabad.",
+  path: "/why-choose-us",
+});
 
 const highlights = [
   { title: "IT & Corporate Trainings", href: "/services/corporate-trainings" },
@@ -27,11 +31,11 @@ export default function WhyChoosePage() {
               <ExperienceBadge />
             </div>
           </div>
-          <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
+          <div className="mx-auto mt-12 grid max-w-5xl gap-[30px] md:grid-cols-3">
             {highlights.map((h) => (
               <article
                 key={h.title}
-                className="flex flex-col rounded-lg bg-white p-8 shadow-[0_5px_30px_rgba(214,215,216,0.57)]"
+                className="flex flex-col rounded-none bg-white p-8"
               >
                 <h2 className="text-xl font-semibold text-heading">{h.title}</h2>
                 <Link
@@ -43,13 +47,13 @@ export default function WhyChoosePage() {
               </article>
             ))}
           </div>
-          <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2">
-            <article className="rounded-lg bg-surface-light p-8">
-              <h2 className="text-2xl font-semibold">Vision</h2>
+          <div className="mx-auto mt-12 grid max-w-5xl gap-[30px] md:grid-cols-2">
+            <article className="rounded-none bg-surface-light p-8">
+              <h2 className="text-[32px] font-semibold leading-[38.4px]">Vision</h2>
               <p className="mt-3">{vision}</p>
             </article>
-            <article className="rounded-lg bg-surface-light p-8">
-              <h2 className="text-2xl font-semibold">Mission</h2>
+            <article className="rounded-none bg-surface-light p-8">
+              <h2 className="text-[32px] font-semibold leading-[38.4px]">Mission</h2>
               <p className="mt-3">{mission}</p>
             </article>
           </div>

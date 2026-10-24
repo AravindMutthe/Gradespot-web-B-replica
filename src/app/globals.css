@@ -9,7 +9,38 @@
   --color-surface-light: #f3f7fd;
   --color-footer-text: #c2d1e2;
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* v2 (Leo layout/structure port): structure tokens only. These names are
+     inherited from the ported components; every one of them is mapped to a
+     replica palette value below — no Prospectus color enters the theme. */
+  --color-brand-bright: #f7631b;
+  --color-signal: #f7631b;
+  --color-signal-strong: #d9520f;
+  --color-brand-soft: #f3f7fd;
+  --color-paper: #ffffff;
+  --color-parchment: #ffffff;
+  --color-cream: #f3f7fd;
+  --color-ink: #0e2b3d;
+  --color-ink-deep: #0e2b3d;
+  --color-line: #e5e7eb;
+  --color-canvas: #f3f7fd;
+  --color-wa: #0b7a43;
+  --color-wa-bright: #0f9d58;
+  --color-success-surface: #f0fdf4;
+  --color-success-text: #166534;
+  --color-error-surface: #fef2f2;
+  --color-error-text: #b91c1c;
+  --color-field-error: #dc2626;
+  --breakpoint-nav: 1024px;
+
+  /* v2: the ported dark: variants are structurally present in copied files
+     but must never restyle anything — kill-switch: dark variant = light. */
+  --color-dark: #ffffff;
 }
+
+/* v2 kill-switch: any dark: variant in ported markup resolves to the light
+   theme (replica has no dark theme). Tailwind v4 custom dark variant. */
+@custom-variant dark (&:where(.never-dark, .never-dark *));
 
 @layer base {
   body {
@@ -35,9 +66,10 @@
   border: 2px solid var(--color-brand);
   border-radius: 5px;
   background: var(--color-brand);
-  padding: 13px 38px;
+  padding: 15px 40px;
   font-size: 17px;
   font-weight: 600;
+  line-height: 25px;
   color: #fff;
   transition: background 0.2s ease;
   &:hover {
@@ -49,7 +81,7 @@
   display: inline-block;
   border: 2px solid #fff;
   border-radius: 40px;
-  padding: 13px 38px;
+  padding: 15px 40px;
   font-size: 17px;
   font-weight: 600;
   color: #fff;
@@ -63,5 +95,59 @@
   padding-block: 80px;
   @media (min-width: 768px) {
     padding-block: 120px;
+  }
+}
+
+/* ---- v2 (Leo layout/structure port) — structure utilities, replica tokens only ---- */
+.btn-navy {
+  @apply inline-flex items-center justify-center rounded-[5px] border-2 border-brand bg-brand px-10 py-[15px] text-[17px] font-semibold leading-[25px] text-white transition hover:bg-brand-dark;
+}
+.btn-outline-navy {
+  @apply inline-flex items-center justify-center rounded-[40px] border-2 border-heading px-10 py-[15px] text-[17px] font-semibold leading-[25px] text-heading transition hover:bg-heading hover:text-white;
+}
+.panel-ink {
+  @apply bg-heading text-white;
+}
+.glass-panel {
+  @apply rounded-none border border-neutral-200 bg-white;
+}
+.glass-ink {
+  @apply bg-heading text-white;
+}
+.eyebrow {
+  @apply text-xs font-bold uppercase tracking-[0.14em];
+}
+.faq-item {
+  @apply border-b border-neutral-200 py-5;
+}
+.field-error {
+  @apply mt-1 text-sm text-field-error;
+}
+
+/* Ticker marquee (structure): two identical rows, seamless loop, pause on
+   hover, static wrapped board under prefers-reduced-motion. */
+.ticker {
+  @apply overflow-hidden bg-heading text-white;
+}
+.ticker-track {
+  @apply flex w-max animate-[ticker-scroll_40s_linear_infinite] whitespace-nowrap;
+}
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    @apply w-full animate-none flex-wrap whitespace-normal;
+  }
+}
+
+/* Mobile sticky action bar (FloatingActions) must not cover page footers. */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 72px;
   }
 }

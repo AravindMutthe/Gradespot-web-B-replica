@@ -1,10 +1,16 @@
-import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/metadata";
+import Image from "next/image";
 import LeadForm from "@/components/LeadForm";
 import { contactParagraphs } from "@/data/pages";
 import { business, telHref } from "@/data/site";
 import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Contact Us" };
+export const metadata = staticPageMetadata({
+  title: "Contact Us",
+  description: "Contact GradeSpot IT Solutions in Dilsukhnagar, Hyderabad — 16-126, 2nd Floor, Near Sai Baba Temple, Road No.1, Sri Krishna Nagar, Dilsukhnagar, Hyderabad, Telangana 500060. Call +91 91826 54056. Office hours 8:00 AM – 9:00 PM.",
+  path: "/contact-us",
+  image: "/images/map-dilsukhnagar.jpg",
+});
 
 export default function ContactPage() {
   const allPhones = [...business.phones, ...business.extraPhones];
@@ -12,7 +18,7 @@ export default function ContactPage() {
     <>
       <PageHero title="Contact Us — GradeSpot IT Solutions" />
       <section className="section-pad">
-        <div className="wrap grid items-start gap-10 lg:grid-cols-[1.4fr_1fr]">
+        <div className="wrap grid items-start gap-[30px] lg:grid-cols-[1.4fr_1fr]">
           <div>
             <h2 className="text-[32px] font-semibold leading-[38px]">Contact GradeSpot IT Solutions</h2>
             <div className="mt-4 space-y-4">
@@ -26,61 +32,98 @@ export default function ContactPage() {
           </div>
 
           {/* Side panel — dimensions follow the live site's contact panel */}
-          <aside className="w-full bg-heading p-[50px] text-white lg:max-w-[400px]">
-            <h2 className="text-2xl font-semibold text-white">Get in Touch</h2>
+          <aside className="w-full rounded-none panel-ink p-8 lg:max-w-[400px] lg:p-[50px]">
+            <h2 className="text-[32px] font-semibold leading-[38.4px] text-paper">Get in Touch</h2>
             <div className="mt-6 space-y-6 text-sm leading-6">
               <div>
-                <h3 className="font-semibold text-brand">Our Location</h3>
-                <p className="mt-1 text-white/85">{business.address}</p>
+                <h3 className="font-semibold text-brand-bright">Our Location</h3>
+                <p className="mt-1 text-paper/85">{business.address}</p>
               </div>
               <div>
-                <h3 className="font-semibold text-brand">Send Us Mail</h3>
+                <h3 className="font-semibold text-brand-bright">Send Us Mail</h3>
                 {business.emails.map((e) => (
                   <p key={e}>
-                    <a className="text-white/85 hover:text-brand" href={`mailto:${e}`}>
+                    <a className="text-paper/85 hover:text-brand-bright" href={`mailto:${e}`}>
                       {e}
                     </a>
                   </p>
                 ))}
               </div>
               <div>
-                <h3 className="font-semibold text-brand">Call Us</h3>
+                <h3 className="font-semibold text-brand-bright">Call Us</h3>
                 {allPhones.map((p) => (
                   <p key={p}>
-                    <a className="text-white/85 hover:text-brand" href={telHref(p)}>
+                    <a className="text-paper/85 hover:text-brand-bright" href={telHref(p)}>
                       {p}
                     </a>
                   </p>
                 ))}
               </div>
               <div>
-                <h3 className="font-semibold text-brand">Office Hours</h3>
-                <p className="mt-1 text-white/85">{business.officeHours}</p>
+                <h3 className="font-semibold text-brand-bright">Office Hours</h3>
+                <p className="mt-1 text-paper/85">{business.officeHours}</p>
               </div>
             </div>
           </aside>
         </div>
 
-        <div className="wrap mt-14 grid gap-6 md:grid-cols-2">
-          <article className="rounded-lg bg-surface-light p-7">
+        <div className="wrap mt-14">
+          <h2 className="text-[32px] font-semibold leading-[38.4px]">Find Us</h2>
+          {/* §25.10 — local map image, not the Google embed: the embed
+              was a remote page-load asset AND was blocked by this
+              site's own CSP (default-src 'self', no frame-src), so
+              it rendered nothing. The map below is a local file
+              built from OpenStreetMap tiles at build time; tapping
+              it opens Google Maps (an outbound link, not a load). */}
+          <a
+            href={`https://www.google.com/maps?q=${encodeURIComponent(business.address)}`}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-4 block"
+            aria-label="Open GradeSpot IT Solutions location in Google Maps"
+          >
+            <Image
+              src="/images/map-dilsukhnagar.jpg"
+              alt="Map — GradeSpot IT Solutions, Dilsukhnagar, Hyderabad"
+              width={1200}
+              height={600}
+              className="h-96 w-full rounded-none object-cover"
+            />
+          </a>
+          <p className="mt-2 text-sm text-body">
+            {business.address} · Map ©{" "}
+            <a
+              href="https://www.openstreetmap.org/copyright"
+              target="_blank"
+              rel="noreferrer"
+              className="underline"
+            >
+              OpenStreetMap contributors
+            </a>{" "}
+            ·{" "}
+            <a
+              href={`https://www.google.com/maps?q=${encodeURIComponent(business.address)}`}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-brand"
+            >
+              Open in Google Maps →
+            </a>
+          </p>
+        </div>
+      </section>
+      {/* v2: replica v1's 24/7 + Smart Solutions boxes, restored below the
+          map — Leo's contact page dropped them; they are published copy. */}
+      <section className="section-pad">
+        <div className="wrap grid gap-[30px] md:grid-cols-2">
+          <article className="rounded-none bg-surface-light p-7">
             <h2 className="text-2xl font-semibold">24/7 Customer Support</h2>
             <p className="mt-2 text-sm leading-6">{contactParagraphs[6]}</p>
           </article>
-          <article className="rounded-lg bg-surface-light p-7">
+          <article className="rounded-none bg-surface-light p-7">
             <h2 className="text-2xl font-semibold">Smart Solutions</h2>
             <p className="mt-2 text-sm leading-6">{contactParagraphs[7]}</p>
           </article>
-        </div>
-
-        <div className="wrap mt-14">
-          <h2 className="text-2xl font-semibold">Find Us</h2>
-          <iframe
-            title="GradeSpot IT Solutions — Dilsukhnagar, Hyderabad"
-            src={`https://www.google.com/maps?q=${encodeURIComponent(business.address)}&output=embed`}
-            className="mt-4 h-96 w-full rounded-lg border-0"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
         </div>
       </section>
     </>

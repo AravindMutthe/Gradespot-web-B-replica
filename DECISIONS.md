@@ -243,3 +243,239 @@ and additions were completed and verified live the same day:
   Pass" line on Student Certifications, Trainings hero copy.
 - Contact map: added pointing at the REAL Dilsukhnagar address — the live
   site's embed points at Rajkot, Gujarat (theme demo) and was not copied.
+
+---
+
+## Replica v2 — Leo layout/structure port (2026-10-24, branch v2-leo-layout, NOT merged, NOT deployed)
+
+Order (confirmed 2026-10-24 21:09): recreate Leo's LAYOUT and STRUCTURE
+inside replica, INCLUDING Leo's SEO/AEO and Leo's MENUS — but replica's
+THEME and DESIGN stay exactly as they are (faithful WordPress: Inter,
+#f7631b, #0e2b3d, 1140px wrap, btn-primary/btn-outline-light). Anything
+that is design (theme, fonts, colors, visual styling) was EXCLUDED.
+
+NOTE ON SECTION REFERENCES: ported files carry Leo's DECISIONS.md
+section references (§17, §18, §19, §22, §25.x). Those refer to LEO's
+DECISIONS.md, not this file — they are provenance for harvested data
+and rulings, kept so the port's claims stay traceable. This v2 section
+is replica's own record of the port.
+
+### What was ported
+
+- 13 new routes (v1: 16 page routes → v2: 29): accessibility, blog,
+  blog/[slug], career-support, compare, compare/[pair], for-colleges,
+  for-institutes, lp/[slug] (11 city landing pages, non-catalogue
+  courses only), partner-with-us, pricing, register,
+  training-institute-in-dilsukhnagar-hyderabad.
+- 10 recomposed pages (Leo section order/composition, replica styling):
+  home, trainings index, trainings/[slug], services index,
+  services/[slug], about-us, contact-us, faq, certificate-verification,
+  resources. 6 metadata/schema-only pages: testimonials, team-members,
+  team-members/nikhil-duth-d, why-choose-us, student-certifications,
+  terms-and-conditions. 0 pages untouched; /api/verify untouched.
+- Menus: Leo's header structure in replica styling — Trainings mega
+  (featured rail + grouped catalogue with code + published duration),
+  Services mega (Training & Talent / Technology Services / Consultancy
+  & Staffing + B2B doors), Resources mega (Proof & People / Learning &
+  Career / More From GradeSpot), order Trainings / Services / Pricing /
+  About Us / Resources / For Colleges / For Institutes pill / Register /
+  Request a Callback; trims kept (no Home item, no Contact Us in the
+  bar, Digital inside Resources). Mobile accordion sheet mirrors it.
+  Footer: new-route links added to the existing Company/Quick columns.
+- SEO/AEO: metadataBase + all canonicals/OG/Twitter self-referential
+  to https://gradespot-app.vercel.app (v1's sitemap/robots pointed at
+  gsitssolutions.com — fixed, not preserved); strict schema (one
+  Organization @id on the replica domain, WebPage/Course/Service/
+  FAQPage/BreadcrumbList/ItemList/Article, NO AggregateRating, NO
+  invented priceRange/foundingDate, NO SearchAction); AnswerLead
+  "In short" boxes from published fields only; FAQ expansion 3 → 9;
+  sitemap with lastmod from branch git history (90 routes, all dated —
+  scripts/sitemap-lastmod.py); robots allowing the 10 AI crawlers;
+  llms.txt + llms-full.txt (31 KiB, generated from replica data:
+  36 courses, 2 priced, 8 with duration, 11 with certification,
+  12 services, 3 articles, 9 site FAQs, 55 course FAQs);
+  Hyderabad local SEO (areaServed, hours 08:00–21:00 with NO
+  published days, locality-level geo only).
+- Components (structure, re-skinned): Ticker, PromoBanner, OfferCards
+  (4 true offers only), Breadcrumbs, JsonLd, DemoBand, EnquiryRail,
+  FloatingActions (desktop WhatsApp button + mobile 3-way bar),
+  CatalogueSearch, LpLeadForm, RegisterForm (lead only, NOT accounts),
+  upgraded LeadForm (interest/idPrefix/interestOptions/hideMessage/
+  submitLabel, client validation, source + WhatsApp opt-in),
+  CourseCardBody (image + Free Demo badge + duration chip + Read More
+  + Free Demo link), AnswerLead, TestimonialSpotlight (same 3 verbatim
+  picks), ForInstitutesBand, CredentialCard/CredentialEmblem.
+- Promotions seam: src/data/promotions.ts (Leo seed, unchanged
+  content) + getPromotions() in src/lib/data.ts; migration
+  supabase/migrations/0004_site_promotions.sql (Leo 0005 content,
+  replica numbering) — FILE ONLY, never applied from the sandbox.
+- OG cards: 38 replica-generated 1200×630 cards
+  (public/images/og/, scripts/generate-og-cards.py) — white cards,
+  brand-orange #f7631b rule, heading-navy #0e2b3d sans title (DejaVu
+  Sans Bold as the Inter stand-in — no Inter font file was available
+  to the script), footer with published phone. NO Leo OG image was
+  copied (md5-verified different on sampled cards).
+
+### Gray decisions (replica-theme side chosen, per the build order)
+
+1. LEAD VALIDATION, SERVER SIDE: kept replica's zod route (422 +
+   per-field errors, 201 {ok, stored, id} shape intact) and added the
+   ported forms' fields to the schema — email made OPTIONAL (LP and
+   register forms send "" when skipped; stored as ""), source +
+   whatsappOptIn accepted, bare "Registration:"/"Demo:" interests
+   rejected (closes the empty-course hole server-side too).
+   Client-side, all three forms run the shared lead-validation rules.
+   The two validators differ on email (zod requires a valid email
+   WHEN present; lead-validation has stricter phone rules) — the
+   server stays the permissive backstop, the client the strict gate.
+2. LEAD SOURCE/OPT-IN COLUMNS: NOT added as a migration in this
+   build (the order named only 0004_site_promotions). createLead
+   uses Leo's full-then-core retry, so leads still store on core
+   columns until a future lead-source migration (would be 0005)
+   adds source/whatsapp_opt_in. Open item, not a silent gap.
+3. ISO/AICTE EMBLEMS + LOCAL MAP: copied from Leo (official emblem
+   artwork + OSM-tile map image are NOT Leo theme styling). Contact
+   now uses the local map image (tap opens Google Maps) instead of
+   the Google embed; about uses CredentialCards with emblems. The
+   ISO 9001:2015 + AICTE claims themselves stay CONFIRM-OR-REMOVE
+   (open since v1) — the cards render Leo's "claimed" copy, not a
+   verified claim.
+4. WHATSAPP GREEN: kept as a functional platform color (#0B7A43 /
+   #0f9d58) for WhatsApp buttons only (FloatingActions, DemoBand,
+   EnquiryRail) — it is not a site theme color, and every other
+   button uses brand orange / heading navy. If strictness is wanted,
+   those three buttons can switch to brand orange in one edit.
+5. CSP / SECURITY HEADERS: ported the static OWASP headers
+   (nosniff, DENY, Referrer-Policy, Permissions-Policy, HSTS) + AVIF/
+   WebP formats into next.config.ts. Did NOT port Leo's CSP middleware
+   (default-src 'self', no frame-src): it is a behaviour change with
+   prerendered-page risk, and replica loads nothing it would block
+   today now that contact uses the local map image.
+6. COURSE CARD: extended replica's CourseCard via a new CourseCardBody
+   (single component used by both CourseCard and CatalogueSearch),
+   not a separate Leo-clone component. Free Demo badge renders on
+   every training card (the free demo is a site-wide true offer).
+7. SERVICE SUMMARIES/OFFERINGS: ported from Leo's harvest
+   (DECISIONS §17 — recovered from the business's own live-site
+   scrape, accreditation claims excluded). This REPLACES replica v1's
+   "no per-service descriptions exist" note; the summaries stay
+   pending Aravind's accuracy confirmation.
+8. LP PAGES: structure ported (nav-free chrome via Chrome.tsx /lp/*
+   exception, message-matched H1, single repeated CTA, 3-field form,
+   per-course WhatsApp, sticky mobile bar, one verbatim testimonial
+   per LP). LP chrome uses replica's plain logo (no plate, no
+   per-theme variant) and the sticky bar uses replica tokens.
+9. DROPPED LEO TREATMENTS (structure kept, styling not carried):
+   font-display/font-mono tokens stripped from all ported files
+   (everything renders in Inter; the mono utility was Leo's IBM Plex
+   Mono voice, not a replica font); sepia image treatments and
+   gradient overlays removed; hover-lift card motion dropped from
+   CourseCardBody (kept as plain interaction on other ported cards);
+   RevealFX scroll-reveal NOT ported (data-reveal attributes
+   stripped; the inert --reveal-delay inline styles left on home
+   door links are dead without RevealFX and can be deleted);
+   ThemeToggle NOT ported (replica has no dark theme); the dark:
+   variants still present in some ported files are neutralised by a
+   globals.css kill-switch (@custom-variant dark scoped to a class
+   that never exists). Token aliases (paper/parchment/cream/ink/
+   line/signal/brand-bright/wa/…) are defined in globals.css but
+   EVERY one maps to a replica palette value — no Prospectus color
+   enters the theme. The 1140px wrap, 14px/26px body, section-pad
+   rhythm and btn-primary/btn-outline-light are untouched.
+10. FOOTER: new-route links added to the existing 4 columns; Leo's
+    fifth Popular Trainings column NOT added (those courses are
+    already linked from the header mega menu, home and trainings).
+11. CONTACT BOXES + SERVICES COPY: replica v1's 24/7 + Smart Solutions
+    boxes were restored on contact-us (Leo's page had dropped them)
+    and the general services copy (What We Offer / How We Support
+    You) was kept on services/[slug] alongside Leo's summary +
+    offerings — no published copy was lost in the port.
+12. HOME HERO: replica's navy hero kept verbatim (headline, copy,
+    Explore Trainings + Our Services); Leo's split hero with CEH
+    image was NOT carried. Leo's audience doors follow it.
+
+### Open gaps (stay blank, never invented)
+
+- Fees for 34 courses, durations for 28/36 courses (only 8 published:
+  CCNA/CCNP 45 days, Network+ 30, Security+ 30, PenTest+ 60 hours,
+  SOC 90 days, CEH 45 days, Digital Marketing 45 days), batch
+  timings, syllabus PDFs, placement details, GBP/YouTube/Instagram
+  sameAs, priceRange/dayOfWeek/schedule, office-hours days — all
+  render as "confirmed on enquiry" in generated FAQs/AnswerLeads.
+- ISO 9001:2015 + AICTE credentials: confirm-or-remove (see §3
+  above); emblems render but the claims are unverified.
+- Migration 0004_site_promotions.sql: FILE ONLY — needs applying in
+  the REPLICA project's Supabase dashboard (or Termux Postgres
+  route) before admin-configured promos go live; until then the
+  config seam serves identical rows. Future migration 0005 would
+  add leads.source + leads.whatsapp_opt_in (see §2).
+- Second SEO/AEO blueprint (2026-10-24 ~17:08): still HELD, nothing
+  implemented — conflicts need his call (blueprint phone vs ruled
+  +91 91826 54056; hasCredential ISO/AICTE unconfirmed; canonical
+  back to gsitssolutions.com vs replica self-canonical).
+- README.md: NOT updated in v2 (update is a later step, after his
+  review). Branch v2-leo-layout is local-only: no push, no deploy,
+  no merge until his review.
+- Sitemap lastmod values are FILE-TOUCH dates from this branch's
+  git history, not content-change claims (the 2026-10-24 v2 commit
+  touched many files' metadata at once).
+- lp/[slug] top strip + numbered circles use replica navy; the LP
+  testimonial mapping (soc-analyst → M Vamsi, az-104 → Arif Syed,
+  ceh → Kammarapalli pallavi, default → naresh chepuri) is Leo's
+  mapping, kept verbatim.
+
+## v2.1 — Official-values alignment (2026-10-24, branch v2-leo-layout)
+
+Dimensions/tokens only; no routes, content, SEO, menus, or copy changed.
+- Buttons: btn-primary + btn-outline-light padding 15/40 (outline padding
+  was inferred — never separately specified); btn-navy/btn-outline-navy
+  restyled to primary-5px / outline-40px language; WA buttons to 5px shape
+  (green kept); header CTAs to 17px/40px at xl.
+- Nav: desktop links 13px/600/20px uppercase (nav-bp 12px compaction kept);
+  logo 60px; both mega containers 1140px/15px; header bar py-5 (60px logo
+  + 40px padding = 100px bar by arithmetic; rendered measure unverified).
+- Titles: SectionTitle label 24/600/28.8, titles 38.4 (centered 44.8 + 1px
+  tracking); service titles 20/700/24; team/FAQ 18/600/21.6; 14 section-level
+  text-2xl headings → 32/600/38.4.
+- Grids: content gutters → 30px; footer headings 24/600/28.8.
+- Cards/panels: corners → 0, decorative shadows removed; about team photos
+  get the 8px + 5px white frame (interpretation: the about page's images
+  are the team photos; no standalone framed hero image exists in v2's
+  about page).
+- Kept deliberately (no official value): badges/chips/pills, avatar/step
+  circles, form inputs, status boxes, menu hover rows, mobile sizes,
+  micro-eyebrows, counter/price numerals, 24/7 + Smart feature-box titles,
+  home team photos, gallery photos, progress bars.
+- Still unverified: rendered header total height (needs a visual measure).
+
+## v2.2 — Home hero background photo (2026-10-24, branch v2-leo-layout)
+
+- Home hero ("We Create Better IT Solutions") gets the user-supplied
+  students photo as background: public/images/hero-students.jpg
+  (2048x768, user's upload, kept local per repo rule), next/image fill,
+  object-cover object-right-bottom, opacity-40 under the existing 50%
+  black overlay — net ~20% presence, text fully readable.
+- The photo's white dashed box (top-right) carries baked-in text
+  "Free Demo Class" in bold #0E2B3D, centered, detected box
+  1514-1966 x 54-169. Wording is his to swap on one word; the red hat
+  and Microsoft mark in the same corner were left as supplied.
+- Home hero only; inner-page banners (PageHeader) untouched.
+
+## v2.3 — Hero visibility + responsive fix (2026-10-24, branch v2-leo-layout)
+
+- Headline was unreadable on the photo (brand-orange "IT Solutions"
+  over the orange photo; white text over the bright left glow): the
+  whole headline is now white ("IT Solutions" keeps extrabold only),
+  overlay strengthened 50% -> 60% black, headline gets a soft black
+  text-shadow. Mobile text sits on solid navy, no photo behind it.
+- White board removed: the photo's top-right corner (white dashed
+  box + red hat + MS logo, incl. the baked "Free Demo Class" text)
+  was erased by gradient continuation from the left/bottom borders
+  (smoothed profiles); the corner now reads as plain orange gradient
+  with no seam. Original upload untouched in workspace/user/files/.
+- Responsive hero: desktop/tablet keep the full photo as a faded
+  cover background (object-right-bottom); below md the background
+  is hidden and a dedicated students band
+  (public/images/hero-students-mobile.jpg, 968x553 crop of the
+  cleaned photo) renders full-width below the text — all five
+  students fit on phones, nothing cropped.

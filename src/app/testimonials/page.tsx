@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/metadata";
 import { testimonials } from "@/data/testimonials";
 import { CtaBand, LogoWall, PageHero } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Testimonials" };
+export const metadata = staticPageMetadata({
+  title: "Testimonials",
+  description: "The accomplishments of our students — voices of satisfaction and success from clients of GradeSpot IT Solutions, Dilsukhnagar, Hyderabad.",
+  path: "/testimonials",
+});
 
 export default function TestimonialsPage() {
   return (
@@ -12,11 +16,11 @@ export default function TestimonialsPage() {
         subtitle="“The Accomplishments of Our Students” — explore the voices of satisfaction and success as our clients share their experiences with us."
       />
       <section className="section-pad">
-        <div className="wrap grid gap-6 md:grid-cols-2">
+        <div className="wrap grid gap-[30px] md:grid-cols-2">
           {testimonials.map((t) => (
             <figure
               key={t.name}
-              className="flex flex-col bg-white p-7 shadow-[0_5px_30px_rgba(214,215,216,0.57)]"
+              className="flex flex-col bg-white p-7"
             >
               <blockquote className="grow text-[15px] leading-7 text-heading">
                 {t.text}

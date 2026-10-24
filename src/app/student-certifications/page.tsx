@@ -1,11 +1,16 @@
-import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import { certificationsParagraphs } from "@/data/pages";
 import { certificationGallery } from "@/data/certifications";
 import { LogoWall, PageHero } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Student Certifications" };
+export const metadata = staticPageMetadata({
+  title: "Student Certifications",
+  description: "Certifications achieved by GradeSpot students, as showcased on our live site — 100+ certifications from the Dilsukhnagar, Hyderabad institute.",
+  path: "/student-certifications",
+  image: "/images/certifications/cert-1.jpg",
+});
 
 export default function CertificationsPage() {
   return (
@@ -20,13 +25,13 @@ export default function CertificationsPage() {
             {certificationsParagraphs.slice(0, 3).map((p, i) => (
               <p key={i}>{p}</p>
             ))}
-            <p className="rounded-lg bg-surface-light p-5 font-medium text-heading">
+            <p className="rounded-none bg-surface-light p-5 font-medium text-heading">
               Our distinctive &lsquo;Pay after you Pass&rsquo; methodology guarantees the
               attainment of your desired credentials prior to any financial obligations.
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-2 gap-[30px] sm:grid-cols-3 lg:grid-cols-4">
             {certificationGallery.map((c) => (
               <figure key={c.image} className="text-center">
                 <Image
