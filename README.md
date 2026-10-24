@@ -179,6 +179,84 @@ one service page, the lead form, and certificate verification.
    local working copy (Vercel project `gradespot-app`) only when he
    commissions it.
 
+## Website / repo development
+
+### Where it started
+
+The official GradeSpot website runs on WordPress
+(gsitssolutions.com). On 2026-10-21 a full audit of that live site
+became the governing checklist. On 2026-10-23 Aravind ordered the
+rebuild into COMPLETELY NEW repos and projects — fully isolated,
+"don't mix with anything": the old `gradespot-frontend-website` /
+`gradespot-backend-axon-api` repos, the old Supabase projects and the
+existing Vercel projects are reference-only, untouched. That night,
+while he slept, Phases 1+2 were built in a fresh repo
+(`gradespot-app`, later renamed to this repo).
+
+His standing terminology: Phases 1+2 are "frontend" — every public
+page, design, content and routing, with a thin Supabase data layer
+underneath (courses/services, the enquiry form, certificate-check
+endpoints). Phase 3+ is admin/backend. This repo is frontend;
+admin and sellable products live in the separate `gradespot-axon`
+repo, built standalone first and integrated later via API/webhooks.
+Two brands only: GradeSpot is the business face, Axon is the
+front-desk engine.
+
+### Phases done
+
+1. **Phase 1 — foundation + rebuild (2026-10-23, overnight).** New
+   Next.js 15 + Supabase project, all public pages rebuilt from the
+   live site, database seeded and verified.
+2. **Phase 2 — content cleanup + correctness (2026-10-23).** The
+   full live-vs-rebuild gap audit: all 22 gaps closed (one phone
+   sitewide, Certified Learners figure, Nikhil page, blog cards,
+   employers, migrations 0002–0003).
+3. **Leo v1 (2026-10-23–24, sibling repo).** The from-scratch
+   "Prospectus" build — same real content, own design, 90 routes —
+   approved by Aravind on 2026-10-24.
+4. **Leo fix rounds + pre-v2 hardening gate (2026-10-24).** Phone
+   nav breakpoint, dark theme, floating toggle, all-local assets,
+   official ISO/AICTE emblems, logo plate reverted to the approved
+   original; then the three conditions he set before any v2 work
+   (tighter form validation, dynamic metadata, CTA hierarchy).
+5. **SEO/AEO pass + audit quick-wins (2026-10-24, deployed and
+   live-verified).** Self-canonicals, strict schema, answer-first
+   content, local Hyderabad SEO, per-page social cards,
+   llms-full.txt, security headers, the Network+/Hardware copy fix.
+6. **Axon foundation (2026-10-23).** The separate admin/products
+   repo scaffold: FOUNDATION, PRODUCTS, INTEGRATION-CONTRACT and
+   DECISIONS-NEEDED docs, seeded by his original 2026-10-02
+   WhatsApp lead-engine flow.
+
+### Phases planned (not started, or parked)
+
+- **Phase 3 — dynamic engine.** Admin panel for courses/services
+  (in `gradespot-axon`), enquiries saved to the database with
+  WhatsApp/n8n alerts, certificate verification on real records.
+  This is what makes this repo dynamic like Royal Salon.
+- **Phase 4 — growth pages.** For Institutes page, Pricing page,
+  PWA, city × course pages. (Several of these already landed inside
+  Leo v1's expansion pack; PWA is still open.)
+- **Phase 5 — SaaS.** Student/trainer dashboards, enrollments,
+  payments.
+- **Leo v2 wave (parked).** AI chat, admin promo config going live,
+  LMS student accounts, batch system, lead status pipeline.
+- **Launch / migration (his call).** 301 map execution, domain
+  pointing, noindex flips, GBP/directory submissions, blog move off
+  digidefense.in, paid hosting decision.
+- **Master-plan repo (his call awaited).**
+  `gradespot-axon-website-project` — README as the platform spec,
+  with the messy GradeSpot repos preserved as its branches. Not
+  created yet.
+
+### Where this repo stands now
+
+`main` is v1 (merge `8733591`, single branch since 2026-10-24
+evening). Live at https://gradespot-app.vercel.app (Vercel project
+`gradespot-app`, API-upload deploys, not git-connected). Next for
+this repo: Phase 3 (dynamic engine via the Axon admin), then
+launch/migration.
+
 ## Rules
 
 - **Same real content, always.** Courses, services, prices and claims
