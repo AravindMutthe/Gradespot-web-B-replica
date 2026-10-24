@@ -447,3 +447,16 @@ Dimensions/tokens only; no routes, content, SEO, menus, or copy changed.
   micro-eyebrows, counter/price numerals, 24/7 + Smart feature-box titles,
   home team photos, gallery photos, progress bars.
 - Still unverified: rendered header total height (needs a visual measure).
+
+## v2.2 — Home hero background photo (2026-10-24, branch v2-leo-layout)
+
+- Home hero ("We Create Better IT Solutions") gets the user-supplied
+  students photo as background: public/images/hero-students.jpg
+  (2048x768, user's upload, kept local per repo rule), next/image fill,
+  object-cover object-right-bottom, opacity-40 under the existing 50%
+  black overlay — net ~20% presence, text fully readable.
+- The photo's white dashed box (top-right) carries baked-in text
+  "Free Demo Class" in bold #0E2B3D, centered, detected box
+  1514-1966 x 54-169. Wording is his to swap on one word; the red hat
+  and Microsoft mark in the same corner were left as supplied.
+- Home hero only; inner-page banners (PageHeader) untouched.
