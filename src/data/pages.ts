@@ -174,3 +174,144 @@ export const termsSections: { heading: string; paragraphs: string[] }[] = [
     ]
   }
 ];
+
+// Privacy policy sections (compliance-fixes branch). DRAFT: every fact
+// slot the business has not confirmed is a visible [TODO] placeholder —
+// no legal entity detail, term, or practice is invented here. The
+// statements that are not placeholders describe only what this site
+// observably does (enquiry forms, certificate verification, no
+// analytics scripts).
+export const privacySections: { heading: string; paragraphs: string[] }[] = [
+  {
+    "heading": "Status of this policy",
+    "paragraphs": [
+      "Draft — this policy is not final. Every item marked [TODO] is awaiting confirmation from GradeSpot IT Solutions. Do not treat placeholder text as a commitment."
+    ]
+  },
+  {
+    "heading": "Who we are",
+    "paragraphs": [
+      "This website is operated by GradeSpot IT Solutions, 16-126, 2nd Floor, Near Sai Baba Temple, Road No.1, Sri Krishna Nagar, Dilsukhnagar, Hyderabad, Telangana - 500060.",
+      "[TODO: legal entity name (if different from the trading name above) and CIN — to be confirmed by GradeSpot before this policy takes effect.]"
+    ]
+  },
+  {
+    "heading": "Information we collect",
+    "paragraphs": [
+      "When you submit an enquiry form, we collect the details you type: your name, phone number, email address (optional), the subject of your enquiry, and your message.",
+      "When you use certificate verification, we collect the certificate code you enter.",
+      "This site does not load third-party analytics or advertising scripts, so it does not set third-party tracking cookies."
+    ]
+  },
+  {
+    "heading": "How we use your information",
+    "paragraphs": [
+      "To respond to the enquiry you submitted, to check the certificate code you entered, and to contact you about that enquiry."
+    ]
+  },
+  {
+    "heading": "Sharing",
+    "paragraphs": [
+      "We do not sell your personal information.",
+      "Enquiry details you submit are stored in this site's database so the team can respond to you.",
+      "The database is provided by Supabase, and this website is hosted by Vercel. [TODO: confirm the data regions/locations of each provider.]"
+    ]
+  },
+  {
+    "heading": "Data retention",
+    "paragraphs": [
+      "[TODO: how long enquiry records and verification logs are kept, and when they are deleted.]"
+    ]
+  },
+  {
+    "heading": "Your rights",
+    "paragraphs": [
+      "You can ask us about the personal information you submitted through the contact details on this page.",
+      "[TODO: how a user can ask for access, correction, or deletion of their details, and the response timeline.]"
+    ]
+  },
+  {
+    "heading": "Security",
+    "paragraphs": [
+      "This site is served over HTTPS.",
+      "[TODO: confirm the specific security measures to state here.]"
+    ]
+  },
+  {
+    "heading": "Grievance officer",
+    "paragraphs": [
+      "[TODO: grievance officer name and email address.]",
+      "If you have a complaint about how your personal information is handled, contact the grievance officer at the email address above once it is confirmed."
+    ]
+  },
+  {
+    "heading": "Changes to this policy",
+    "paragraphs": [
+      "We may update this policy from time to time. The current version is always the one published on this page.",
+      "[TODO: confirm whether a last-updated date should be shown and what it is — no date is stated here because none has been confirmed.]"
+    ]
+  },
+  {
+    "heading": "Contact us",
+    "paragraphs": [
+      "GradeSpot IT Solutions, 16-126, 2nd Floor, Near Sai Baba Temple, Road No.1, Sri Krishna Nagar, Dilsukhnagar, Hyderabad, Telangana - 500060. Email: info@gsitssolutions.com. Phone: +91 91826 54056.",
+      "[TODO: confirm the contact email for privacy requests specifically.]"
+    ]
+  }
+];
+
+// Refund policy sections (compliance-fixes branch). DRAFT: same rule as
+// the privacy policy — every unconfirmed term is a visible [TODO].
+export const refundSections: { heading: string; paragraphs: string[] }[] = [
+  {
+    "heading": "Status of this policy",
+    "paragraphs": [
+      "Draft — this policy is not final. Every item marked [TODO] is awaiting confirmation from GradeSpot IT Solutions. Do not treat placeholder text as a commitment."
+    ]
+  },
+  {
+    "heading": "Scope",
+    "paragraphs": [
+      "This policy covers payments made for GradeSpot IT Solutions training courses and services booked through this website.",
+      "[TODO: confirm the exact scope — which courses, services, and payment modes it covers.]"
+    ]
+  },
+  {
+    "heading": "Eligibility",
+    "paragraphs": [
+      "[TODO: the conditions under which a refund can be requested.]"
+    ]
+  },
+  {
+    "heading": "Timelines",
+    "paragraphs": [
+      "[TODO: how soon after payment a refund can be requested, and how long a refund takes once approved.]"
+    ]
+  },
+  {
+    "heading": "How to request a refund",
+    "paragraphs": [
+      "Contact us using the details on this page with your payment reference and the reason for the request.",
+      "[TODO: confirm the exact process and the contact channel for refund requests.]"
+    ]
+  },
+  {
+    "heading": "Non-refundable items",
+    "paragraphs": [
+      "[TODO: list anything that is not refundable — for example, certification exam voucher fees or completed services — if any.]"
+    ]
+  },
+  {
+    "heading": "Method of refund",
+    "paragraphs": [
+      "[TODO: confirm whether refunds go back to the original payment method and whether any deductions apply.]"
+    ]
+  },
+  {
+    "heading": "Contact us",
+    "paragraphs": [
+      "GradeSpot IT Solutions, 16-126, 2nd Floor, Near Sai Baba Temple, Road No.1, Sri Krishna Nagar, Dilsukhnagar, Hyderabad, Telangana - 500060. Email: info@gsitssolutions.com. Phone: +91 91826 54056.",
+      "[TODO: confirm the contact channel for refund requests specifically.]"
+    ]
+  }
+];

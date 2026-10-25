@@ -18,6 +18,7 @@
 //   empty course behind it is rejected (the old empty-course hole).
 // - course: optional field; when a form sends one it must be non-empty.
 // - message: optional, capped at 2000 chars.
+// - country: optional; when present, max 100 chars (empty counts as absent).
 // - DPDP consent lines and the unticked WhatsApp opt-in are untouched
 //   by this module — they live in the form components.
 
@@ -30,6 +31,7 @@ export interface LeadPayload {
   source?: string;
   whatsappOptIn?: boolean;
   course?: string;
+  country?: string;
 }
 
 export type LeadErrors = Record<string, string>;
@@ -120,6 +122,14 @@ export function validateCourse(value: unknown): string | null {
   return null;
 }
 
+export function validateCountry(value: unknown): string | null {
+  if (value === undefined) return null;
+  if (typeof value !== "string") return "Country must be text";
+  if (value.trim().length === 0) return null; // optional — empty is fine
+  if (value.trim().length > 100) return "Country name is too long (max 100 characters)";
+  return null;
+}
+
 export function validateMessage(value: unknown): string | null {
   if (value === undefined) return null;
   if (typeof value !== "string") return "Message must be text";
@@ -147,6 +157,7 @@ export function validateLead(
   put("interest", validateInterest(b.interest));
   put("course", validateCourse(b.course));
   put("message", validateMessage(b.message));
+  put("country", validateCountry(b.country));
   if (b.source !== undefined) {
     const s = asString(b.source);
     if (s === null || s.trim().length > 200) errors.source = "Invalid source";
@@ -165,6 +176,7 @@ export function validateLead(
       source: asString(b.source)?.trim() || undefined,
       whatsappOptIn: (b.whatsappOptIn as boolean | undefined) ?? false,
       course: asString(b.course)?.trim() || undefined,
+      country: asString(b.country)?.trim() || undefined,
     },
     errors: {},
   };

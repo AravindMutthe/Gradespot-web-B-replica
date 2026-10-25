@@ -26,8 +26,8 @@ export default function CertificationsPage() {
               <p key={i}>{p}</p>
             ))}
             <p className="rounded-none bg-surface-light p-5 font-medium text-heading">
-              Our distinctive &lsquo;Pay after you Pass&rsquo; methodology guarantees the
-              attainment of your desired credentials prior to any financial obligations.
+              Our distinctive &lsquo;Pay after you Pass&rsquo; methodology means you pay
+              only after you have attained your desired credentials.
             </p>
           </div>
 

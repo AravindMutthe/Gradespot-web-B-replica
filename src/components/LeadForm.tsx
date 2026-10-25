@@ -18,6 +18,7 @@ export default function LeadForm({
   interestOptions,
   hideMessage = false,
   submitLabel = "Request a Callback",
+  showCountry = false,
 }: {
   interest?: string;
   idPrefix?: string;
@@ -26,6 +27,11 @@ export default function LeadForm({
   interestOptions?: string[];
   hideMessage?: boolean;
   submitLabel?: string;
+  // Partner page only: an optional Country field. Its value is sent to
+  // /api/leads and included in the insert, but it persists only once the
+  // leads.country column exists (migration not yet applied) — until then
+  // the insert falls back to the core columns and the value is dropped.
+  showCountry?: boolean;
 }) {
   const pathname = usePathname();
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -53,6 +59,7 @@ export default function LeadForm({
       message: String(fd.get("message") ?? ""),
       whatsappOptIn: fd.get("whatsappOptIn") === "true",
       source: `website:${pathname ?? "/"}`,
+      country: String(fd.get("country") ?? ""),
     };
     // Client runs the SAME validators as /api/leads (§25.18) — bad
     // input is caught here with inline per-field errors and never sent.
@@ -148,6 +155,21 @@ export default function LeadForm({
         />
         {errors.email && <p className="mt-1 text-xs text-field-error">{errors.email}</p>}
       </div>
+      {showCountry && (
+        <div className="mt-4">
+          <label htmlFor={id("country")} className={label}>
+            Country <span className="font-normal text-body">(optional)</span>
+          </label>
+          <input
+            id={id("country")}
+            name="country"
+            type="text"
+            autoComplete="country-name"
+            className={field}
+            placeholder="Your country"
+          />
+        </div>
+      )}
       <div className="mt-4">
         <label htmlFor={id("interest")} className={label}>
           I&apos;m interested in *
