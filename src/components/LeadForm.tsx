@@ -27,9 +27,10 @@ export default function LeadForm({
   interestOptions?: string[];
   hideMessage?: boolean;
   submitLabel?: string;
-  // Partner page only: an optional Country field (label only — the value
-  // is not sent to /api/leads and not stored, because the leads table has
-  // no country column; wiring persistence needs a migration, not done here).
+  // Partner page only: an optional Country field. Its value is sent to
+  // /api/leads and included in the insert, but it persists only once the
+  // leads.country column exists (migration not yet applied) — until then
+  // the insert falls back to the core columns and the value is dropped.
   showCountry?: boolean;
 }) {
   const pathname = usePathname();
@@ -58,6 +59,7 @@ export default function LeadForm({
       message: String(fd.get("message") ?? ""),
       whatsappOptIn: fd.get("whatsappOptIn") === "true",
       source: `website:${pathname ?? "/"}`,
+      country: String(fd.get("country") ?? ""),
     };
     // Client runs the SAME validators as /api/leads (§25.18) — bad
     // input is caught here with inline per-field errors and never sent.

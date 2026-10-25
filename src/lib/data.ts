@@ -123,6 +123,7 @@ export interface LeadInput {
   message?: string;
   source?: string;
   whatsappOptIn?: boolean;
+  country?: string;
 }
 
 export interface LeadResult {
@@ -143,16 +144,18 @@ export async function createLead(lead: LeadInput): Promise<LeadResult> {
       interest: lead.interest,
       message: lead.message ?? null,
     };
-    // Full row includes source attribution + WhatsApp opt-in (columns
-    // added by a future lead-source migration — NOT yet created or applied
-    // in replica; see DECISIONS.md v2 section). If that insert fails —
+    // Full row includes source attribution + WhatsApp opt-in + country.
+    // The country column must exist before deploy — it is added by a
+    // future migration, NOT yet created or applied in replica (same as
+    // the lead-source columns; see DECISIONS.md v2 section). If that
+    // insert fails —
     // e.g. the columns do not exist yet — retry with the core columns so
     // a lead is never lost to a missing column.
     try {
       const { data, error } = await withTimeout(
         supabase
           .from("leads")
-          .insert({ ...core, source: lead.source ?? null, whatsapp_opt_in: lead.whatsappOptIn ?? false })
+          .insert({ ...core, source: lead.source ?? null, whatsapp_opt_in: lead.whatsappOptIn ?? false, country: lead.country ?? null })
           .select("id")
           .single(),
       );

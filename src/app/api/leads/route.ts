@@ -5,8 +5,8 @@ import { createLead } from "@/lib/data";
 // v2: server validation stays zod (422 + per-field errors, 201 shape
 // unchanged) but accepts what the ported forms send: email optional (LP
 // and register forms send "" when the visitor skips it — stored as ""),
-// source attribution + WhatsApp opt-in (persisted once the future
-// lead-source migration adds those columns; until then createLead's
+// source attribution + WhatsApp opt-in + country (persisted once the future
+// lead-source/country migrations add those columns; until then createLead's
 // full-then-core retry stores the core columns), and a bare-prefix
 // rejection that closes the old empty-course hole server-side too.
 // `course` is intentionally NOT in the schema: clients send it, but it
@@ -34,6 +34,10 @@ const leadSchema = z.object({
   message: z.string().trim().max(2000).optional(),
   source: z.string().trim().max(200).optional(),
   whatsappOptIn: z.boolean().optional(),
+  country: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.string().trim().max(100, "Country name is too long (max 100 characters)").optional(),
+  ),
 });
 
 export async function POST(request: Request) {

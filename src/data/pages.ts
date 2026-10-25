@@ -191,8 +191,8 @@ export const privacySections: { heading: string; paragraphs: string[] }[] = [
   {
     "heading": "Who we are",
     "paragraphs": [
-      "This website is operated by GradeSpot IT Solutions, Dilsukhnagar, Hyderabad.",
-      "[TODO: legal entity name, registered address, and CIN — to be confirmed by GradeSpot before this policy takes effect.]"
+      "This website is operated by GradeSpot IT Solutions, 16-126, 2nd Floor, Near Sai Baba Temple, Road No.1, Sri Krishna Nagar, Dilsukhnagar, Hyderabad, Telangana - 500060.",
+      "[TODO: legal entity name (if different from the trading name above) and CIN — to be confirmed by GradeSpot before this policy takes effect.]"
     ]
   },
   {
@@ -214,7 +214,7 @@ export const privacySections: { heading: string; paragraphs: string[] }[] = [
     "paragraphs": [
       "We do not sell your personal information.",
       "Enquiry details you submit are stored in this site's database so the team can respond to you.",
-      "[TODO: confirm the full list of service providers your data is shared with — for example, the database and messaging providers used to run this site — and the purpose and location of each.]"
+      "The database is provided by Supabase, and this website is hosted by Vercel. [TODO: confirm the data regions/locations of each provider.]"
     ]
   },
   {
@@ -254,7 +254,7 @@ export const privacySections: { heading: string; paragraphs: string[] }[] = [
   {
     "heading": "Contact us",
     "paragraphs": [
-      "GradeSpot IT Solutions, Dilsukhnagar, Hyderabad. Email: info@gsitssolutions.com. Phone: +91 91826 54056.",
+      "GradeSpot IT Solutions, 16-126, 2nd Floor, Near Sai Baba Temple, Road No.1, Sri Krishna Nagar, Dilsukhnagar, Hyderabad, Telangana - 500060. Email: info@gsitssolutions.com. Phone: +91 91826 54056.",
       "[TODO: confirm the contact email for privacy requests specifically.]"
     ]
   }
@@ -310,7 +310,7 @@ export const refundSections: { heading: string; paragraphs: string[] }[] = [
   {
     "heading": "Contact us",
     "paragraphs": [
-      "GradeSpot IT Solutions, Dilsukhnagar, Hyderabad. Email: info@gsitssolutions.com. Phone: +91 91826 54056.",
+      "GradeSpot IT Solutions, 16-126, 2nd Floor, Near Sai Baba Temple, Road No.1, Sri Krishna Nagar, Dilsukhnagar, Hyderabad, Telangana - 500060. Email: info@gsitssolutions.com. Phone: +91 91826 54056.",
       "[TODO: confirm the contact channel for refund requests specifically.]"
     ]
   }
