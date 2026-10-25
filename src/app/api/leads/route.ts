@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { createLead } from "@/lib/data";
+import { PARTNERSHIP_TYPES } from "@/lib/lead-validation";
 
 // v2: server validation stays zod (422 + per-field errors, 201 shape
 // unchanged) but accepts what the ported forms send: email optional (LP
@@ -11,6 +12,9 @@ import { createLead } from "@/lib/data";
 // rejection that closes the old empty-course hole server-side too.
 // `course` is intentionally NOT in the schema: clients send it, but it
 // rides inside `interest` ("Registration: <course>") and zod strips it.
+// Partner submissions (organisation and/or partnershipType present) must
+// carry BOTH partner fields (superRefine below); ordinary forms are
+// unaffected because they send neither.
 const leadSchema = z.object({
   name: z.string().trim().min(2, "Please enter your full name").max(120),
   email: z.preprocess(
@@ -38,6 +42,23 @@ const leadSchema = z.object({
     (v) => (v === "" ? undefined : v),
     z.string().trim().max(100, "Country name is too long (max 100 characters)").optional(),
   ),
+  organisation: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.string().trim().min(2, "Please enter your organisation").max(200, "Organisation name is too long (max 200 characters)").optional(),
+  ),
+  partnershipType: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.enum(PARTNERSHIP_TYPES).optional(),
+  ),
+}).superRefine((v, ctx) => {
+  const partner = v.organisation !== undefined || v.partnershipType !== undefined;
+  if (!partner) return;
+  if (v.organisation === undefined) {
+    ctx.addIssue({ code: "custom", path: ["organisation"], message: "Please enter your organisation" });
+  }
+  if (v.partnershipType === undefined) {
+    ctx.addIssue({ code: "custom", path: ["partnershipType"], message: "Please select a partnership type" });
+  }
 });
 
 export async function POST(request: Request) {

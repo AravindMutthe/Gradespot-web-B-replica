@@ -29,6 +29,7 @@ const quickLinks = [
   { label: "Terms and Conditions", href: "/terms-and-conditions" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Refund Policy", href: "/refund-policy" },
+  { label: "Corporate & International", href: "/corporate-and-international" },
   { label: "Accessibility", href: "/accessibility" },
 ];
 

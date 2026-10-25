@@ -11,8 +11,8 @@ export const business = {
     "16-126, 2nd Floor, Near Sai Baba Temple, Road No.1, Sri Krishna Nagar, Dilsukhnagar, Hyderabad, Telangana - 500060",
   // The single number used everywhere (Aravind, 2026-10-23: "use only any
   // one phn number"). +91 91826 54056 was the most widely published of the
-  // three numbers on the live site (header/footer, FAQ, most Call Us
-  // blocks). The other two (+91 88866 60597, +91 76600 43217) are retired
+  // numbers on the live site (header/footer, FAQ, most Call Us blocks).
+  // Any other numbers previously published on the live site are retired
   // from the rebuild unless he says otherwise.
   phones: ["+91 91826 54056"],
   extraPhones: [] as string[],

@@ -138,6 +138,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/register",
     "/accessibility",
     "/partner-with-us",
+    "/corporate-and-international",
   ];
   return [
     ...staticPaths.map((p) => ({ url: `${base}${p || "/"}`, lastModified: LASTMOD[p || "/"] })),

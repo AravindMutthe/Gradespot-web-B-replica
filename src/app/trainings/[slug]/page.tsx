@@ -35,6 +35,22 @@ function questionHeading(heading: string, short: string): string {
   return heading;
 }
 
+// Indicative FX (feature/international, reference rates 2026-10-25,
+// Converterhub mid-market, Finnhub cross-check): 1 INR = 0.010534 USD,
+// 0.007876 GBP, 0.009403 EUR. Display-only: the INR price stays the
+// price; the converted figures are rounded to whole units and labelled
+// indicative. Rates + date recorded in DECISIONS.md.
+function indicativeFx(price: string): string | null {
+  const m = price.match(/₹\s*([\d,]+)/);
+  if (!m) return null;
+  const inr = Number(m[1].replace(/,/g, ""));
+  if (!inr) return null;
+  const usd = Math.round(inr * 0.010534);
+  const gbp = Math.round(inr * 0.007876);
+  const eur = Math.round(inr * 0.009403);
+  return `≈ $${usd} · £${gbp} · €${eur} (indicative only)`;
+}
+
 function SectionBody({ section }: { section: CourseSection }) {
   if (section.style === "cards") {
     return (
@@ -55,6 +71,7 @@ function SectionBody({ section }: { section: CourseSection }) {
       <div className="mt-4 grid gap-4 md:grid-cols-3">
         {section.paragraphs.map((p, j) => {
           const [name, price] = p.split(" — ");
+          const fx = indicativeFx(price ?? p);
           return (
             <div
               key={j}
@@ -62,6 +79,7 @@ function SectionBody({ section }: { section: CourseSection }) {
             >
               <p className="text-sm font-semibold uppercase tracking-wide text-body">{name}</p>
               <p className="mt-2 text-3xl font-extrabold text-heading">{price ?? p}</p>
+              {fx && <p className="mt-1 text-sm font-medium text-body">{fx}</p>}
             </div>
           );
         })}

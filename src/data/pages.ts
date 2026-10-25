@@ -68,7 +68,7 @@ export const servicesFaqAnswers = {
 
 export const homeParagraphs: string[] = [
   "OFFICE HOURS Office Hours: 8:00 AM – 9:00 PM",
-  "At GradeSpot IT Solutions, our commitment is to craft superior IT solutions that redefine industry standards. With a dedication to innovation and excellence, we seamlessly blend cutting-edge technology with strategic insights to create bespoke solutions tailored to meet the unique needs of our clients. Our team of skilled professionals leverages a wealth of experience to deliver forward-thinking and robust IT solutions that drive efficiency, foster growth, and empower businesses to thrive in the dynamic digital landscape. Trust us to be your partner in advancing technological frontiers and achieving unparalleled success.",
+  "Cybersecurity and networking training in Hyderabad. Free demo class.",
   "We deliver exemplary training services across a spectrum of IT technologies, ensuring top-tier education for our clients",
   "We offer cost-effective solutions for premium web designs, featuring aesthetically pleasing themes.",
   "We offer cybersecurity solutions to diverse organizations, addressing their security needs with expertise and precision.",
@@ -218,6 +218,21 @@ export const privacySections: { heading: string; paragraphs: string[] }[] = [
     ]
   },
   {
+    "heading": "International transfers",
+    "paragraphs": [
+      "This website's database is hosted in India (Mumbai — Supabase ap-south-1) and the site itself is served from India (Mumbai — Vercel bom1). When you submit an enquiry from the United Kingdom, the European Union, or anywhere else outside India, the details you type are transferred to and stored in India so the team can respond to you.",
+      "[TODO: transfer safeguards — the legal safeguards relied on for UK/EU transfers are to be confirmed with a lawyer before this policy takes effect.]",
+      "[TODO: whether GradeSpot needs an EU/UK representative — a lawyer question, to be confirmed before this policy takes effect.]"
+    ]
+  },
+  {
+    "heading": "Rights of visitors from the UK and EU",
+    "paragraphs": [
+      "If you are in the United Kingdom or the European Union, you may ask us for access to the personal information you submitted, and for its erasure, rectification, restriction of processing, portability, or to object to its processing, under the UK GDPR or the EU GDPR as applicable.",
+      "Send such a request to info@gsitssolutions.com, stating what you are asking for and enough detail for us to find your enquiry."
+    ]
+  },
+  {
     "heading": "Data retention",
     "paragraphs": [
       "[TODO: how long enquiry records and verification logs are kept, and when they are deleted.]"
@@ -256,6 +271,47 @@ export const privacySections: { heading: string; paragraphs: string[] }[] = [
     "paragraphs": [
       "GradeSpot IT Solutions, 16-126, 2nd Floor, Near Sai Baba Temple, Road No.1, Sri Krishna Nagar, Dilsukhnagar, Hyderabad, Telangana - 500060. Email: info@gsitssolutions.com. Phone: +91 91826 54056.",
       "[TODO: confirm the contact email for privacy requests specifically.]"
+    ]
+  }
+];
+
+// Corporate + International page (feature/international). Published facts
+// only: Hyderabad-based cybersecurity + networking training, corporate
+// trainings, international learners from the US, UK, France and Germany.
+// No clients named, no stats, no outcomes — the case-studies section is
+// an explicit TODO awaiting real engagements + permission to name them.
+export const corporateSections: { heading: string; paragraphs: string[] }[] = [
+  {
+    "heading": "Corporate trainings",
+    "paragraphs": [
+      "GradeSpot IT Solutions runs corporate trainings from its institute in Dilsukhnagar, Hyderabad, alongside its classroom and online courses in cybersecurity, networking, cloud, and related technologies.",
+      "Corporate trainings are one of GradeSpot's published services. Organisations interested in training can start the conversation through the Partner With Us form."
+    ]
+  },
+  {
+    "heading": "International learners",
+    "paragraphs": [
+      "GradeSpot's learners include students from the United States, the United Kingdom, France, and Germany, alongside learners in India.",
+      "Courses are delivered in English. Training takes place in Hyderabad, with online classes available for learners outside the city."
+    ]
+  },
+  {
+    "heading": "Capability statement",
+    "paragraphs": [
+      "A capability statement covering GradeSpot's trainings, services, and delivery is available on request. Write to info@gsitssolutions.com and the team will share it.",
+      "There is no download on this page: the statement is shared directly on request so every recipient gets the current version."
+    ]
+  },
+  {
+    "heading": "Case studies",
+    "paragraphs": [
+      "[TODO: 2–3 real client engagements to feature here, each with the client's permission to be named. Nothing is published in this section until the engagements and permissions are confirmed — no client names, figures, or outcomes are stated yet.]"
+    ]
+  },
+  {
+    "heading": "Start a partnership conversation",
+    "paragraphs": [
+      "Organisations, colleges, and training firms interested in working with GradeSpot can use the Partner With Us form: organisation, country, and partnership type (training, university MoU, reseller, or white-label)."
     ]
   }
 ];

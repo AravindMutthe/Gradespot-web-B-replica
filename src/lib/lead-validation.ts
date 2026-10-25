@@ -19,8 +19,15 @@
 // - course: optional field; when a form sends one it must be non-empty.
 // - message: optional, capped at 2000 chars.
 // - country: optional; when present, max 100 chars (empty counts as absent).
+// - organisation / partnershipType: partner-form fields only. In ordinary
+//   mode they are optional-when-present (organisation 2–200 chars,
+//   partnershipType one of PARTNERSHIP_TYPES). In partner mode
+//   (validateLead opts.requirePartnerFields) both are required, so the
+//   partner form cannot submit without them — other forms are unaffected.
 // - DPDP consent lines and the unticked WhatsApp opt-in are untouched
 //   by this module — they live in the form components.
+
+export const PARTNERSHIP_TYPES = ["training", "university MoU", "reseller", "white-label"] as const;
 
 export interface LeadPayload {
   name: string;
@@ -32,6 +39,8 @@ export interface LeadPayload {
   whatsappOptIn?: boolean;
   course?: string;
   country?: string;
+  organisation?: string;
+  partnershipType?: string;
 }
 
 export type LeadErrors = Record<string, string>;
@@ -130,6 +139,26 @@ export function validateCountry(value: unknown): string | null {
   return null;
 }
 
+export function validateOrganisation(value: unknown, required = false): string | null {
+  if (value === undefined) return required ? "Please enter your organisation" : null;
+  if (typeof value !== "string") return "Organisation must be text";
+  const v = value.trim();
+  if (v.length === 0) return required ? "Please enter your organisation" : null;
+  if (v.length < 2) return "Organisation name is too short";
+  if (v.length > 200) return "Organisation name is too long (max 200 characters)";
+  return null;
+}
+
+export function validatePartnershipType(value: unknown, required = false): string | null {
+  if (value === undefined) return required ? "Please select a partnership type" : null;
+  if (typeof value !== "string") return "Please select a partnership type";
+  const v = value.trim();
+  if (v.length === 0) return required ? "Please select a partnership type" : null;
+  if (!(PARTNERSHIP_TYPES as readonly string[]).includes(v))
+    return "Please select a partnership type";
+  return null;
+}
+
 export function validateMessage(value: unknown): string | null {
   if (value === undefined) return null;
   if (typeof value !== "string") return "Message must be text";
@@ -139,9 +168,12 @@ export function validateMessage(value: unknown): string | null {
 }
 
 /** Validate a raw (untrusted) lead payload. Returns field errors, or a
- *  cleaned payload when valid. Unknown extra fields are ignored. */
+ *  cleaned payload when valid. Unknown extra fields are ignored.
+ *  opts.requirePartnerFields makes organisation + partnershipType
+ *  required (partner form only); all other callers omit opts. */
 export function validateLead(
   body: unknown,
+  opts?: { requirePartnerFields?: boolean },
 ): { data: LeadPayload; errors: LeadErrors } | { data: null; errors: LeadErrors } {
   if (body === null || typeof body !== "object" || Array.isArray(body)) {
     return { data: null, errors: { form: "Invalid request body" } };
@@ -151,6 +183,7 @@ export function validateLead(
   const put = (key: string, err: string | null) => {
     if (err && !errors[key]) errors[key] = err;
   };
+  const partnerRequired = opts?.requirePartnerFields === true;
   put("name", validateName(b.name));
   put("phone", validatePhone(b.phone));
   put("email", validateEmail(b.email));
@@ -158,6 +191,8 @@ export function validateLead(
   put("course", validateCourse(b.course));
   put("message", validateMessage(b.message));
   put("country", validateCountry(b.country));
+  put("organisation", validateOrganisation(b.organisation, partnerRequired));
+  put("partnershipType", validatePartnershipType(b.partnershipType, partnerRequired));
   if (b.source !== undefined) {
     const s = asString(b.source);
     if (s === null || s.trim().length > 200) errors.source = "Invalid source";
@@ -177,6 +212,8 @@ export function validateLead(
       whatsappOptIn: (b.whatsappOptIn as boolean | undefined) ?? false,
       course: asString(b.course)?.trim() || undefined,
       country: asString(b.country)?.trim() || undefined,
+      organisation: asString(b.organisation)?.trim() || undefined,
+      partnershipType: asString(b.partnershipType)?.trim() || undefined,
     },
     errors: {},
   };

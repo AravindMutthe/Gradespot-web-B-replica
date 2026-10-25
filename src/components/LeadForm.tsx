@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { validateLead } from "@/lib/lead-validation";
+import { validateLead, PARTNERSHIP_TYPES } from "@/lib/lead-validation";
 import { business } from "@/data/site";
 
 // Lead form per the researched conversion rules:
@@ -19,6 +19,7 @@ export default function LeadForm({
   hideMessage = false,
   submitLabel = "Request a Callback",
   showCountry = false,
+  partnerMode = false,
 }: {
   interest?: string;
   idPrefix?: string;
@@ -32,6 +33,14 @@ export default function LeadForm({
   // leads.country column exists (migration not yet applied) — until then
   // the insert falls back to the core columns and the value is dropped.
   showCountry?: boolean;
+  // Partner page only: replaces the interest field with a required
+  // Organisation field plus a required partnership-type select (the four
+  // PARTNERSHIP_TYPES). The payload's interest mirrors the selected type
+  // for attribution; organisation + partnershipType persist only once
+  // the leads.organisation / leads.partnership_type columns exist
+  // (migration not yet applied) — until then the insert falls back to
+  // the core columns and those values are dropped.
+  partnerMode?: boolean;
 }) {
   const pathname = usePathname();
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -51,19 +60,28 @@ export default function LeadForm({
     setErrors({});
     const form = e.currentTarget;
     const fd = new FormData(form);
+    const partnershipType = String(fd.get("partnershipType") ?? "");
     const payload = {
       name: String(fd.get("name") ?? ""),
       phone: String(fd.get("phone") ?? ""),
       email: String(fd.get("email") ?? ""),
-      interest: String(fd.get("interest") ?? ""),
+      // Partner mode: the partnership type IS the qualifier, so interest
+      // mirrors it for attribution and the existing interest column.
+      interest: partnerMode ? partnershipType : String(fd.get("interest") ?? ""),
       message: String(fd.get("message") ?? ""),
       whatsappOptIn: fd.get("whatsappOptIn") === "true",
       source: `website:${pathname ?? "/"}`,
       country: String(fd.get("country") ?? ""),
+      organisation: String(fd.get("organisation") ?? ""),
+      partnershipType,
     };
     // Client runs the SAME validators as /api/leads (§25.18) — bad
     // input is caught here with inline per-field errors and never sent.
-    const checked = validateLead(payload);
+    // Partner mode additionally requires organisation + partnershipType.
+    const checked = validateLead(
+      payload,
+      partnerMode ? { requirePartnerFields: true } : undefined,
+    );
     if (!checked.data) {
       setErrors(checked.errors);
       return;
@@ -170,35 +188,78 @@ export default function LeadForm({
           />
         </div>
       )}
-      <div className="mt-4">
-        <label htmlFor={id("interest")} className={label}>
-          I&apos;m interested in *
-        </label>
-        {interestOptions ? (
-          <select
-            id={id("interest")}
-            name="interest"
-            required
-            defaultValue={interestOptions[0]}
-            className={field}
-          >
-            {interestOptions.map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-        ) : (
+      {partnerMode && (
+        <div className="mt-4">
+          <label htmlFor={id("organisation")} className={label}>
+            Organisation *
+          </label>
           <input
-            id={id("interest")}
-            name="interest"
+            id={id("organisation")}
+            name="organisation"
             required
-            defaultValue={interest ?? ""}
+            autoComplete="organization"
             className={field}
-            placeholder="Course Training, Certification Voucher, a Service…"
+            placeholder="Your organisation"
           />
+          {errors.organisation && <p className="mt-1 text-xs text-field-error">{errors.organisation}</p>}
+        </div>
+      )}
+      <div className="mt-4">
+        {partnerMode ? (
+          <>
+            <label htmlFor={id("partnershipType")} className={label}>
+              Partnership type *
+            </label>
+            <select
+              id={id("partnershipType")}
+              name="partnershipType"
+              required
+              defaultValue=""
+              className={field}
+            >
+              <option value="" disabled>
+                Select a partnership type
+              </option>
+              {PARTNERSHIP_TYPES.map((o) => (
+                <option key={o} value={o}>
+                  {o.charAt(0).toUpperCase() + o.slice(1)}
+                </option>
+              ))}
+            </select>
+            {errors.partnershipType && <p className="mt-1 text-xs text-field-error">{errors.partnershipType}</p>}
+          </>
+        ) : (
+          <>
+            <label htmlFor={id("interest")} className={label}>
+              I&apos;m interested in *
+            </label>
+            {interestOptions ? (
+              <select
+                id={id("interest")}
+                name="interest"
+                required
+                defaultValue={interestOptions[0]}
+                className={field}
+              >
+                {interestOptions.map((o) => (
+                  <option key={o} value={o}>
+                    {o}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <input
+                id={id("interest")}
+                name="interest"
+                required
+                defaultValue={interest ?? ""}
+                className={field}
+                placeholder="Course Training, Certification Voucher, a Service…"
+              />
+            )}
+            {errors.interest && <p className="mt-1 text-xs text-field-error">{errors.interest}</p>}
+          </>
         )}
-        {errors.interest && <p className="mt-1 text-xs text-field-error">{errors.interest}</p>}
       </div>
       {!hideMessage && (
         <div className="mt-4">
